@@ -38,7 +38,7 @@ export const HeaderSection = () => {
 
   return (
     <>
-      <div className="h-[80px] sm:h-[100px] w-full my-10" /> {/* Responsive spacer */}
+      <div className="h-[100px] sm:h-[120px] w-full my-3" /> {/* Responsive spacer */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
           isScrolled

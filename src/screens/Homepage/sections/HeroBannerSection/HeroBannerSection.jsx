@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import highlight from "../../imgs/Sketch-annotation-element-stroke-abstract-highlight-bling-line-1.png";
+import bezierDesign from "../../imgs/bezier-design.png";
 
 export const HeroBannerSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,7 +12,7 @@ export const HeroBannerSection = () => {
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center justify-start  bg-white overflow-hidden ">
       {/* Decorative elements and SVGs, always visible */}
-      <div className="absolute top-[-10%] left-0 w-[40vw] sm:w-[30vw] md:w-[35vw] max-w-[400px] h-[50vh] sm:h-[60vh] md:h-[90vh] pointer-events-none">
+      <div className="absolute top-0 left-0 w-[40vw] sm:w-[30vw] md:w-[35vw] max-w-[400px] h-[50vh] sm:h-[60vh] md:h-[90vh] pointer-events-none ">
         <svg
           className="w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
@@ -175,6 +176,18 @@ export const HeroBannerSection = () => {
         stunning visual reality that truly represents you — a memorable
         identity.
       </p>
+
+      {/* Left curved line SVG */}
+      <div className="absolute left-0 top-[-5vh] h-full w-auto max-w-[400px] pointer-events-none z-0">
+        <svg>...</svg>
+        {/* Bezier design image at the bottom inside the curve */}
+        <img
+          src={bezierDesign}
+          alt="Bezier Design"
+          className="absolute left-0 bottom-[-70px] w-[90px] sm:w-[120px] md:w-[140px] z-10"
+          style={{ transform: "translateX(-30%)" }}
+        />
+      </div>
 
       <style>{`
         @keyframes fade-in {
