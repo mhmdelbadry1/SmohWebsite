@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
+import AboutUsImage from "../../imgs/AboutUs.png"
 
 export const ProjectsSection = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className="container flex flex-col items-center gap-8 py-16 sm:py-20 bg-white w-full">
+    <section className="w-full flex flex-col items-center gap-8 py-16 sm:py-20 bg-white px-4">
       <header className="flex flex-col items-center gap-4 w-full">
         <h2 className="font-['Poppins',Helvetica] font-semibold text-black text-[56px] animate-fade-in">
           About Us
@@ -17,7 +18,7 @@ export const ProjectsSection = () => {
       </header>
 
       <Card
-        className="w-full max-w-3xl border border-solid p-0 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]"
+        className="w-[1000px] h-[520px] border border-solid p-0 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] rounded-[16px] opacity-100"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -28,30 +29,31 @@ export const ProjectsSection = () => {
             }`}
           >
             <img
-              className="w-[500px] h-[155px] object-cover rounded-lg shadow-lg"
+              className="w-full max-w-[800px] h-[200px] object-cover"
               alt="Sumou logo"
-              src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=500&h=155&fit=crop"
+              src= {AboutUsImage}
             />
           </div>
 
-          <p className="font-['Poppins',Helvetica] font-normal text-black text-[22px] leading-[35px] text-center">
+          <p className="font-['Poppins',Helvetica] font-normal text-black text-[22px] leading-[35px] text-left">
             <span className="font-light">
               Sumou is a company specialized in{" "}
             </span>
-            <span className="font-['Poppins',Helvetica] font-bold text-purple text-[22px] leading-[35px] hover:scale-105 inline-block transition-transform duration-300">
-              visual identity design
-            </span>
-            <span className="font-light">, </span>
-            <span className="font-['Poppins',Helvetica] font-bold text-purple text-[22px] leading-[35px] hover:scale-105 inline-block transition-transform duration-300">
-              advertising content creation
+            <span className=" font-bold text-purple text-[22px] leading-[35px] hover:scale-105  transition-transform duration-300">
+              visual identity design, advertising content creation
             </span>
             <span className="font-light">, and </span>
-            <span className="font-['Poppins',Helvetica] font-bold text-purple text-[22px] leading-[35px] hover:scale-105 inline-block transition-transform duration-300">
+            <span className=" font-bold text-purple text-[22px] leading-[35px] hover:scale-105 inline-block transition-transform duration-300">
               creative consulting
             </span>
             <span className="font-light">
               {" "}
-              for entrepreneurs and emerging brands. Our goal is to empower
+              for entrepreneurs and emerging brands. 
+              </span>
+              <br/>
+
+              <span>
+              Our goal is to empower
               brands to stand out in the market through creative solutions built
               on strategic vision and refined taste.
             </span>
