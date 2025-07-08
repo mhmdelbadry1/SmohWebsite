@@ -96,7 +96,7 @@ export const HeroBannerSection = () => {
           />
            </div>
         
-        <div className="absolute top-[38%] left-[30%] w-[85px] h-[85px] animate-icon-entrance-delayed">
+        <div className="absolute top-[370px] left-[30%] w-[85px] h-[85px] animate-icon-entrance-delayed">
           <img
             src={facebookIcon}
             alt="Facebook Icon"
