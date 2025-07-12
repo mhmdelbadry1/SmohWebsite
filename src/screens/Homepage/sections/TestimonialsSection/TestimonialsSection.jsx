@@ -219,7 +219,6 @@ export const TestimonialsSection = () => {
           <motion.div
             className="w-full lg:w-[375px] flex-shrink-0 rounded-3xl overflow-hidden bg-white"
             custom={7}
-            variants={fadeUp}
           >
             <CardContent className="p-0">
               <motion.div

@@ -339,6 +339,10 @@ export const HeroBannerSection = () => {
             stroke-dashoffset: 0;
             fill-opacity: 0;
           }
+          75% {
+            stroke-dashoffset: 0;
+            fill-opacity: 1;
+          }
           100% {
             stroke-dashoffset: 0;
             fill-opacity: 1;
@@ -353,6 +357,10 @@ export const HeroBannerSection = () => {
           70% {
             stroke-dashoffset: 0;
             fill-opacity: 0;
+          }
+          75% {
+            stroke-dashoffset: 0;
+            fill-opacity: 1;
           }
           100% {
             stroke-dashoffset: 0;

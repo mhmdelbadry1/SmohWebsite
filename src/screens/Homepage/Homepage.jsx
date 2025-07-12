@@ -11,7 +11,7 @@ import { TestimonialsSection } from "./sections/TestimonialsSection/Testimonials
 export const Homepage = () => {
   return (
     <div className="bg-white flex flex-row justify-center w-full">
-      <div className="w-full max-w-screen">
+      <div className="w-full overflow-x-hidden">
         <div className="flex w-full flex-col">
           <HeaderSection />
           <HeroBannerSection />
