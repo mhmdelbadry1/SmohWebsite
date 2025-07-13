@@ -1,1 +1,1 @@
-export { OfferingsSection } from "./OfferingsSection";
+export { OfferingsSection } from "./OfferingsSection.jsx";

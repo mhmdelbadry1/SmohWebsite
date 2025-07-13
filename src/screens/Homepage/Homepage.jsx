@@ -15,12 +15,12 @@ export const Homepage = () => {
         <div className="flex w-full flex-col">
           <HeaderSection />
           <HeroBannerSection />
-          <ProjectsSection />
-          <TestimonialsSection />
-          <OfferingsSection />
-          <ConsultationSection />
           <AboutUsSection />
           <ClientsTestimonialsSection />
+          <ProjectsSection />
+          <OfferingsSection />
+          <TestimonialsSection />
+          <ConsultationSection />
         </div>
       </div>
     </div>

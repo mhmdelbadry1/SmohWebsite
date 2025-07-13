@@ -1,1 +1,1 @@
-export { AboutUsSection } from "./AboutUsSection.jsx";
+export { AboutUsSection } from "./AboutUsSection";

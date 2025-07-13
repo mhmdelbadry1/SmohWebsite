@@ -1,231 +1,114 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import { Button } from "../../../../components/ui/button";
-import { Card } from "../../../../components/ui/card";
-import projectImg1 from "../../imgs/project_1.png";
-import projectImg2 from "../../imgs/project_2.png";
-import projectImg3 from "../../imgs/project_3.png";
-import projectImg4 from "../../imgs/project_4.png";
-import projectImg5 from "../../imgs/project_5.png";
-import projectImg6 from "../../imgs/project_6.png";
+import MarketingImg from "../../imgs/marketing.png";
+import Star from "../../imgs/Subtract.png";
+import StarDec from "../../imgs/Sketch-annotation-element-stroke-abstract-stars-plus-wink-filled.png";
+import Group10 from "../../imgs/Group 10.png";
+import Idea from "../../imgs/idea.png";
+import IdeaVector from "../../imgs/Vector.png";
+import Pen from "../../imgs/graphic-design.png";
+import Youtube from "../../imgs/Youtube.png";
+import Flag from "../../imgs/Flags.png";
+
+import { Card, CardContent } from "../../../../components/ui/card";
 
 export const OfferingsSection = () => {
-  const [hoveredProject, setHoveredProject] = useState(null);
-  const [columns, setColumns] = useState(3);
-  const [visibleCards, setVisibleCards] = useState(new Set());
-  const sectionRef = useRef(null);
-  const cardsRef = useRef([]);
-
-  useEffect(() => {
-    const updateColumns = () => {
-      setColumns(window.innerWidth >= 1024 ? 3 : 2);
-    };
-    updateColumns();
-    window.addEventListener("resize", updateColumns);
-    return () => window.removeEventListener("resize", updateColumns);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Reset and trigger animations when section comes into view
-            setVisibleCards(new Set());
-            
-            // Sequential animation with staggered delays
-            cardsRef.current.forEach((card, index) => {
-              if (card) {
-                setTimeout(() => {
-                  setVisibleCards(prev => new Set([...prev, index]));
-                }, index * 150); // 150ms delay between each card
-              }
-            });
-          } else {
-            // Reset when section goes out of view
-            setVisibleCards(new Set());
-          }
-        });
-      },
-      {
-        threshold: 0.2, // Trigger when 20% of section is visible
-        rootMargin: '0px 0px -50px 0px' // Slight offset
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
-  const projects = [
-    { id: 1, title: "E-commerce Platform", category: "Web Design", image: projectImg1 },
-    { id: 2, title: "Mobile Banking App", category: "Mobile Design", image: projectImg2 },
-    { id: 3, title: "Brand Identity", category: "Branding", image: projectImg3 },
-    { id: 4, title: "Social Media App", category: "UI/UX", image: projectImg4 },
-    { id: 5, title: "Restaurant Website", category: "Web Design", image: projectImg5 },
-    { id: 6, title: "Corporate Dashboard", category: "Web App", image: projectImg6 },
-  ];
-
-  // Reorder projects for mobile: swap 3rd and 5th images
-  const mobileProjects = [
-    projects[0], // 1st stays
-    projects[1], // 2nd stays
-    projects[4], // 5th goes to 
-    projects[3], // 4th stays
-    projects[2], // 3rd goes to 
-    projects[5], // 6th stays
-  ];
-
   return (
-    <section 
-      ref={sectionRef}
-      className="w-full flex flex-col items-center gap-10 py-16 sm:py-20 overflow-hidden relative bg-gradient-to-br from-white to-purple/5"
-    >
-      <div className="flex flex-col items-center gap-4 relative w-full max-w-7xl mx-auto px-4">
-        <h2 className="relative w-fit font-['Poppins',Helvetica] font-semibold text-black text-[56px] animate-fade-in">
-          Our Projects
-        </h2>
-        <p className="opacity-75 font-['Poppins',Helvetica] text-xl text-center font-normal text-black max-w-4xl">
-          Discover our most notable work that reflects our commitment to quality and innovation.
-        </p>
+    <section className="relative w-full min-h-[80vh] py-16 flex flex-col items-center justify-center overflow-hidden">
+      {/* Left decorative panel */}
+      <div className="absolute inset-y-0 left-0 w-[600px] max-w-[90vw] pointer-events-none">
+        {/* SVG curve + embedded icons */}
+        <svg
+          className="absolute inset-y-0 left-0 h-full w-auto"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 452 531">
+          {/* Main curve path */}
+          <path
+            d="M4.70056 30.6036C38.7344 8.81755 81.2196 -0.562555 121.268 6.62381C140.379 10.0279 159.49 17.5168 172.89 31.8896C185.377 45.2789 192.686 64.493 187.737 82.648C183.017 100.047 169.007 113.36 155.607 124.631C140.379 137.491 124.618 149.746 109.543 162.908C78.9354 189.687 50.3836 219.34 30.2069 254.818C10.3348 289.767 -1.39051 329.556 0.132258 369.876C1.57889 408.455 15.1315 445.824 40.714 475.024C63.7078 501.273 95.4575 520.335 129.796 527.522C167.332 535.389 207.381 529.791 241.262 511.939C259.155 502.483 273.697 488.791 289.763 476.839C305.599 465.038 323.416 457.171 343.288 455.658C380.139 452.859 414.173 471.166 433.283 502.256C435.415 505.736 437.395 509.367 439.222 513.073C441.049 516.856 443.562 520.714 444.628 524.723C445.922 529.337 453.079 527.371 451.861 522.756C450.643 518.444 450.262 513.981 448.663 509.669C447.064 505.433 445.085 501.273 442.877 497.263C438.537 489.699 433.207 482.739 427.116 476.461C414.553 463.601 398.717 453.918 381.357 448.85C362.627 443.404 342.298 443.328 323.416 448.32C303.163 453.691 286.869 465.492 270.956 478.503C255.653 491.06 240.044 502.407 221.543 509.745C203.422 516.931 184.083 520.941 164.515 521.243C127.588 521.773 91.4221 508.383 63.4794 484.555C34.09 459.516 15.6645 424.946 10.1825 386.972C4.31987 346.123 13.5326 304.366 32.2626 267.829C51.2972 230.687 79.6207 199.824 110.609 172.137C125.989 158.37 142.13 145.585 157.967 132.423C171.672 121.076 185.301 108.443 192.305 91.8012C199.386 74.8565 197.102 55.6424 187.433 40.0593C177.687 24.2493 162.002 13.5832 144.643 7.38027C107.868 -5.4039 64.926 -0.713845 29.9023 14.7936C20.8419 18.8028 12.1621 23.7198 3.93918 29.3176C3.17779 29.8471 3.86304 31.0575 4.70056 30.6036Z"
+            fill="#4C31AF"
+          />
+
+          {/* Marketing icon (SVG image) */}
+          <image href={MarketingImg} x="52" y="20" width="84" height="84" />
+
+          {/* Star icon */}
+          <image href={Star} x="75" y="180" width="80" height="80" />
+          {/* Star shine overlay */}
+          <image href={StarDec} x="114" y="209" width="70" height="70" />
+
+          {/* Social icons group */}
+          <image href={Group10} x="90" y="380" width="140" height="140" />
+        </svg>
+      </div>
+      <div className="absolute top-0 bottom-0  right-0 w-[350px] max-w-[90vw] h-[85%] flex items-start justify-end pointer-events-none">
+        <svg
+          className="h-full w-full"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 252 466"
+          fill="none">
+          <path
+            d="M0.0480119 369.818C17.448 419.818 66.748 458.518 119.048 465.018C175.948 472.018 228.148 420.818 221.548 363.818C214.448 301.818 157.148 267.118 127.548 216.818C113.348 192.618 106.748 165.218 114.848 137.718C122.948 110.218 142.548 87.1181 165.848 70.9181C192.548 52.4181 223.848 42.9181 255.748 37.9181C286.348 33.1181 320.048 35.2181 348.348 21.0181C354.548 17.9181 360.248 12.2181 365.348 7.51808C369.248 3.81808 363.648 -1.38192 359.648 1.81808C353.748 6.41808 346.948 8.81808 340.148 11.6181C333.448 14.4181 326.548 16.4181 319.548 17.9181C304.248 21.2181 288.348 21.7181 272.848 23.5181C240.648 27.2181 208.648 33.7181 179.648 48.6181C130.748 73.6181 89.348 125.518 101.148 183.218C106.548 209.518 121.948 232.518 138.548 253.118C156.648 275.418 178.348 294.918 193.148 319.718C208.548 345.518 216.448 376.518 204.348 405.218C194.148 429.318 172.348 448.418 147.148 455.318C120.848 462.618 92.4479 455.018 68.8479 442.718C44.6479 430.018 23.948 410.618 10.048 387.018C6.74801 381.318 3.74801 375.418 1.04801 369.418C0.948012 368.518 -0.251988 369.018 0.0480119 369.818Z"
+            fill="#4C31AF"
+          />
+
+          {/* Embedded Icons — adjust (x,y,width,height) freely */}
+          <image
+            href={Idea}
+            x="10"
+            y="0"
+            transform="scale(-1,1) translate(-150,0)"
+            width="100"
+            height="100"
+          />
+          <image href={IdeaVector} x="12" y="25" width="90" height="90" />
+          <image href={Pen} x="80" y="340" width="90" height="90" />
+          <image href={Youtube} x="160" y="200" width="60" height="60" />
+        </svg>
       </div>
 
-      <div className="w-full">
-        <div
-          className={`flex flex-wrap gap-y-8 ${
-            columns === 3 ? "" : "px-4"
-          }`}
-          style={
-            columns === 3
-              ? {
-                  width: "120vw", // overflow the page on both sides
-                  marginLeft: "-10vw", // start outside left
-                  marginRight: "0", // stretch to right edge
-                }
-              : {}
-          }
-        >
-          {(columns === 3 ? projects : mobileProjects).map((project, index) => {
-            const row = Math.floor(index / columns);
-            const col = index % columns;
-            const isVisible = visibleCards.has(index);
+      {/* Main content */}
+      <Card className="relative w-[90%] max-w-[950px] border-none shadow-none bg-transparent z-10">
+        <CardContent className="p-8 flex flex-col items-center gap-6">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="360"
+            height="99"
+            className="absolute top-[40%] left-[42%] z-[-1] -translate-x-1/2 -translate-y-1/2 w-[300px] h-auto"
+            viewBox="0 0 360 99"
+            fill="none">
+            <path
+              d="M279.91 83.4982C252.764 80.4381 225.33 82.9627 198.185 84.7988C171.328 86.6348 144.529 89.695 117.673 91.072C91.9134 92.3726 65.6921 92.3726 40.5682 84.1867C30.6341 80.9736 -6.21433 68.5035 8.91778 46.1646C13.6538 39.2028 20.8155 35.3011 27.342 32.3175C33.8684 29.3338 40.5681 27.2682 47.2679 25.2027C58.126 21.8365 68.9264 18.3939 79.9001 16.0223C93.0107 13.1916 106.237 11.126 119.521 9.74897C171.848 4.24073 225.041 6.53583 277.08 15.4867C287.649 17.3228 298.276 19.0824 308.788 21.607C318.664 23.9786 328.714 27.0387 337.724 33.159C341.94 35.9896 345.925 39.5088 349.333 43.8695C352.856 48.3832 356.263 56.6455 350.892 61.2357C345.867 65.5199 339.225 66.897 333.45 68.121C327.154 69.3451 320.859 70.1866 314.563 71.2577C308.037 72.3287 301.51 73.3997 294.984 74.2413C290.595 74.8533 290.421 83.9572 294.984 83.4982C308.788 82.1211 322.534 78.908 336.164 75.9244C346.271 73.7058 362.732 68.58 359.613 50.3722C357.303 36.9077 345.521 28.4158 336.742 23.4431C326.865 17.9348 316.354 15.1042 305.784 12.9621C252.071 2.17514 198.011 -2.26206 143.721 1.10409C116.517 2.78716 89.3721 6.68884 62.6888 13.9567C54.0253 16.3283 45.3042 19.0059 36.6985 21.8365C28.9014 24.4376 21.0466 27.4978 13.9426 32.4705C7.93593 36.6782 1.69826 43.1044 0.312116 52.4378C-1.53608 64.7549 5.10588 73.8588 12.7874 79.214C23.1258 86.4053 35.0813 90.3835 46.4593 93.2906C59.6277 96.6568 73.0271 98.3398 86.4843 98.7989C115.074 99.8699 143.605 96.4273 172.079 94.0557C200.726 91.6076 229.431 90.307 258.136 88.3179C265.471 87.7824 272.748 87.1704 280.025 86.3288C281.296 86.1758 281.296 83.6512 279.91 83.4982Z"
+              fill="#DB4063"
+            />
+          </svg>
 
-            const isMobileCard =
-              (col % 2 !== 0 ) ;
+          <h2 className="font-['Poppins',Helvetica] font-semibold text-black text-4xl sm:text-5xl text-center">
+            <img className="" src={Flag} alt="Falgs" />
+            Do you have an idea or a project?
+          </h2>
 
-            const baseCardStyle = {
-              borderRadius: "16px",
-              padding: 0,
-              transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
-              transform: isVisible 
-                ? (row % 2 ? `translateX(-40px) translateY(0) scale(1)` : `translateX(60px) translateY(0) scale(1)`)
-                : (row % 2 ? `translateX(-40px) translateY(60px) scale(0.8)` : `translateX(60px) translateY(60px) scale(0.8)`),
-              opacity: isVisible ? 1 : 0,
-            };
-
-            if (columns === 3) {
-              return (
-                <Card
-                  key={project.id}
-                  ref={el => cardsRef.current[index] = el}
-                  className={`bg-white overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ease-out ${
-                    hoveredProject === project.id
-                      ? "scale-105 shadow-2xl"
-                      : "hover:scale-102 hover:shadow-xl"
-                  }`}
-                  onMouseEnter={() => setHoveredProject(project.id)}
-                  onMouseLeave={() => setHoveredProject(null)}
-                  style={{
-                    ...baseCardStyle,
-                    aspectRatio:  "5/4",
-                    width: isMobileCard ? "20%" : "35%",
-                    marginLeft:"30px",
-                    hight: "650px",
-                  }}
-                >
-                  <div className="relative w-full h-full overflow-hidden rounded-2xl">
-                    <img
-                      className={`w-full h-full object-cover transition-transform duration-500 ease-out ${
-                        hoveredProject === project.id ? "scale-110" : "scale-100"
-                      }`}
-                      alt={project.title}
-                      src={project.image}
-                    />
-                    <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-300 ${
-                      hoveredProject === project.id ? "opacity-100" : "opacity-0"
-                    }`} />
-                  </div>
-                </Card>
-              );
-            } else {
-              const isMobileCard_ = (row % 2 === 0 && col === 1) || (row % 2 !== 0 && col !== 1);
-              
-              // Mobile animation styles
-              const mobileBaseStyle = {
-                borderRadius: "16px",
-                padding: 0,
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
-                transform: isVisible 
-                  ? "translateY(0) scale(1)"
-                  : "translateY(80px) scale(0.8)",
-                opacity: isVisible ? 1 : 0,
-              };
-              
-              return (
-                <Card
-                  key={project.id}
-                  ref={el => cardsRef.current[index] = el}
-                  className={`bg-white overflow-hidden shadow-lg cursor-pointer transition-all duration-300 ease-out ${
-                    hoveredProject === project.id
-                      ? "scale-105 shadow-2xl"
-                      : "hover:scale-102 hover:shadow-xl"
-                  }`}
-                  onMouseEnter={() => setHoveredProject(project.id)}
-                  onMouseLeave={() => setHoveredProject(null)}
-                  style={{
-                    ...mobileBaseStyle,
-                    aspectRatio:  "4/3",
-                    width: isMobileCard_ ? "30%" : "65%",
-                    hight: "360px",
-                    marginLeft: col === 0 ? "0px" : "2%",
-                    marginRight: col === 1 ? "0px" : "2%",
-                  }}
-                >
-                  <div className="relative w-full h-full overflow-hidden rounded-2xl">
-                    <img
-                      className={`w-full h-full object-cover transition-transform duration-500 ease-out ${
-                        hoveredProject === project.id ? "scale-110" : "scale-100"
-                      }`}
-                      alt={project.title}
-                      src={project.image}
-                    />
-                    <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-300 ${
-                      hoveredProject === project.id ? "opacity-100" : "opacity-0"
-                    }`} />
-                  </div>
-                </Card>
-              );
-            }
-          })}
-        </div>
-      </div>
-      <div className="flex justify-center mt-8">
-        <Button className="inline-flex items-center justify-center gap-2.5 px-8 py-2 bg-purple rounded-lg hover:bg-purple/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-          <span className="font-['Poppins',Helvetica] font-normal text-white text-lg leading-6 whitespace-nowrap">
-            View More
-          </span>
-        </Button>
-      </div>
-
-      <div className="absolute w-[100px] h-[100px] top-0 right-10 animate-spin-slow">
-        <div className="w-full h-full bg-gradient-to-r from-purple to-red rounded-full opacity-20" />
-      </div>
+          <p className="opacity-75 font-['Poppins',Helvetica] font-normal text-[#1F1F1F] text-[1.2rem] leading-10 text-center">
+            We’re here to turn your ideas into reality! Whether you have an
+            initial concept or a ready-made plan, our specialized team is ready
+            to support you every step of the way.
+          </p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="171"
+            height="11"
+            className="absolute top-[65%] left-[27%]"
+            viewBox="0 0 171 11"
+            fill="none">
+            <path
+              d="M1.16475 8.48361C29.412 8.48361 57.6592 8.56555 86.0067 8.81128C99.8298 8.89319 113.653 9.22084 127.476 9.22084C134.187 9.22084 140.999 9.22084 147.71 9.63039C150.915 9.79421 154.02 10.1219 157.126 10.4495C161.032 10.8591 163.737 10.5314 167.643 10.2038C170.949 9.95802 172.351 6.59967 169.346 5.04336C166.441 3.48705 164.538 2.17646 161.032 1.685C157.827 1.19353 154.621 1.02971 151.316 0.865883C144.605 0.538238 137.793 0.620145 131.082 0.783967C116.658 1.11161 102.334 1.7669 87.9099 2.42219C58.9614 3.65086 30.013 5.04335 1.16475 6.59967C-0.337763 6.59967 -0.43793 8.48361 1.16475 8.48361Z"
+              fill="#DB4063"
+            />
+          </svg>
+          <Button className="bg-purple text-white font-['Poppins',Helvetica] font-medium text-lg px-8 py-3 rounded-xl">
+            Contact Us
+          </Button>
+        </CardContent>
+      </Card>
     </section>
   );
 };
