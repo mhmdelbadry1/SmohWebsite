@@ -1,10 +1,40 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "../../../../components/ui/button";
 
 export const HeaderSection = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("Home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Update active section based on current route
+  useEffect(() => {
+    const path = location.pathname;
+    switch (path) {
+      case "/":
+        setActiveSection("Home");
+        break;
+      case "/about":
+        setActiveSection("About Us");
+        break;
+      case "/services":
+        setActiveSection("Our Services");
+        break;
+      case "/projects":
+        setActiveSection("Our Projects");
+        break;
+      case "/testimonials":
+        setActiveSection("Testimonials");
+        break;
+      case "/contact":
+        setActiveSection("Contact Us");
+        break;
+      default:
+        setActiveSection("Home");
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,19 +58,19 @@ export const HeaderSection = () => {
   }, [isMobileMenuOpen]);
 
   const allNavItems = [
-    { text: "Home", active: activeSection === "Home" },
-    { text: "About Us", active: activeSection === "About Us" },
-    { text: "Our Services", active: activeSection === "Our Services" },
-    { text: "Testimonials", active: activeSection === "Testimonials" },
-    { text: "Our Projects", active: activeSection === "Our Projects" },
-    { text: "Contact Us", active: activeSection === "Contact Us" },
+    { text: "Home", path: "/", active: activeSection === "Home" },
+    { text: "About Us", path: "/about", active: activeSection === "About Us" },
+    { text: "Our Services", path: "/services", active: activeSection === "Our Services" },
+    { text: "Testimonials", path: "/testimonials", active: activeSection === "Testimonials" },
+    { text: "Our Projects", path: "/projects", active: activeSection === "Our Projects" },
+    { text: "Contact Us", path: "/contact", active: activeSection === "Contact Us" },
   ];
 
   const leftNavItems = allNavItems.slice(0, 3);
   const rightNavItems = allNavItems.slice(3);
 
-  const handleNavClick = (section) => {
-    setActiveSection(section);
+  const handleNavClick = (item) => {
+    navigate(item.path);
     setIsMobileMenuOpen(false);
   };
 
@@ -67,7 +97,7 @@ export const HeaderSection = () => {
               {leftNavItems.map((item, index) => (
                 <button
                   key={`left-nav-${index}`}
-                  onClick={() => handleNavClick(item.text)}
+                  onClick={() => handleNavClick(item)}
                   className={`relative font-poppins text-[16px] lg:text-[18px] transition-all duration-300 hover:text-[#FF3333] ${
                     item.active
                       ? "font-semibold text-[#1F1F1F]"
@@ -95,7 +125,7 @@ export const HeaderSection = () => {
               {rightNavItems.map((item, index) => (
                 <button
                   key={`right-nav-${index}`}
-                  onClick={() => handleNavClick(item.text)}
+                  onClick={() => handleNavClick(item)}
                   className={`relative font-poppins text-[16px] lg:text-[18px] transition-all duration-300 hover:text-[#FF3333] ${
                     item.active
                       ? "font-semibold text-[#1F1F1F]"
@@ -191,7 +221,7 @@ export const HeaderSection = () => {
               {allNavItems.map((item, index) => (
                 <button
                   key={`mobile-nav-${index}`}
-                  onClick={() => handleNavClick(item.text)}
+                  onClick={() => handleNavClick(item)}
                   className={`relative text-[20px] font-poppins transition-all duration-300 hover:text-[#4C31AF] hover:scale-105 ${
                     item.active
                       ? "font-semibold text-[#4C31AF]"
