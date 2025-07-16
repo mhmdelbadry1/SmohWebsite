@@ -86,7 +86,7 @@ export const HeaderSection = () => {
           isMobileMenuOpen ? "hidden" : ""
         } ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-lg"
+            ? "bg-white  shadow-lg"
             : "bg-transparent"
         }`}>
         <nav className="container flex items-center justify-between h-[80px] sm:h-[100px] px-4">
