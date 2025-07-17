@@ -37,9 +37,9 @@ export const HeroBannerSection = () => {
   }, []);
 
   return (
-    <section className="relative w-full lg:min-h-[90vh] py-12 flex flex-col items-center justify-center bg-white overflow-hidden">
+    <section className="relative w-full h-screen py-12 flex flex-col items-center justify-center bg-white overflow-hidden">
 
-      <div className="absolute top-0 left-0 w-[650px] lg:w-[380px] max-w-[800px] hidden lg:block h-screen pointer-events-none  transition-all duration-1000">
+      <div className="absolute top-0 left-0 w-[650px] lg:w-[480px] max-w-[800px] hidden xl:block h-screen pointer-events-none  transition-all duration-1000">
         <svg
           className="absolute top-0 left-0 w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
@@ -70,9 +70,9 @@ export const HeroBannerSection = () => {
       </div>
 
 
-      <div className="absolute top-[180px] right-0 hidden lg:block h-screen w-auto w-[150px] max-w-[250px] pointer-events-none z-0">
+      <div className="absolute top-[280px] right-0 w-[650px] lg:w-[480px] max-w-[800px] hidden xl:block h-screen pointer-events-none  transition-all duration-1000">
         <svg
-          className="w-auto h-full"
+          className="absolute  w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 300 900"

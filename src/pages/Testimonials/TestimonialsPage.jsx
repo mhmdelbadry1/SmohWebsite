@@ -1,12 +1,26 @@
 import { ArrowLeftIcon, ArrowRightIcon, UserIcon } from "lucide-react";
 import React, { useState, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { Avatar, AvatarFallback } from "../../components/ui/avatar";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export const TestimonialsPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Animation controls
+  const headerControls = useAnimation();
+  const lineControls = useAnimation();
+
+  // Intersection Observer hooks
+  const [headerRef, headerInView] = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
 
   // Check if mobile on component mount and window resize
   useEffect(() => {
@@ -18,6 +32,50 @@ export const TestimonialsPage = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      once: true,
+      offset: 50,
+      easing: 'ease-out-cubic'
+    });
+  }, []);
+
+  // Animation variants
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    }),
+  };
+
+  const maskReveal = {
+    hidden: { width: 0 },
+    visible: {
+      width: "100%",
+      transition: {
+        duration: 1.3,
+        ease: "easeInOut",
+        delay: 0.5,
+      },
+    },
+  };
+
+  // Trigger animations when header is in view
+  useEffect(() => {
+    if (headerInView) {
+      headerControls.start("visible");
+      lineControls.start("visible");
+    }
+  }, [headerInView, headerControls, lineControls]);
 
   // Testimonial data extracted from the image
   const testimonials = [
@@ -97,34 +155,62 @@ export const TestimonialsPage = () => {
 
         <div className="w-full px-4 relative z-10">
           {/* Section header */}
-          <div className="flex flex-col items-center gap-4 sm:gap-6 mb-8 sm:mb-12 md:mb-16">
+          <motion.div 
+            ref={headerRef}
+            className="flex flex-col items-center gap-4 sm:gap-6 mb-8 sm:mb-12 md:mb-16"
+            initial="hidden"
+            animate={headerControls}
+          >
             <div className="relative">
-              <h2 className="font-['Poppins',Helvetica] font-semibold text-black text-[28px] sm:text-4xl md:text-5xl lg:text-6xl text-center px-4">
+              <motion.h2 
+                className="font-['Poppins',Helvetica] font-semibold text-black text-[28px] sm:text-4xl md:text-5xl lg:text-6xl text-center px-4"
+                variants={fadeUp}
+                custom={0}
+              >
                 Our Clients' Testimonials
-              </h2>
+              </motion.h2>
 
               {/* Underline decoration - hidden on mobile */}
               <div className="absolute -bottom-2 left-[35%] transform -translate-x-1/2 w-64 hidden sm:block">
-                <svg
+                <motion.svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="217"
                   height="12"
                   viewBox="0 0 217 12"
                   fill="none"
-                  className="w-full h-auto">
+                  className="w-full h-auto"
+                  initial="hidden"
+                  animate={lineControls}
+                >
+                  <defs>
+                    <mask id="revealMask">
+                      <motion.rect
+                        x="0"
+                        y="0"
+                        height="100%"
+                        fill="white"
+                        variants={maskReveal}
+                      />
+                    </mask>
+                  </defs>
                   <path
                     d="M1.47808 9.41159C37.324 9.41159 73.1699 9.5099 109.143 9.80479C126.685 9.90308 144.226 10.2963 161.768 10.2963C170.284 10.2963 178.928 10.2963 187.445 10.7877C191.512 10.9843 195.453 11.3775 199.393 11.7707C204.351 12.2621 207.783 11.8689 212.74 11.4758C216.935 11.1809 218.715 7.15086 214.901 5.28328C211.215 3.41571 208.8 1.843 204.351 1.25324C200.283 0.663484 196.215 0.466897 192.021 0.27031C183.504 -0.122864 174.86 -0.0245764 166.344 0.172011C148.04 0.565184 129.862 1.35153 111.558 2.13788C74.8224 3.61228 38.0867 5.28328 1.47808 7.15085C-0.428623 7.15085 -0.555736 9.41159 1.47808 9.41159Z"
                     fill="#DB4063"
+                    mask="url(#revealMask)"
                   />
-                </svg>
+                </motion.svg>
               </div>
             </div>
 
-            <p className="font-['Poppins',Helvetica] font-normal text-gray-600 text-base sm:text-lg md:text-xl text-center max-w-4xl leading-relaxed px-4">
+            <motion.p 
+              className="font-['Poppins',Helvetica] font-normal text-gray-600 text-base sm:text-lg md:text-xl text-center max-w-4xl leading-relaxed px-4"
+              variants={fadeUp}
+              custom={1}
+            >
               Our clients' feedback is a living testament to our commitment to
               delivering comprehensive services.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* Testimonial cards container */}
           <div className="relative w-full flex justify-center">
@@ -135,6 +221,9 @@ export const TestimonialsPage = () => {
                 <Card
                   key={index}
                   className={`bg-white rounded-[24px] shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 active:scale-100 transition-all duration-300 h-auto flex flex-col group ${isMobile ? 'w-full max-w-[90%]' : 'flex-1 min-w-0 max-w-none'}`}
+                  data-aos="flip-left"
+                  data-aos-delay={200 * index}
+                  data-aos-duration="700"
                 >
                   <CardContent className="p-4 sm:p-5 lg:p-6 flex flex-col h-full relative">
                     {/* User info header */}
@@ -168,7 +257,12 @@ export const TestimonialsPage = () => {
               </div>
 
               {/* Navigation buttons - positioned at bottom center */}
-              <div className="flex items-center justify-center gap-4 mt-8">
+              <div 
+                className="flex items-center justify-center gap-4 mt-8"
+                data-aos="fade-up"
+                data-aos-delay="1000"
+                data-aos-duration="600"
+              >
                 <Button
                   onClick={prevSlide}
                   className="w-10 h-10 lg:w-12 lg:h-12 p-0 bg-[#4C31AF] hover:bg-[#3d2689] rounded-full z-20 shadow-lg hidden lg:flex items-center justify-center">
@@ -185,7 +279,12 @@ export const TestimonialsPage = () => {
           </div>
 
           {/* Dots indicator and mobile navigation */}
-          <div className="flex flex-col items-center gap-4 mt-8">
+          <div 
+            className="flex flex-col items-center gap-4 mt-8"
+            data-aos="fade-up"
+            data-aos-delay="1100"
+            data-aos-duration="600"
+          >
             {/* Dots indicator */}
             <div className="flex justify-center gap-2">
               {Array.from({ length: isMobile ? Math.ceil(testimonials.length / 3) : 1 }).map((_, index) => (

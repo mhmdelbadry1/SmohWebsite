@@ -1,198 +1,362 @@
 import React, { useState } from "react";
-import { Button } from "../../components/ui/button";
-import { Input } from "../../components/ui/input";
 
 export const ContactPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
 
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-br from-purple-600 to-pink-600 py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold text-white mb-4">Get In Touch</h1>
-          <p className="text-xl text-purple-100 max-w-2xl mx-auto">
-            Ready to transform your business? Let's discuss your project and create something amazing together.
-          </p>
-        </div>
-      </div>
-
-      <div className="py-16 px-4 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div>
-            <h2 className="text-3xl font-bold mb-6">Send us a message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Name *</label>
-                  <Input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full"
-                    placeholder="Your full name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-                  <Input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                  <Input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="w-full"
-                    placeholder="+1 (555) 123-4567"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Company</label>
-                  <Input
-                    type="text"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    className="w-full"
-                    placeholder="Your company name"
-                  />
-                </div>
+    <div className="bg-white w-full  relative font-['Poppins',sans-serif]">
+      <div className="bg-transparent mb-16 w-full max-w-[1440px] mx-auto relative z-10">
+        <div className="flex flex-col w-full items-start relative">
+          {/* Main Content - Services Section */}
+          <section className="w-full px-4 md:px-8 lg:px-[100px] py-8 md:py-14">
+            {/* Header Section */}
+            <div className="flex items-center w-full flex-col gap-6 relative mb-10">
+              <div className="relative w-full font-['Poppins',sans-serif] font-semibold text-center text-black">
+                <h1 className="text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 text-center leading-tight w-full mt-4">
+                  We're Here for{" "}
+                  <span className="relative inline-block align-bottom">
+                    <span className="inline-block z-10 relative bg-white pr-1 pl-1 sm:pr-2 sm:pl-2">
+                      You!
+                    </span>
+                    <span className="absolute left-0 right-0 bottom-[-0.35em] flex justify-center z-0 pointer-events-none">
+                      <svg
+                        width="171"
+                        height="13"
+                        viewBox="0 0 171 13"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1.1628 9.57499C29.3628 9.57499 57.5628 9.67502 85.8628 9.97502C99.6628 10.075 113.463 10.475 127.263 10.475C133.963 10.475 140.763 10.475 147.463 10.975C150.663 11.175 153.763 11.575 156.863 11.975C160.763 12.475 163.463 12.075 167.363 11.675C170.663 11.375 172.063 7.27501 169.063 5.37501C166.163 3.47501 164.263 1.875 160.763 1.275C157.563 0.675003 154.363 0.475003 151.063 0.275003C144.363 -0.124997 137.563 -0.025003 130.863 0.174997C116.463 0.574997 102.163 1.375 87.7628 2.175C58.8628 3.675 29.9628 5.375 1.1628 7.275C-0.337198 7.275 -0.437198 9.57499 1.1628 9.57499Z"
+                          fill="#DB4063"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </h1>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows="5"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="Tell us about your project..."
-                ></textarea>
-              </div>
-
-              <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3">
-                Send Message
-              </Button>
-            </form>
-          </div>
-
-          {/* Contact Information */}
-          <div>
-            <h2 className="text-3xl font-bold mb-6">Contact Information</h2>
-            
-            <div className="space-y-8">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-1">Office Address</h3>
-                  <p className="text-gray-600">123 Business District<br />Doha, Qatar<br />PO Box 12345</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-1">Phone</h3>
-                  <p className="text-gray-600">+974 1234 5678<br />+974 8765 4321</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-1">Email</h3>
-                  <p className="text-gray-600">hello@sumou.com<br />projects@sumou.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-1">Business Hours</h3>
-                  <p className="text-gray-600">Sunday - Thursday: 9:00 AM - 6:00 PM<br />Friday - Saturday: Closed</p>
-                </div>
-              </div>
+              <p className="w-full  opacity-75 font-['Poppins',sans-serif] text-lg md:text-xl text-center font-normal text-black">
+                Our team is ready to respond to all your inquiries promptly and
+                professionally. <br /> Don't hesitate to reach out using the
+                form below
+              </p>
             </div>
 
-            {/* Social Media Links */}
-            <div className="mt-8">
-              <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
-              <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors">
-                  <span className="sr-only">Facebook</span>
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M20 10C20 4.477 15.523 0 10 0S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z" clipRule="evenodd" />
-                  </svg>
-                </a>
-                <a href="#" className="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors">
-                  <span className="sr-only">Instagram</span>
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 0a10 10 0 100 20 10 10 0 000-20zm3.5 6.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM10 7a3 3 0 100 6 3 3 0 000-6z" clipRule="evenodd" />
-                  </svg>
-                </a>
-                <a href="#" className="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors">
-                  <span className="sr-only">LinkedIn</span>
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clipRule="evenodd" />
-                  </svg>
-                </a>
+            {/* Contact Form Section */}
+            <section className="w-full mt-16">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+                {/* Left Side */}
+
+                <div
+                  className="relative rounded-2xl overflow-hidden flex flex-col py-8 px-8 bg-gradient-to-b from-white to-purple/5 shadow-lg   h-[560px] lg:h-[650px]"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom, #E8C9D0, #F17591, #DB4063)",
+                  }}
+                >
+                  {/* Background Images */}
+                  <div
+                    className="absolute bottom-0 w-full h-48   scale-[1.5]  lg:scale-[2] bg-bottom bg-cover z-0"
+                    style={{
+                      backgroundImage:
+                        "url('./src/screens/Homepage/imgs/Rectangle 1471.png')",
+                      maskImage:
+                        "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
+                      WebkitMaskImage:
+                        "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
+                    }}
+                  />
+                  <div
+                    className="absolute bottom-0 w-full h-48   bg-bottom bg-cover scale-[1.5]  lg:scale-[2] z-10"
+                    style={{
+                      backgroundImage:
+                        "url('./src/screens/Homepage/imgs/shape 1.png')",
+                      backgroundRepeat: "no-repeat",
+                      maskImage:
+                        "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
+                      WebkitMaskImage:
+                        "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
+                    }}
+                  />
+
+                  {/* Content */}
+                  <div className="p-8 text-white relative z-20">
+                    {/* Phone Section */}
+                    <div className="mb-8">
+                      <h3 className="text-xl font-bold mb-3">
+                        Contact Us by Phone
+                      </h3>
+                      <div className="space-y-2">
+                        <p className="text-white">+966 55 135 5968</p>
+                        <p className="text-white">+20 150 161 7489</p>
+                      </div>
+                    </div>
+
+                    {/* Email Section */}
+                    <div className="mb-8">
+                      <h3 className="text-xl font-bold mb-3">
+                        Contact Us by Email
+                      </h3>
+                      <p className="text-white">sumouadvco@gmail.com</p>
+                    </div>
+
+                    {/* Social Media Section */}
+                    <div className="mb-8">
+                      <h3 className="text-xl font-bold mb-3">
+                        Or follow us on social media.
+                      </h3>
+                      <div className="flex space-x-4">
+                        {/* Facebook */}
+                        <div className="group w-10 h-10 bg-white rounded-lg flex items-center justify-center cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-blue-200 hover:bg-blue-600 hover:rotate-3">
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="transition-all duration-300 ease-in-out group-hover:scale-110"
+                          >
+                            <path
+                              d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z"
+                              className="fill-[#DB4063] group-hover:fill-white transition-colors duration-300"
+                            />
+                          </svg>
+                        </div>
+
+                        {/* Instagram */}
+                        <div className="group w-10 h-10 bg-white rounded-lg flex items-center justify-center cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-pink-200 hover:-rotate-3">
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="transition-all duration-300 ease-in-out group-hover:scale-110"
+                          >
+                            <defs>
+                              <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#833AB4" />
+                                <stop offset="50%" stopColor="#FD1D1D" />
+                                <stop offset="100%" stopColor="#FCB045" />
+                              </linearGradient>
+                            </defs>
+                            <rect
+                              x="2"
+                              y="2"
+                              width="20"
+                              height="20"
+                              rx="5"
+                              ry="5"
+                              className="fill-[#DB4063] group-hover:fill-[url(#instagram-gradient)] transition-all duration-300"
+                            />
+                            <path
+                              d="M16 11.37C16.1234 12.2022 15.9813 13.0522 15.5938 13.799C15.2063 14.5458 14.5931 15.1514 13.8416 15.5297C13.0901 15.9079 12.2384 16.0396 11.4078 15.9059C10.5771 15.7723 9.80976 15.3801 9.21484 14.7852C8.61992 14.1902 8.22773 13.4229 8.09407 12.5922C7.9604 11.7615 8.09207 10.9099 8.47033 10.1584C8.84859 9.40685 9.45419 8.79374 10.201 8.40624C10.9478 8.01874 11.7978 7.87659 12.63 8C13.4789 8.12588 14.2649 8.52146 14.8717 9.12831C15.4785 9.73515 15.8741 10.5211 16 11.37Z"
+                              className="fill-white transition-colors duration-300"
+                            />
+                            <circle cx="12" cy="12" r="3" className="fill-white group-hover:fill-purple-900 transition-colors duration-300" />
+                          </svg>
+                        </div>
+
+                        {/* LinkedIn */}
+                        <div className="group w-10 h-10 bg-white rounded-lg flex items-center justify-center cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-blue-300 hover:bg-blue-700 hover:rotate-2">
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="transition-all duration-300 ease-in-out group-hover:scale-110"
+                          >
+                            <path
+                              d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8V8Z"
+                              className="fill-[#DB4063] group-hover:fill-white transition-colors duration-300"
+                            />
+                            <path d="M6 9H2V21H6V9Z" className="fill-[#DB4063] group-hover:fill-white transition-colors duration-300" />
+                            <path
+                              d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z"
+                              className="fill-[#DB4063] group-hover:fill-white transition-colors duration-300"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Side - Contact Form */}
+                <div className="bg-white p-8 h-[560px] lg:h-[650px] ">
+                  <form onSubmit={handleSubmit} className="space-y-8 ">
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-black mb-2"
+                      >
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition-all duration-200"
+                        placeholder="Enter your full name"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-black mb-2"
+                      >
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition-all duration-200"
+                        placeholder="Enter your email address"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-medium text-black mb-2"
+                      >
+                        Phone Number
+                      </label>
+                      <div className="flex border  rounded-lg overflow-hidden">
+                        <div className="flex items-center px-3 py-3  border-r border-gray-300">
+                          <svg
+                            width="36"
+                            height="25"
+                            viewBox="0 0 36 25"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g clip-path="url(#clip0_200_3056)">
+                              <path d="M0 0.5H36V24.5H0V0.5Z" fill="#006C35" />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M15.5177 6.16829C15.4991 6.16774 15.4712 6.17813 15.4322 6.20129C15.3444 6.26012 15.1705 6.44132 15.1652 6.6498C15.1599 6.76741 15.1377 6.76695 15.2147 6.8418C15.2703 6.92202 15.3259 6.91413 15.4382 6.8553C15.5027 6.80779 15.5245 6.77748 15.5462 6.6978C15.573 6.56417 15.4056 6.76103 15.3842 6.6123C15.3468 6.47423 15.4537 6.41743 15.5552 6.2838C15.5575 6.22087 15.5587 6.1695 15.5177 6.16829ZM17.1527 6.17729C17.1213 6.18152 17.083 6.2217 17.0297 6.31829C16.9915 6.41946 16.8269 6.57256 16.9457 6.88829C17.0429 7.08849 17.0828 7.41385 17.0387 7.77629C16.9713 7.8793 16.956 7.91479 16.8677 8.01779C16.7436 8.15118 16.6093 8.11708 16.5062 8.06729C16.4099 8.00237 16.3342 7.96904 16.2902 7.76279C16.2981 7.43404 16.3173 6.89596 16.2572 6.78176C16.1686 6.60493 16.0226 6.66835 15.9602 6.72176C15.6603 6.99594 15.5122 7.4589 15.4217 7.82725C15.3385 8.09572 15.2499 8.01808 15.1877 7.90975C15.0362 7.7678 15.0256 6.65777 14.8427 6.84027C14.5498 7.67739 15.0108 8.59443 15.3302 8.50529C15.5606 8.6007 15.7068 8.16207 15.8012 7.6818C15.8657 7.54701 15.915 7.53152 15.9482 7.6008C15.9396 8.23949 15.994 8.38195 16.1582 8.57578C16.5245 8.85837 16.8274 8.61158 16.8512 8.58778C16.8749 8.56402 17.1362 8.30278 17.1362 8.30278C17.1997 8.23601 17.2835 8.23195 17.3732 8.29078C17.4603 8.36998 17.4491 8.5064 17.6357 8.60128C17.7927 8.66408 18.1279 8.61655 18.2057 8.48128C18.3103 8.30193 18.3357 8.24031 18.3842 8.17228C18.4589 8.07286 18.5867 8.11688 18.5867 8.14828C18.5748 8.20373 18.4997 8.25842 18.5507 8.35828C18.6395 8.4249 18.6602 8.38209 18.7127 8.36728C18.8985 8.27845 19.0382 7.87528 19.0382 7.87528C19.0464 7.72491 18.9609 7.73632 18.9062 7.76728C18.8349 7.81087 18.8305 7.82569 18.7592 7.86928C18.6683 7.88278 18.4923 7.94272 18.4052 7.80778C18.3162 7.64556 18.3157 7.41941 18.2477 7.25578C18.2477 7.24388 18.1288 6.99851 18.2387 6.98278C18.2941 6.99309 18.4134 7.0239 18.4322 6.92428C18.4903 6.82718 18.3067 6.55173 18.1817 6.41279C18.0732 6.29368 17.9233 6.27916 17.7782 6.40079C17.6765 6.49431 17.6916 6.59875 17.6717 6.69779C17.6458 6.81154 17.6508 6.95242 17.7662 7.10279C17.8676 7.30285 18.052 7.55952 17.9912 7.92177C17.9912 7.92177 17.8841 8.09417 17.6957 8.07177C17.6172 8.05464 17.4892 8.02066 17.4212 7.51828C17.3697 7.13801 17.4341 6.60522 17.2727 6.35577C17.2363 6.26164 17.205 6.17026 17.1527 6.17729ZM16.6352 6.21761C16.5864 6.22188 16.5323 6.27874 16.4882 6.38861C16.4504 6.47217 16.4042 6.90913 16.4117 6.90913C16.3816 7.03917 16.5476 7.09428 16.6232 6.92713C16.7366 6.62068 16.7371 6.49013 16.7447 6.36015C16.7271 6.26114 16.6841 6.21335 16.6352 6.21761ZM18.5462 6.25211C18.4961 6.25666 18.4561 6.28602 18.4412 6.36011C18.4212 6.53434 18.4315 6.62907 18.4607 6.77411C18.4832 6.87083 18.6239 7.03276 18.6932 7.12662C19.0242 7.57155 19.3427 8.0186 19.6502 8.48113C19.6986 8.82457 19.734 9.16052 19.7568 9.49513C19.8066 10.2288 19.8217 11.142 19.7762 11.9146C19.9137 11.92 20.1339 11.6927 20.2113 11.3596C20.2615 10.899 20.1933 9.959 20.1888 9.68713C20.1855 9.57426 20.1786 9.43959 20.1707 9.29863C20.5285 9.88322 20.8755 10.5026 21.2162 11.1826C21.3404 11.1236 21.3129 10.4243 21.2402 10.3261C20.9676 9.73922 20.5908 9.15991 20.4707 8.93709C20.4274 8.85663 20.2797 8.63207 20.1047 8.37309C20.0725 8.00356 20.0375 7.69058 20.0147 7.59607C19.9585 7.20544 20.1753 7.64012 20.1453 7.41307C20.0749 7.02297 19.8596 6.75787 19.6053 6.40055C19.5232 6.28434 19.5249 6.26064 19.3983 6.42905C19.3226 6.60074 19.3236 6.74358 19.3457 6.87756C19.3124 6.82916 19.2713 6.77177 19.2123 6.70056C18.9926 6.51211 18.9791 6.50181 18.7968 6.34805C18.7393 6.30726 18.6298 6.24448 18.5463 6.25205L18.5462 6.25211ZM24.2102 6.31062C24.1858 6.30682 24.1592 6.31882 24.1292 6.36312C24.0719 6.41334 24.0103 6.50428 24.0122 6.62112C24.0262 6.82698 24.0628 7.03776 24.0767 7.24363C24.0816 7.27118 24.0868 7.29858 24.0917 7.32613C24.0696 7.29791 24.0503 7.27588 24.0392 7.26464C23.6379 6.84309 24.2236 7.19574 23.9627 6.87013C23.7421 6.62789 23.6776 6.55081 23.4887 6.40513C23.394 6.34393 23.3368 6.227 23.3057 6.42613C23.2933 6.60108 23.2805 6.80367 23.2922 6.95116C23.2915 7.03311 23.3764 7.18739 23.4497 7.27816C23.7174 7.60704 23.9908 7.95697 24.2657 8.32216C24.3236 9.06693 24.339 9.74963 24.3977 10.4956C24.3894 10.8147 24.2913 11.2385 24.1982 11.2786C24.1982 11.2786 24.0561 11.3602 23.9612 11.2696C23.8922 11.2419 23.6162 10.8091 23.6162 10.8091C23.4749 10.6796 23.3808 10.7166 23.2802 10.8091C23.003 11.0768 22.8776 11.5782 22.6892 11.9236C22.6407 12.0007 22.5039 12.0663 22.3517 11.9176C21.9654 11.3898 22.1913 10.6385 22.1432 10.8316C21.7992 11.2194 21.9515 11.862 22.0292 12.0001C22.1427 12.2271 22.2345 12.3724 22.4552 12.4847C22.6563 12.6327 22.8129 12.5403 22.8992 12.4367C23.1016 12.227 23.1043 11.6907 23.1992 11.5847C23.2659 11.3898 23.4328 11.4233 23.5142 11.5097C23.5932 11.6231 23.6863 11.6969 23.8022 11.7587C23.991 11.9251 24.2162 11.9554 24.4382 11.8037C24.59 11.7186 24.6884 11.608 24.7772 11.3897C24.8726 11.1347 24.8254 9.79884 24.8042 9.05566C24.9468 9.25644 25.0875 9.46158 25.2272 9.66914C25.2886 10.3215 25.3164 10.964 25.2962 11.5801C25.2818 11.7026 25.7237 11.2144 25.7207 10.9831C25.7188 10.7807 25.7211 10.5973 25.7207 10.4266C25.9351 10.7689 26.1426 11.1168 26.3387 11.4691C26.4603 11.4047 26.4186 10.7166 26.3417 10.6216C26.1364 10.277 25.8734 9.90468 25.6697 9.61658C25.6295 9.25299 25.5747 8.82401 25.5497 8.69258C25.5109 8.48764 25.472 8.1798 25.4132 7.93658C25.3971 7.84161 25.3485 7.53826 25.3637 7.50909C25.3877 7.44121 25.4782 7.51126 25.5227 7.43258C25.5895 7.35987 25.2915 6.58788 25.1402 6.36756C25.0859 6.26881 24.9875 6.30299 24.8657 6.46356C24.7528 6.56922 24.7941 6.81028 24.8372 7.03956C24.9492 7.62391 25.0492 8.21902 25.1282 8.81258C24.9818 8.59494 24.8032 8.33158 24.6272 8.07761C24.6225 8.05312 24.6047 7.96335 24.6047 7.96211C24.6047 7.95161 24.5805 7.48408 24.5597 7.37262C24.5561 7.32739 24.5453 7.31436 24.5927 7.32012C24.643 7.3624 24.6498 7.36469 24.6812 7.37862C24.732 7.38791 24.7763 7.30211 24.7457 7.22262C24.5887 6.93306 24.4317 6.64221 24.2747 6.35262C24.2558 6.33402 24.2346 6.31442 24.2102 6.31062ZM9.59278 6.32562C9.50579 6.32313 9.40982 6.37705 9.44728 6.48162C9.42546 6.53861 9.61756 6.73126 9.65128 6.83711C9.68152 6.91249 9.62129 7.15522 9.68428 7.17762C9.7422 7.20273 9.82195 7.00959 9.85228 6.83111C9.86907 6.73334 9.85637 6.39872 9.62879 6.33009C9.61713 6.32746 9.60521 6.32597 9.59278 6.32562ZM26.2445 6.32754C26.2246 6.32951 26.2005 6.36155 26.1635 6.44004C26.0744 6.58586 26.0438 6.84695 26.0795 7.07753C26.2938 8.52727 26.4531 9.93108 26.486 11.216C26.4675 11.338 26.4621 11.4029 26.405 11.5565C26.2784 11.7187 26.1389 11.922 26.0075 12.02C25.8761 12.118 25.5964 12.2114 25.505 12.284C25.2149 12.4517 25.2134 12.6446 25.448 12.6515C25.8522 12.6046 26.3305 12.5714 26.66 12.074C26.7481 11.9347 26.8519 11.5568 26.8565 11.3255C26.8873 9.96968 26.8391 8.64397 26.636 7.66405C26.6229 7.56859 26.5808 7.34919 26.597 7.32055C26.6231 7.25345 26.7554 7.32727 26.8025 7.25005C26.8715 7.17951 26.4604 6.65312 26.3165 6.42805C26.2877 6.37152 26.27 6.32501 26.2445 6.32754ZM22.0055 6.35004C21.9888 6.35292 21.9641 6.37832 21.9185 6.43854C21.8056 6.80774 21.7659 7.10924 21.809 7.33854C22.099 8.85217 22.3962 10.2312 22.349 11.672C22.4865 11.6729 22.6456 11.3574 22.7135 11.0451C22.7507 10.6148 22.6887 10.3529 22.6775 10.1C22.6664 9.84714 22.3912 7.79536 22.3355 7.60403C22.2682 7.24223 22.603 7.55644 22.5665 7.34603C22.4508 7.08076 22.1619 6.69448 22.0715 6.46403C22.0375 6.40231 22.0333 6.34524 22.0055 6.35004ZM11.684 6.37854C11.6484 6.38471 11.614 6.41408 11.6015 6.46254C11.5937 6.49428 11.6153 6.54707 11.5865 6.56304C11.57 6.57968 11.5074 6.5685 11.51 6.48054C11.51 6.45252 11.4895 6.42329 11.477 6.40554C11.4646 6.39736 11.4561 6.39504 11.4335 6.39504C11.406 6.39615 11.4066 6.40341 11.3915 6.42654C11.3848 6.45006 11.3762 6.4731 11.3762 6.49998C11.3727 6.53128 11.3602 6.54188 11.3372 6.54648C11.3114 6.54648 11.3175 6.54928 11.2967 6.53598C11.2843 6.52243 11.2697 6.5171 11.2697 6.49398C11.2697 6.47003 11.2634 6.4318 11.2562 6.41598C11.2452 6.40156 11.228 6.39406 11.2082 6.38898C11.1003 6.38936 11.0925 6.51329 11.0987 6.55998C11.0906 6.56878 11.0866 6.78842 11.2337 6.84947C11.4311 6.94362 11.8014 6.90382 11.7857 6.58547C11.7857 6.55732 11.7795 6.46276 11.7767 6.43697C11.7565 6.39004 11.7193 6.3723 11.6837 6.37847L11.684 6.37854ZM14.3331 6.38154C14.2648 6.38502 14.2046 6.40457 14.1531 6.43104C14.0222 6.55634 13.9915 6.75723 14.0946 6.88253C14.1949 6.9299 14.2949 7.03085 14.2281 7.08653C13.9444 7.38947 13.2063 7.89567 13.1691 7.98802C13.1688 7.98877 13.1677 7.99033 13.1676 7.99102C13.1675 7.99168 13.1676 7.99342 13.1676 7.99402C13.1676 7.99431 13.1675 7.99525 13.1676 7.99552C13.1678 7.99628 13.1686 7.9979 13.1691 7.99852C13.1693 7.99871 13.1704 7.99984 13.1706 8.00002C13.1708 8.00016 13.1718 7.99987 13.1721 8.00002C13.1724 8.00016 13.1733 8.00141 13.1736 8.00151C13.1739 8.00161 13.1747 8.00142 13.1751 8.00151C13.1752 8.00161 13.1765 8.00291 13.1766 8.00301C13.2141 8.02817 13.676 8.02758 13.7271 8.00451C13.7275 8.00432 13.7283 8.00321 13.7286 8.00301C13.7287 8.00291 13.73 8.00311 13.7301 8.00301C13.7302 8.00291 13.73 8.00161 13.7301 8.00151C13.8888 7.94302 14.6421 7.08203 14.6421 7.08203C14.603 7.04859 14.5671 7.02395 14.5281 6.99053C14.4863 6.95434 14.4905 6.91876 14.5281 6.88253C14.7146 6.77396 14.6555 6.53509 14.5581 6.42653C14.4773 6.39031 14.4013 6.37806 14.3331 6.38154ZM21.2571 6.38454C21.2372 6.38651 21.2131 6.41705 21.1761 6.49554C21.087 6.64136 21.0266 6.89529 21.0336 7.13303C21.2264 8.4681 21.2855 9.63642 21.4116 10.9715C21.4218 11.1007 21.4029 11.2882 21.3171 11.363C20.9996 11.6945 20.5418 12.1034 20.0436 12.2915C19.99 12.3517 20.1769 12.6083 20.4186 12.608C20.8228 12.5611 21.1781 12.3342 21.5076 11.7366C21.5957 11.5972 21.7506 11.2988 21.7551 11.0675C21.7859 9.71168 21.6867 8.65751 21.4836 7.67754C21.4706 7.58208 21.4794 7.46918 21.4956 7.44054C21.5218 7.40928 21.6105 7.44125 21.6576 7.36404C21.7267 7.29349 21.4731 6.70859 21.3291 6.48352C21.3003 6.427 21.2826 6.38201 21.2571 6.38454ZM10.5305 6.42534C10.4747 6.43186 10.4222 6.47728 10.397 6.53784C10.3877 6.75197 10.3864 6.966 10.4105 7.16333C10.5079 7.50945 10.5387 7.81387 10.586 8.16835C10.5991 8.64311 10.3118 8.37372 10.325 8.13835C10.3913 7.83263 10.3734 7.35134 10.3145 7.22933C10.2678 7.10736 10.2137 7.07725 10.1 7.09733C10.0098 7.09181 9.77667 7.3458 9.7115 7.76635C9.71151 7.76635 9.65721 7.98218 9.6335 8.17435C9.60162 8.39153 9.45775 8.54533 9.3575 8.14435C9.27085 7.85291 9.2176 7.13482 9.0725 7.30286C9.03095 7.86355 8.9816 8.85014 9.458 8.95138C10.0342 9.00677 9.71593 7.97726 9.9245 7.79035C9.96394 7.69799 10.037 7.69635 10.043 7.81285V8.68736C10.0377 8.97165 10.2248 9.05613 10.37 9.11486C10.5211 9.1032 10.6213 9.10733 10.6805 9.25436C10.7041 9.75845 10.7289 10.2638 10.7525 10.7678C10.7525 10.7678 11.1018 10.8682 11.1185 9.91734C11.1353 9.359 11.0073 8.89047 11.0825 8.78185C11.0852 8.67512 11.222 8.66984 11.3165 8.72185C11.4671 8.82809 11.5339 8.95884 11.768 8.90635C12.1242 8.80823 12.3387 8.63535 12.344 8.36184C12.3232 8.10194 12.2931 7.84176 12.1805 7.58184C12.1962 7.53457 12.1123 7.41161 12.128 7.36434C12.192 7.46458 12.2888 7.45626 12.311 7.36434C12.2504 7.16457 12.156 6.97317 12.0035 6.89034C11.8775 6.77931 11.6931 6.80279 11.6255 7.03434C11.5942 7.30116 11.7222 7.6174 11.9165 7.87583C11.9578 7.9768 12.0155 8.14473 11.99 8.29583C11.8866 8.35481 11.7841 8.33027 11.6975 8.23883C11.6975 8.23883 11.414 8.0266 11.414 7.97933C11.4892 7.49765 11.4302 7.4425 11.3885 7.30882C11.3594 7.12429 11.2719 7.06585 11.201 6.93982C11.1301 6.86464 11.0339 6.86464 10.988 6.93982C10.8627 7.15705 10.9215 7.62343 11.012 7.83233C11.0774 8.02445 11.1777 8.14433 11.1305 8.14433C11.0916 8.2529 11.0105 8.22764 10.952 8.10233C10.8685 7.84335 10.8515 7.45735 10.8515 7.28335C10.8264 7.06762 10.7985 6.60679 10.6565 6.48987C10.6186 6.43826 10.5739 6.42027 10.5305 6.42534ZM12.554 6.42834C12.5254 6.43195 12.4938 6.44823 12.4565 6.45684C12.334 6.49583 12.2193 6.60174 12.2555 6.80784C12.4003 7.68777 12.4947 8.35934 12.6395 9.23933C12.6618 9.34238 12.5754 9.47821 12.464 9.46433C12.2746 9.33621 12.2276 9.07674 11.9045 9.08782C11.6706 9.09063 11.4038 9.34518 11.3705 9.59034C11.3315 9.78517 11.3176 9.99642 11.3705 10.1663C11.5349 10.364 11.7318 10.3429 11.9045 10.2983C12.0465 10.2399 12.1633 10.1 12.2135 10.1333C12.2137 10.1335 12.2149 10.1331 12.215 10.1333C12.2152 10.1335 12.2149 10.1346 12.215 10.1348C12.246 10.189 12.2121 10.6467 11.546 11.0003C11.1366 11.1841 10.8108 11.228 10.6355 10.8938C10.5269 10.685 10.6434 9.88947 10.376 10.0733C9.58518 12.1117 12.2287 12.3963 12.524 10.1573C12.5431 10.0941 12.6014 10.0308 12.6425 10.0463C12.6605 10.054 12.677 10.0785 12.683 10.1243C12.6217 12.1516 10.6379 12.2905 10.301 11.6528C10.2175 11.5025 10.1924 11.1679 10.184 10.9673C10.1687 10.846 10.1383 10.776 10.103 10.7483C10.0226 10.6879 9.9146 10.8454 9.89148 11.1188C9.85805 11.3388 9.86748 11.3992 9.86748 11.6108C9.97329 13.2121 12.5261 12.5241 12.941 11.2013C13.1463 10.5175 12.9368 10.0017 13.0055 9.93836C13.0061 9.93786 13.0078 9.93729 13.0085 9.93686C13.0091 9.93648 13.0108 9.9357 13.0115 9.93536C13.0122 9.93508 13.0137 9.93411 13.0145 9.93387C13.0168 9.93324 13.0207 9.9324 13.0235 9.93237C13.2769 10.2053 13.6325 9.96705 13.7104 9.87237C13.7439 9.825 13.8275 9.79462 13.8859 9.85587C14.0836 9.99796 14.4301 9.93098 14.5025 9.68037C14.5443 9.43532 14.5796 9.18304 14.588 8.92139C14.4592 8.96137 14.3553 8.99131 14.3135 9.03539C14.3035 9.04627 14.2961 9.05834 14.294 9.07139C14.2828 9.14382 14.2721 9.21647 14.261 9.28889C14.2598 9.29488 14.2578 9.30041 14.255 9.30539C14.2495 9.31428 14.2404 9.32248 14.231 9.32789C14.1854 9.35275 14.106 9.33853 14.102 9.27239C14.0407 8.99391 13.7886 8.95769 13.6355 9.38939C13.5324 9.4729 13.3445 9.4892 13.3249 9.36389C13.35 9.07429 13.2333 9.03541 12.9995 9.17189C12.9243 8.59825 12.8497 8.05057 12.7745 7.47692C12.8719 7.47411 12.9613 7.54479 13.0505 7.43342C12.954 7.13348 12.7499 6.52319 12.635 6.46593C12.6341 6.4655 12.6328 6.46478 12.632 6.46443C12.6267 6.45817 12.6206 6.4524 12.6155 6.44793C12.6133 6.44613 12.6101 6.44346 12.608 6.44193C12.6058 6.44047 12.6026 6.43864 12.6005 6.43744C12.5958 6.4349 12.5901 6.43284 12.5855 6.43144C12.575 6.42846 12.5648 6.42707 12.554 6.42844L12.554 6.42834ZM20.4423 6.43283C20.3412 6.42983 20.2292 6.49359 20.2728 6.62033C20.2474 6.68947 20.4902 6.92398 20.5293 7.05233C20.5998 7.24954 20.4755 7.43764 20.5488 7.46484C20.6163 7.49527 20.7101 7.26124 20.7453 7.04484C20.786 6.86989 20.6612 6.51136 20.4843 6.43735C20.4708 6.43416 20.4568 6.43326 20.4423 6.43283ZM14.2969 6.64884C14.3429 6.64414 14.3986 6.68647 14.4259 6.74633C14.455 6.81019 14.4404 6.8712 14.3929 6.88284C14.3454 6.89447 14.284 6.85219 14.2549 6.78833C14.2258 6.72448 14.2404 6.66197 14.2879 6.65033C14.2908 6.6496 14.2938 6.64915 14.2969 6.64884ZM25.6969 6.94433C25.6046 6.9411 25.5041 7.01113 25.5439 7.14833C25.5208 7.22318 25.7407 7.47738 25.7764 7.61633C25.8085 7.71522 25.7276 8.03392 25.7944 8.06333C25.8559 8.09628 25.9423 7.84314 25.9744 7.60883C25.9922 7.48057 25.8971 7.03048 25.7359 6.95032C25.7235 6.94687 25.7101 6.94479 25.6969 6.94433ZM19.394 7.10033C19.4024 7.13794 19.4109 7.17581 19.4165 7.21433C19.4354 7.29745 19.4517 7.38002 19.469 7.46183C19.3962 7.36157 19.3359 7.28057 19.31 7.25183C19.1452 7.05604 19.3137 7.12326 19.394 7.10033ZM20.846 7.81433C20.8104 7.82051 20.776 7.85138 20.7635 7.89983C20.7557 7.93157 20.7787 7.98287 20.75 7.99883C20.7335 8.01547 20.6694 8.00579 20.672 7.91783C20.672 7.88982 20.6514 7.85909 20.639 7.84133C20.6265 7.83315 20.6181 7.83083 20.5955 7.83083C20.568 7.83194 20.5686 7.8392 20.5535 7.86233C20.5471 7.88589 20.5385 7.90912 20.5385 7.93583C20.5351 7.96713 20.524 7.97773 20.501 7.98233C20.4753 7.98233 20.4798 7.98513 20.459 7.97183C20.4466 7.95828 20.432 7.95295 20.432 7.92983C20.432 7.90588 20.4257 7.86765 20.4185 7.85183C20.4076 7.83741 20.3903 7.83141 20.3705 7.82633C20.2627 7.82671 20.2563 7.94914 20.2625 7.99582C20.2544 8.00463 20.2489 8.22577 20.396 8.28682C20.5934 8.38097 20.9652 8.33967 20.9495 8.02133C20.9495 7.99317 20.9418 7.89861 20.939 7.87282C20.9188 7.82589 20.8816 7.80816 20.846 7.81433ZM14.2162 7.88033C14.1919 7.87785 14.16 7.88679 14.1232 7.90883C13.9486 8.00327 13.881 8.28342 13.9897 8.44734C14.0913 8.59171 14.2519 8.53884 14.2732 8.53884C14.4443 8.56023 14.5462 8.21784 14.5462 8.21784C14.5462 8.21784 14.5514 8.12157 14.3482 8.30334C14.2627 8.31935 14.2511 8.28848 14.2297 8.24034C14.2119 8.15127 14.2158 8.06096 14.2567 7.97184C14.2757 7.91841 14.2568 7.88447 14.2162 7.88033ZM23.5882 7.92383C23.4913 7.91912 23.3881 7.98189 23.3617 8.11434C23.3621 8.19247 23.397 8.23541 23.3902 8.30634C23.3801 8.34688 23.3383 8.37354 23.2387 8.32584C23.2543 8.31151 23.1742 8.19834 23.1742 8.19834C23.0965 8.15102 22.9928 8.20091 22.9252 8.24484C22.8881 8.31238 22.8606 8.42814 22.9027 8.54634C23.0143 8.75239 23.3968 9.104 23.5792 9.10736C23.5826 8.92157 23.6007 8.67452 23.6107 8.52085C23.6151 8.46284 23.6287 8.39891 23.6842 8.38434C23.7398 8.36983 23.8362 8.44023 23.8372 8.37985C23.8271 8.26165 23.8035 8.08724 23.7367 8.00485C23.7025 7.95417 23.6464 7.92666 23.5882 7.92383ZM15.8305 8.57034C15.8279 8.57129 15.8253 8.57349 15.823 8.57484C15.8218 8.57555 15.8197 8.577 15.8185 8.57784C15.7992 8.59233 15.7764 8.62578 15.7255 8.66184C15.6396 8.75952 15.6242 8.82754 15.6295 9.02334C15.6344 9.04405 15.7925 9.48375 15.9265 9.79283C16.0168 10.1141 16.1004 10.4819 16.039 10.8293C15.8275 11.2886 15.4024 11.7005 14.992 11.9243C14.7829 11.9913 14.6024 11.9685 14.554 11.9228C14.5536 11.9224 14.5529 11.9217 14.5525 11.9213C14.4324 11.8406 14.4297 11.6969 14.437 11.6723C14.437 11.6722 14.437 11.671 14.437 11.6708C14.4373 11.6705 14.4382 11.6696 14.4385 11.6693C14.7848 11.4281 15.1803 11.2329 15.49 10.5818C15.5814 10.333 15.6094 10.1836 15.5185 9.79886C15.4831 9.6555 15.4393 9.53752 15.3415 9.43586C15.3417 9.43557 15.3427 9.43463 15.343 9.43436C15.4019 9.40616 15.5549 9.51883 15.5785 9.44786C15.5423 9.26416 15.4179 9.01754 15.277 8.89135C15.1536 8.7793 15.0194 8.76633 14.9065 8.86885C14.7793 8.93963 14.7522 9.19385 14.8135 9.41634C14.8815 9.58384 15.0652 9.61322 15.196 9.95034C15.196 9.95068 15.196 9.95173 15.196 9.95184C15.1987 9.97297 15.2409 10.2035 15.175 10.2968C15.1215 10.4636 14.4346 11.0053 14.386 11.0379C14.3854 11.0384 14.382 11.0404 14.3815 11.0409C14.3812 11.0411 14.3802 11.0421 14.38 11.0424C14.3798 11.0425 14.3788 11.0435 14.3785 11.0439C14.3783 11.044 14.3771 11.0452 14.377 11.0454C14.3768 11.0454 14.3756 11.0454 14.3755 11.0454C14.3754 11.0454 14.3743 11.0453 14.374 11.0454C14.3737 11.0451 14.3728 11.0441 14.3725 11.0439C14.3725 11.0437 14.3725 11.0425 14.3725 11.0424C14.3722 11.0418 14.3713 11.0399 14.371 11.0394C14.3689 11.0258 14.3726 10.9914 14.371 10.9359C14.3665 10.8344 14.4085 10.6048 14.4055 10.5654C14.4055 10.5652 14.4055 10.564 14.4055 10.5639C14.4052 10.5636 14.4043 10.5626 14.404 10.5624C14.404 10.5622 14.404 10.561 14.404 10.5609C14.4037 10.5609 14.4025 10.5609 14.4025 10.5609C14.1754 10.7075 14.1005 11.1568 14.059 11.2899C13.4842 11.687 12.8314 11.9825 12.4555 12.3849C12.2597 12.6906 13.8045 12.0338 13.984 11.9544C13.9856 11.9555 13.9871 11.9574 13.9885 11.9589C14.0226 11.9964 14.0256 12.1274 14.128 12.2454C14.2886 12.4629 14.6299 12.5968 14.962 12.5139C15.519 12.3126 15.8398 11.933 16.1665 11.5119C16.2132 11.4439 16.2864 11.3904 16.354 11.4429C16.5785 11.9454 17.2258 12.303 18.0625 12.3399C18.2562 12.1044 18.1636 11.9886 18.085 11.9394C18.0608 11.9233 17.6689 11.7705 17.608 11.6184C17.5697 11.4768 17.6629 11.3513 17.8495 11.2569C18.3868 11.1919 18.9149 11.1197 19.426 10.9554C19.4312 10.7837 19.5324 10.5269 19.6 10.4154C19.647 10.338 19.6773 10.3304 19.6885 10.3194C19.6889 10.319 19.6897 10.3183 19.69 10.3179C19.6902 10.3177 19.6914 10.3166 19.6915 10.3164C19.6918 10.3162 19.6928 10.3152 19.693 10.3149C19.693 10.3144 19.6931 10.3124 19.693 10.3119C19.6933 10.3085 19.693 10.3026 19.6915 10.2969L19.6045 10.2459L17.89 10.2384C17.8689 10.2302 17.8531 10.2221 17.8435 10.2144C17.8428 10.2138 17.8412 10.212 17.8405 10.2114C17.8402 10.2111 17.8393 10.2102 17.839 10.2099C17.8387 10.2096 17.8378 10.2087 17.8375 10.2084C17.8373 10.2079 17.8363 10.2059 17.836 10.2054C17.8359 10.2053 17.8347 10.2041 17.8345 10.2039C17.8345 10.2038 17.8345 10.2026 17.8345 10.2024C17.8344 10.2023 17.8332 10.2011 17.833 10.2009C17.833 10.2008 17.833 10.1996 17.833 10.1994C17.833 10.1993 17.833 10.1981 17.833 10.1979C17.833 10.1978 17.833 10.1966 17.833 10.1964C17.833 10.1962 17.833 10.1951 17.833 10.1949C17.8331 10.1948 17.833 10.1937 17.833 10.1934C17.833 10.1933 17.833 10.1921 17.833 10.1919C17.833 10.1918 17.8331 10.1906 17.833 10.1904C17.833 10.1903 17.8331 10.1891 17.833 10.1889C17.8333 10.1886 17.8343 10.1877 17.8345 10.1874C17.8349 10.1866 17.8355 10.1852 17.836 10.1844C17.8444 10.1732 17.8647 10.1625 17.89 10.1529C18.2994 10.0972 19.0268 9.97793 19.0751 9.27842C19.0675 8.91406 18.9192 8.67549 18.4721 8.6094C18.1436 8.6348 17.9093 8.95255 17.9471 9.30242C17.9313 9.39662 17.9789 9.58147 17.8826 9.60242C17.2524 9.65999 16.5646 10.0548 16.5415 10.3374C16.5414 10.3374 16.5402 10.3374 16.54 10.3374C16.5398 10.3377 16.5388 10.3386 16.5385 10.3389C16.5381 10.3391 16.5363 10.34 16.5355 10.3404C16.535 10.3404 16.5331 10.3404 16.5325 10.3404C16.5315 10.3407 16.5291 10.3416 16.528 10.3419C16.5278 10.3419 16.5269 10.3419 16.5265 10.3419C16.5257 10.3419 16.5241 10.3419 16.5235 10.3419C16.5233 10.3419 16.5224 10.3419 16.522 10.3419C16.5214 10.3419 16.5196 10.3419 16.519 10.3419C16.5174 10.3416 16.5145 10.3407 16.513 10.3404C16.4721 10.329 16.4193 10.2614 16.4276 10.1664C16.4036 9.6779 16.2446 9.12513 15.9956 8.69942C15.9067 8.61058 15.868 8.57458 15.8426 8.57042C15.8417 8.57032 15.8403 8.57046 15.8396 8.57042C15.8385 8.57041 15.8364 8.57043 15.8351 8.57042C15.8348 8.57042 15.8338 8.5704 15.8336 8.57042C15.8334 8.57041 15.8322 8.57043 15.8321 8.57042C15.8319 8.57046 15.8307 8.57037 15.8306 8.57042L15.8305 8.57034ZM17.4715 8.82834C17.4359 8.83452 17.4015 8.86389 17.389 8.91234C17.3812 8.94408 17.4042 8.99688 17.3755 9.01285C17.359 9.02949 17.2949 9.0198 17.2975 8.93185C17.2975 8.90383 17.2769 8.8731 17.2645 8.85534C17.252 8.84717 17.2451 8.84484 17.2225 8.84484C17.195 8.84596 17.1941 8.85322 17.179 8.87634C17.1726 8.89991 17.164 8.92314 17.164 8.94984C17.1606 8.98114 17.1495 8.99175 17.1265 8.99634C17.1008 8.99634 17.1069 8.99915 17.086 8.98584C17.0736 8.9723 17.0575 8.96697 17.0575 8.94384C17.0575 8.91989 17.0527 8.88166 17.0455 8.86584C17.0346 8.85142 17.0158 8.84542 16.996 8.84034C16.8882 8.84073 16.8818 8.96316 16.888 9.00984C16.8799 9.01865 16.8744 9.23978 17.0215 9.30084C17.2189 9.39499 17.6895 9.33956 17.575 9.03534C17.575 9.00718 17.5673 8.91263 17.5645 8.88684C17.5443 8.83991 17.5071 8.82217 17.4715 8.82834ZM24.0941 9.09984C24.0891 9.09895 24.0834 9.09929 24.0776 9.10134C24.0776 9.10134 23.1627 9.75217 23.1401 9.77483C23.0494 9.85548 23.0947 10.1391 23.1401 10.1063C23.2056 10.1315 24.1267 9.50738 24.1091 9.43433C24.1492 9.43668 24.1685 9.11326 24.0941 9.09984ZM18.336 9.19632C18.3733 9.19236 18.4223 9.20503 18.4695 9.23232C18.5378 9.27182 18.5799 9.33148 18.5745 9.37482C18.5743 9.376 18.5747 9.37818 18.5745 9.37932C18.5742 9.38046 18.5718 9.38271 18.5715 9.38382C18.5711 9.38492 18.5704 9.38724 18.57 9.38832C18.5697 9.38903 18.5688 9.39062 18.5685 9.39132C18.5681 9.39201 18.5674 9.39364 18.567 9.39432C18.5647 9.39798 18.5611 9.40182 18.558 9.40482C18.5252 9.43548 18.4494 9.43111 18.378 9.38982C18.3103 9.35068 18.2685 9.29055 18.273 9.24732C18.2731 9.24613 18.2743 9.24397 18.2745 9.24282C18.2756 9.23745 18.2777 9.23256 18.2805 9.22782C18.2815 9.22612 18.2823 9.22337 18.2835 9.22182C18.2837 9.22153 18.2847 9.22062 18.285 9.22032C18.287 9.21797 18.29 9.21482 18.2925 9.21282C18.3034 9.20426 18.3188 9.19815 18.336 9.19632ZM10.3243 9.36132C9.85026 9.36998 9.15608 9.98268 9.13779 10.3228C9.638 10.0826 10.1293 9.85139 10.6378 9.60281C10.5557 9.48031 10.6328 9.36993 10.3243 9.36132ZM11.8603 9.57432C11.9068 9.57485 11.9558 9.59779 11.9818 9.66282C12.0052 9.72248 11.9829 9.78486 11.9548 9.81582C11.9547 9.81606 11.9549 9.81709 11.9548 9.81732C11.9544 9.81801 11.9538 9.81967 11.9533 9.82032C11.9334 9.84596 11.8636 9.83532 11.8138 9.83532C11.7536 9.83266 11.7239 9.82278 11.6878 9.77382C11.6705 9.7194 11.7231 9.66592 11.7463 9.62532C11.7465 9.62494 11.7476 9.6242 11.7478 9.62382C11.7503 9.62004 11.7544 9.61551 11.7583 9.61182C11.7763 9.59534 11.8074 9.57993 11.8408 9.57582C11.8473 9.57503 11.8537 9.57425 11.8603 9.57432ZM23.916 9.76296C23.8317 9.77336 23.7516 9.85306 23.7885 9.98046C23.7654 10.0553 23.9028 10.317 23.9385 10.456C23.9706 10.5548 23.8972 10.8345 23.964 10.864C24.0255 10.8969 24.1872 10.6979 24.1815 10.4485C24.1993 10.3202 24.1357 9.84764 23.9745 9.76744C23.9559 9.76226 23.9354 9.76056 23.916 9.76296ZM13.6771 10.225C13.6026 10.2302 13.5361 10.27 13.5661 10.375C13.5616 10.4511 13.7766 10.5437 13.7896 10.72C13.8203 10.7926 13.7436 11.0253 13.8076 11.047C13.8663 11.0712 13.9478 10.8861 13.9786 10.714C13.9956 10.6197 13.9048 10.2898 13.7506 10.231C13.7269 10.2259 13.7019 10.2232 13.6771 10.225ZM16.7416 10.6435C16.7473 10.6431 16.7523 10.6435 16.7581 10.6435C16.7591 10.6435 16.7601 10.6435 16.7611 10.6435C16.9521 10.6954 17.2337 10.7008 17.4781 10.726C17.6772 10.7386 17.7756 10.8945 17.5891 10.96C17.4052 11.023 17.2285 11.0722 17.2276 11.338C17.2518 11.4696 17.2467 11.5387 17.2261 11.5705C17.2245 11.5729 17.2219 11.576 17.2201 11.578C17.2199 11.5783 17.2189 11.5792 17.2186 11.5795C17.2184 11.5797 17.2174 11.5807 17.2171 11.581C17.2169 11.5812 17.2159 11.5822 17.2156 11.5825L17.2142 11.584C17.2136 11.5842 17.2117 11.5852 17.2112 11.5855C17.2085 11.5871 17.2051 11.5889 17.2022 11.59C17.1996 11.5908 17.1959 11.591 17.1932 11.5915C17.1494 11.5979 17.0859 11.5562 17.0386 11.5315C16.9252 11.45 16.607 11.2528 16.5616 10.8295C16.5552 10.7339 16.6267 10.6516 16.7416 10.6435ZM9.25649 10.969C9.24456 10.9693 9.22068 11.005 9.189 11.0455C8.90698 11.4947 8.8819 12.1654 9.0375 12.3655C9.12018 12.46 9.25651 12.5016 9.357 12.472C9.53417 12.3951 9.61204 12.0363 9.57 11.905C9.51087 11.8124 9.46402 11.7978 9.405 11.8765C9.28032 12.1296 9.22843 11.9565 9.2175 11.815C9.19839 11.5467 9.22437 11.2997 9.2535 11.104C9.269 11.0037 9.26843 10.9686 9.2565 10.969L9.25649 10.969ZM18.8642 11.5589C18.8432 11.5578 18.8208 11.561 18.7982 11.5724C18.7937 11.5724 18.5963 11.7059 18.5327 11.7989C18.4939 11.8284 18.4983 11.8541 18.5102 11.9054C18.5404 11.9749 18.5937 11.9531 18.6542 11.9204C18.7344 11.9095 18.7733 11.962 18.7667 12.0584C18.7296 12.1786 18.7832 12.2233 18.7832 12.2309C18.7832 12.2384 18.8605 12.3048 18.9512 12.2519C19.1427 12.1788 19.262 12.1077 19.5302 12.0494C19.6005 12.048 19.5965 11.8596 19.4852 11.8529C19.3399 11.8602 19.2059 11.8676 19.0607 11.9819C18.9713 12.0025 18.956 11.9482 18.9361 11.8994C18.9135 11.7784 18.9872 11.6931 18.9721 11.6024C18.9762 11.6064 18.9271 11.5623 18.8642 11.5589ZM25.0159 11.7884C24.9802 11.7895 24.9427 11.7944 24.8884 11.7989C24.8296 11.8114 24.809 11.8371 24.7984 11.9084C24.8026 12.0165 24.8687 12.0111 24.9364 12.0539C24.9755 12.1038 25.001 12.1489 24.9334 12.2309C24.8692 12.2897 24.8235 12.3221 24.7594 12.3809C24.7291 12.4325 24.7102 12.5119 24.8029 12.5369C24.9739 12.585 25.3698 12.3277 25.3698 12.3224C25.434 12.2743 25.4127 12.1829 25.4073 12.1829C25.3699 12.1401 25.2855 12.1658 25.2288 12.1589C25.2018 12.1589 25.1132 12.1458 25.1553 12.0674C25.1905 12.0186 25.2035 11.9895 25.2273 11.9294C25.254 11.8706 25.2306 11.831 25.1343 11.7989C25.0853 11.79 25.0515 11.7873 25.0159 11.7884ZM22.4459 16.9916C22.4455 16.9918 22.4448 16.9928 22.4444 16.9931C22.1599 17.0661 22.1688 17.3615 22.3514 17.4911C19.3469 17.4911 14.7362 17.4401 13.7474 17.4401C13.1942 17.4401 11.4441 17.3741 11.4104 17.3741C11.7858 17.9231 12.3295 18.0348 13.0409 18.0461C14.3754 18.0461 20.5587 18.0296 22.3184 18.0296C22.1933 18.2517 22.3297 18.6091 22.4279 18.6746C22.4299 18.6759 22.4333 18.678 22.4354 18.6791C22.439 18.6809 22.4439 18.6827 22.4474 18.6836C22.4485 18.6839 22.4507 18.6835 22.4519 18.6836C22.5684 18.7111 22.6196 18.6267 22.6589 18.5651C22.8478 18.5818 23.9115 18.5971 24.0089 18.5636C24.0092 18.5635 24.01 18.5622 24.0104 18.5621C24.0762 18.659 24.1415 18.7506 24.2669 18.7346C24.4862 18.6876 24.6589 18.6637 24.6644 18.2186C24.6644 18.2186 24.6419 17.4601 24.1438 17.5076C24.026 17.5254 23.6953 17.5586 23.6953 17.5586C23.3127 17.5131 23.032 17.5084 22.6019 17.4926C22.6416 17.4422 22.7117 17.2381 22.6259 17.1641C22.6035 17.1455 22.5701 17.1352 22.5239 17.1386C22.5235 17.1386 22.5227 17.1386 22.5224 17.1386C22.5217 17.1386 22.52 17.1387 22.5194 17.1386C22.519 17.1385 22.5182 17.1372 22.5179 17.1371C22.5166 17.1367 22.5145 17.1364 22.5134 17.1356C22.511 17.134 22.508 17.1307 22.5059 17.1281C22.5053 17.1275 22.5034 17.1258 22.5029 17.1251C22.4811 17.0935 22.4692 17.0158 22.4549 16.9961C22.4547 16.9959 22.4535 16.9948 22.4534 16.9946C22.4532 16.9945 22.452 16.9933 22.4519 16.9931C22.4513 16.9928 22.4494 16.9918 22.4489 16.9916C22.4487 16.9916 22.4475 16.9916 22.4474 16.9916C22.4472 16.9917 22.4461 16.9916 22.4459 16.9916L22.4459 16.9916ZM22.6499 18.0761C22.6505 18.0759 22.6509 18.0763 22.6514 18.0761C23.0898 18.0975 23.5016 18.0802 23.9399 18.1016C24.0094 18.1606 23.9747 18.2959 23.9294 18.3206C23.9274 18.3216 23.924 18.323 23.9219 18.3236C23.9203 18.324 23.9176 18.3235 23.9159 18.3236C23.9143 18.3236 23.9116 18.324 23.9099 18.3236C23.7674 18.32 23.685 18.3167 23.5424 18.3131C23.5422 18.306 23.5414 18.2984 23.5394 18.2921C23.5057 18.192 23.261 18.1987 23.2034 18.2771C23.2026 18.2782 23.2012 18.2804 23.2004 18.2816C23.1995 18.2831 23.1982 18.286 23.1974 18.2876C23.1965 18.2896 23.1951 18.293 23.1944 18.2951C23.1935 18.2981 23.1933 18.3025 23.1929 18.3056C23.1926 18.3092 23.1911 18.3138 23.1914 18.3176C22.999 18.3407 22.8259 18.3112 22.6334 18.3041C22.577 18.2338 22.5836 18.1066 22.6499 18.0761Z"
+                                fill="white"
+                              />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_200_3056">
+                                <rect
+                                  width="36"
+                                  height="24"
+                                  fill="white"
+                                  transform="translate(0 0.5)"
+                                />
+                              </clipPath>
+                            </defs>
+                          </svg>
+
+                          <span className="text-black font-medium ml-1 opacity-50">
+                            +966
+                          </span>
+                        </div>
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          className="flex-1 px-4 py-3 border-0 focus:outline-none focus:ring-0"
+                          placeholder="Enter your phone number"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="subject"
+                        className="block text-sm font-medium text-black mb-2"
+                      >
+                        Subject
+                      </label>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition-all duration-200"
+                        placeholder="Enter message subject"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium text-black mb-2"
+                      >
+                        Message
+                      </label>
+                      <input
+                        type="text"
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition-all duration-200"
+                        placeholder="Write what you want..."
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-auto bg-[#4C31AF] hover:bg-[#3d2790] text-white font-medium  h-12 py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
+                    >
+                      <span>Submit Request</span>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M26.667 16H5.33366M26.667 16L21.3337 10.6666M26.667 16L21.3337 21.3333"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </form>
+                </div>
               </div>
-            </div>
-          </div>
+            </section>
+          </section>
         </div>
       </div>
     </div>
