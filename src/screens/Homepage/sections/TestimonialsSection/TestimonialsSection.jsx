@@ -292,13 +292,13 @@ export const TestimonialsSection = () => {
             ) : (
               <>
                 <Button
-                  onClick={prevSlide}
+                  onClick={nextSlide}
                   className="w-10 h-10 p-0 bg-[#4C31AF] hover:bg-[#3d2689] rounded-full shadow-lg flex items-center justify-center">
                   <ArrowLeftIcon className="w-5 h-5 text-white" />
                 </Button>
 
                 <Button
-                  onClick={nextSlide}
+                  onClick={prevSlide}
                   className="w-10 h-10 p-0 bg-[#4C31AF] hover:bg-[#3d2689] rounded-full shadow-lg flex items-center justify-center">
                   <ArrowRightIcon className="w-5 h-5 text-white" />
                 </Button>
