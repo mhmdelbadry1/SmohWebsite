@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import AboutUsImage from "../../imgs/AboutUs.png"
 
 export const AboutUsSection = () => {
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [typedText, setTypedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -22,9 +26,74 @@ export const AboutUsSection = () => {
     triggerOnce: false,
   });
 
-  const fullText = "Sumou is a company specialized in visual identity design, advertising content creation, and creative consulting for entrepreneurs and emerging brands. Our goal is to empower brands to stand out in the market through creative solutions built on strategic vision and refined taste.";
+  const fullText = t('about.description');
+  const currentLanguage = i18n.language;
 
-  // Typing effect
+  // Define highlighted words for each language
+  const highlightedWords = {
+    en: {
+      1: { start: 34, end: 87 }, // "visual identity design, advertising content creation"
+      2: { start: 92, end: 111 } // "creative consultancy"
+    },
+    ar: {
+      1: { start: 20, end: 57 }, 
+      2: { start: 57, end: 96 } 
+    }
+  };
+
+  // Function to get highlighted segments based on current language
+  const getHighlightedSegments = (text) => {
+    if (!text) return [];
+    
+    const highlights = highlightedWords[currentLanguage] || highlightedWords.en;
+    
+    const segments = [];
+    let lastIndex = 0;
+    
+    // Sort highlights by start position to ensure proper order
+    const sortedHighlights = Object.values(highlights).sort((a, b) => a.start - b.start);
+    
+    sortedHighlights.forEach((highlight) => {
+      // Add text before highlight (if any)
+      if (highlight.start > lastIndex && lastIndex < text.length) {
+        const beforeText = text.slice(lastIndex, Math.min(highlight.start, text.length));
+        if (beforeText) {
+          segments.push({
+            text: beforeText,
+            isHighlighted: false
+          });
+        }
+      }
+      
+      // Add highlighted text (if current text length covers this highlight)
+      if (text.length > highlight.start) {
+        const highlightEnd = Math.min(highlight.end, text.length);
+        const highlightText = text.slice(highlight.start, highlightEnd);
+        if (highlightText) {
+          segments.push({
+            text: highlightText,
+            isHighlighted: true
+          });
+        }
+        lastIndex = highlightEnd;
+      }
+    });
+    
+    // Add remaining text after all highlights
+    if (lastIndex < text.length) {
+      const remainingText = text.slice(lastIndex);
+      if (remainingText) {
+        segments.push({
+          text: remainingText,
+          isHighlighted: false
+        });
+      }
+    }
+    
+    return segments;
+  };
+
+  // Typing effect with language change detection
   useEffect(() => {
     if (inView && currentIndex < fullText.length) {
       const timer = setTimeout(() => {
@@ -38,6 +107,20 @@ export const AboutUsSection = () => {
       setCurrentIndex(0);
     }
   }, [inView, currentIndex, fullText]);
+
+  // Reset typing when language changes
+  useEffect(() => {
+    setTypedText("");
+    setCurrentIndex(0);
+  }, [currentLanguage, fullText]);
+
+  // Reset typing when component mounts or text changes
+  useEffect(() => {
+    if (inView) {
+      setTypedText("");
+      setCurrentIndex(0);
+    }
+  }, [fullText]);
 
   // Trigger animations when section is in view
   useEffect(() => {
@@ -111,6 +194,15 @@ export const AboutUsSection = () => {
     })
   };
 
+  // Navigation handlers
+  const handleServicesClick = () => {
+    navigate('/services');
+  };
+
+  const handleContactClick = () => {
+    navigate('/contact');
+  };
+
   return (
     <motion.section 
       ref={sectionRef}
@@ -132,7 +224,7 @@ export const AboutUsSection = () => {
             visible: { opacity: 1, y: 0 }
           }}
         >
-          About Us
+          {t('about.title')}
         </motion.h2>
         <motion.p 
           className="opacity-75 font-['Poppins',Helvetica] text-sm sm:text-base md:text-lg lg:text-xl text-center font-normal text-black px-4"
@@ -141,7 +233,7 @@ export const AboutUsSection = () => {
             visible: { opacity: 1, y: 0 }
           }}
         >
-          Get to know Sumou up close.
+          {t('about.subtitle')}
         </motion.p>
       </motion.header>
 
@@ -172,34 +264,24 @@ export const AboutUsSection = () => {
             </motion.div>
 
             <motion.div 
-              className="font-['Poppins',Helvetica] font-normal text-black text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[22px] leading-[18px] sm:leading-[22px] md:leading-[26px] lg:leading-[30px] xl:leading-[35px] text-left w-full px-2 sm:px-4"
+              className={`font-['Poppins',Helvetica] font-normal text-black text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[22px] leading-[18px] sm:leading-[22px] md:leading-[26px] lg:leading-[30px] xl:leading-[35px] text-left w-full px-2 sm:px-4 ${
+                currentLanguage === 'ar' ? 'text-right dir-rtl' : 'text-left dir-ltr'
+              }`}
               initial={{ opacity: 0 }}
               animate={{ opacity: inView ? 1 : 0 }}
               transition={{ delay: 0.8 }}
             >
-              <span className="font-light">
-                {typedText.slice(0, 34)}
-              </span>
-              {typedText.length > 34 && (
-                <span className="font-bold text-purple text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[22px] leading-[18px] sm:leading-[22px] md:leading-[26px] lg:leading-[30px] xl:leading-[35px] hover:scale-105 transition-transform duration-300">
-                  {typedText.slice(34, 87)}
+              {getHighlightedSegments(typedText).map((segment, index) => (
+                <span
+                  key={index}
+                  className={segment.isHighlighted 
+                    ? "font-bold text-purple text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[22px] leading-[18px] sm:leading-[22px] md:leading-[26px] lg:leading-[30px] xl:leading-[35px] hover:scale-105 transition-transform duration-300"
+                    : "font-light"
+                  }
+                >
+                  {segment.text}
                 </span>
-              )}
-              {typedText.length > 87 && (
-                <span className="font-light">
-                  {typedText.slice(87, 92)}
-                </span>
-              )}
-              {typedText.length > 92 && (
-                <span className="font-bold text-purple text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[22px] leading-[18px] sm:leading-[22px] md:leading-[26px] lg:leading-[30px] xl:leading-[35px] hover:scale-105 inline-block transition-transform duration-300">
-                  {typedText.slice(92, 111)}
-                </span>
-              )}
-              {typedText.length > 111 && (
-                <span className="font-light">
-                  {typedText.slice(111)}
-                </span>
-              )}
+              ))}
               {currentIndex < fullText.length && inView && (
                 <motion.span
                   className="inline-block w-0.5 sm:w-1 h-4 sm:h-5 md:h-6 bg-purple ml-1"
@@ -224,8 +306,11 @@ export const AboutUsSection = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 className="flex-shrink-0"
               >
-                <Button className="bg-purple text-white px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 rounded-xl font-['Alexandria',Helvetica] font-medium text-xs sm:text-sm md:text-base lg:text-lg tracking-[0.18px] leading-6 hover:bg-purple/90 transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap">
-                  Our Services
+                <Button 
+                  className="bg-purple text-white px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 rounded-xl font-['Alexandria',Helvetica] font-medium text-xs sm:text-sm md:text-base lg:text-lg tracking-[0.18px] leading-6 hover:bg-purple/90 transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap"
+                  onClick={handleServicesClick}
+                >
+                  {t('about.ourServices')}
                 </Button>
               </motion.div>
               <motion.div
@@ -240,8 +325,9 @@ export const AboutUsSection = () => {
                 <Button
                   variant="outline"
                   className="bg-white border-[#4c31af] text-purple px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 rounded-xl font-['Alexandria',Helvetica] font-medium text-xs sm:text-sm md:text-base lg:text-lg tracking-[0.18px] leading-6 hover:bg-purple hover:text-white transition-all duration-300 whitespace-nowrap"
+                  onClick={handleContactClick}
                 >
-                  Contact Us
+                  {t('about.contactUs')}
                 </Button>
               </motion.div>
             </motion.div>

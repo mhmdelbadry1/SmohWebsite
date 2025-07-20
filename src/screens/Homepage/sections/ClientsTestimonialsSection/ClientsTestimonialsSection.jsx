@@ -1,10 +1,12 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import { motion, useAnimation } from "framer-motion";
 import { Card, CardContent } from "../../../../components/ui/card";
 import PinImage from "../../imgs/Pin.png";
 import { useInView } from "react-intersection-observer";
 import frame1 from "../../imgs/Group 7.png";
 import frame2 from "../../imgs/Group 8.png";
+import { useNavigate } from 'react-router-dom';
 
 // Custom styles for 1024px to 1200px media query
 const customStyles = `
@@ -21,13 +23,85 @@ const customStyles = `
   </style>
 `;
 
+const AnimatedArrowButton = ({ isArabic, large }) => {
+  const navigate = useNavigate();
+  const [hovered, setHovered] = React.useState(false);
+  const controls = useAnimation();
+
+  React.useEffect(() => {
+    let active = true;
+    async function animateLoop() {
+      while (active && hovered) {
+        // 1. Rotate 360deg, scale up
+        await controls.start({ rotate: 360, scale: 1.15, x: 0, transition: { duration: 0.5, ease: 'easeInOut' } });
+        // 2. Move slightly past (x: isArabic ? -8 : 8)
+        await controls.start({ rotate: 360, scale: 1.1, x: isArabic ? -8 : 8, transition: { duration: 0.15 } });
+        // 3. Shake (x: isArabic ? -14 : 14)
+        await controls.start({ rotate: 360, scale: 1.1, x: isArabic ? -14 : 14, transition: { duration: 0.08 } });
+        await controls.start({ rotate: 360, scale: 1.1, x: isArabic ? -8 : 8, transition: { duration: 0.08 } });
+        // 4. Return to original (x: 0, rotate: 0, scale: 1)
+        await controls.start({ rotate: 0, scale: 1, x: 0, transition: { duration: 0.25, ease: 'easeOut' } });
+        // Wait 2s before next loop
+        await new Promise(res => setTimeout(res, 2000));
+      }
+    }
+    if (hovered) {
+      animateLoop();
+    } else {
+      controls.start({ rotate: 0, scale: 1, x: 0 });
+    }
+    return () => { active = false; };
+    // eslint-disable-next-line
+  }, [hovered, isArabic]);
+
+  const handleClick = () => {
+    navigate('/contact');
+  };
+
+  return (
+    <motion.div
+      className={`flex ${large ? 'w-[60px] h-[60px]' : 'w-[50px] h-[50px]'} items-center justify-center p-2 bg-[#f8d9e0] rounded-[40px] overflow-hidden cursor-pointer hover:bg-[#f0c9d0] transition-colors duration-300`}
+      animate={controls}
+      initial={{ rotate: 0, scale: 1, x: 0 }}
+      whileTap={{ scale: 0.92 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onClick={handleClick}
+      tabIndex={0}
+      role="button"
+      aria-label={isArabic ? 'انتقل إلى صفحة تواصل معنا' : 'Go to Contact page'}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="none"
+        style={isArabic ? { transform: 'scaleX(-1)' } : {}}
+      >
+        <path
+          d="M16.4248 8.17513L16.4248 1.57547M16.4248 1.57547L9.82517 1.57547M16.4248 1.57547L1.57559 16.4247"
+          stroke="#DB4063"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </motion.div>
+  );
+};
+
 export const ClientsTestimonialsSection = () => {
+  const { t, i18n } = useTranslation();
+  // Always use the resolved language for layout/conditionals
+  const lang = i18n.resolvedLanguage || i18n.language;
+  console.log("Current language:", lang);
   const serviceItems = [
-    { number: "01", title: "Logo and Visual Identity Design" },
-    { number: "02", title: "Advertising Post Design" },
-    { number: "03", title: "Print Material Design" },
-    { number: "04", title: "Arabic Calligraphy Creation" },
-    { number: "05", title: "Content and Social Media Account Management" },
+    { number: "01", title: t('services.logoDesign') },
+    { number: "02", title: t('services.advertisingDesign') },
+    { number: "03", title: t('services.printMaterial') },
+    { number: "04", title: t('services.calligraphy') },
+    { number: "05", title: t('services.socialMedia') },
   ];
 
   // Animation controls
@@ -153,21 +227,21 @@ export const ClientsTestimonialsSection = () => {
         custom={0}
         className="flex items-center w-full flex-col gap-6 relative"
       >
-        <div className="relative w-full [font-family:'Poppins',Helvetica] font-semibold text-center text-black text-[28px] md:text-5xl lg:text-[56px]">
-          What Do We Offer You?
-          <div className="absolute w-[500px] lg:left-[20%] custom-underline-position hidden lg:block h-3">
+        <div className="relative w-full z-[10] [font-family:'Poppins',Helvetica] font-semibold text-center text-black text-[28px] md:text-5xl lg:text-[56px]">
+          {t('services.title')}
+          <div className={`absolute ${lang==='ar' ? 'w-[800px] h-[22px] left-[68%]' : 'w-[400px] h-4 left-[60%]'}  -translate-x-1/2 hidden lg:block  z-[-1]`} style={{top: '100%'}}>
             <motion.svg
               xmlns="http://www.w3.org/2000/svg"
-              width="400"
-              height="12"
+              width={lang === 'ar' ? "800" : "400"}
+              height={lang === 'ar' ? "22" : "12"}
               viewBox="0 0 400 12"
               fill="none"
-              style={{ transform: "translate(250px, 0)" }}
+              style={{ display: 'block', margin: '0 auto' }}
               initial="hidden"
               animate={lineControls}
             >
               <defs>
-                <mask id="revealMask">
+                <mask id={lang === 'ar' ? 'revealMaskAr' : 'revealMask'}>
                   <motion.rect
                     x="0"
                     y="0"
@@ -178,12 +252,14 @@ export const ClientsTestimonialsSection = () => {
                 </mask>
               </defs>
               <path
-                d="M397.275 9.41159C331.2 9.41159 265.125 9.5099 198.815 9.80479C166.48 9.90308 134.145 10.2963 101.81 10.2963C86.1116 10.2963 70.1786 10.2963 54.4798 10.7877C46.9819 10.9843 39.7183 11.3775 32.4547 11.7707C23.3166 12.2621 16.9902 11.8689 7.85214 11.4758C0.119904 11.1809 -3.16046 7.15086 3.86884 5.28328C10.6638 3.41571 15.1157 1.843 23.3166 1.25324C30.8145 0.663484 38.3124 0.466897 46.0446 0.27031C61.7434 -0.122864 77.6765 -0.0245764 93.3753 0.172011C127.116 0.565184 160.622 1.35153 194.363 2.13788C262.079 3.61228 329.794 5.28328 397.275 7.15085C400.79 7.15085 401.024 9.41159 397.275 9.41159Z"
+                d={lang === 'ar'
+                  ? "M178 8C148 8 118 8.1 88 8.3C73 8.4 58 8.7 43 8.7C36 8.7 29 8.7 22 9C18.5 9.1 15 9.3 11.5 9.5C7 9.7 4 9.5 0 9.3C-1 9.2 -2 7.1 1 6.3C4 5.5 6 4.8 11.5 4.4C15 4.1 18.5 4 22 3.9C29 3.7 36 3.8 43 3.9C58 4.1 73 4.4 88 4.7C118 5.3 148 6.1 178 7C180 7 180.1 8 178 8Z"
+                  : "M397.275 9.41159C331.2 9.41159 265.125 9.5099 198.815 9.80479C166.48 9.90308 134.145 10.2963 101.81 10.2963C86.1116 10.2963 70.1786 10.2963 54.4798 10.7877C46.9819 10.9843 39.7183 11.3775 32.4547 11.7707C23.3166 12.2621 16.9902 11.8689 7.85214 11.4758C0.119904 11.1809 -3.16046 7.15086 3.86884 5.28328C10.6638 3.41571 15.1157 1.843 23.3166 1.25324C30.8145 0.663484 38.3124 0.466897 46.0446 0.27031C61.7434 -0.122864 77.6765 -0.0245764 93.3753 0.172011C127.116 0.565184 160.622 1.35153 194.363 2.13788C262.079 3.61228 329.794 5.28328 397.275 7.15085C400.79 7.15085 401.024 9.41159 397.275 9.41159Z"}
                 fill="#DB4063"
                 stroke="#DB4063"
                 strokeWidth="2"
                 strokeLinecap="round"
-                mask="url(#revealMask)"
+                mask={`url(#${lang === 'ar' ? 'revealMaskAr' : 'revealMask'})`}
               />
             </motion.svg>
           </div>
@@ -194,7 +270,7 @@ export const ClientsTestimonialsSection = () => {
           custom={1}
           className="w-full opacity-75 [font-family:'Poppins',Helvetica] text-lg md:text-xl text-center font-normal text-black"
         >
-          Whatever service you need, we promise professionalism and innovation.
+          {t('services.subtitle')}
         </motion.p>
       </motion.div>
 
@@ -248,17 +324,30 @@ export const ClientsTestimonialsSection = () => {
           animate={svgCardControls}
         >
           {/* Purple Text Card - First on mobile */}
-          <motion.div className="block lg:hidden w-full" animate={textCardsControls}>
+          <motion.div className="block lg:hidden w-full h-full;" animate={textCardsControls}>
             <motion.div variants={fadeUp} custom={8}>
               <Card className="flex flex-col w-full p-8 bg-purple rounded-[32px]">
                 <CardContent className="p-0 flex flex-col justify-between h-full gap-4">
-                  <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-base">
-                    Have you ever wondered how creativity turns into impact?
-                  </p>
-                  <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-sm">
-                    At Sumou, we don't just design — we bring ideas to life.
-                    Discover our journey in crafting visual magic.
-                  </p>
+                  {lang === 'ar' ? (
+                    <>
+                      <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-base">
+هل تساءلت يومًا كيف يتحول الإبداع إلى تأثير؟                      </p>
+                      <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-sm">
+                      في سمو، لا نصمم فحسب — نحن نُحيي الأفكار.
+اكتشف رحلتنا في صناعة السحر البصري
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-base">
+                        Have you ever wondered how creativity turns into impact?
+                      </p>
+                      <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-sm">
+                        At Sumou, we don't just design — we bring ideas to life.
+                        Discover our journey in crafting visual magic.
+                      </p>
+                    </>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
@@ -306,136 +395,93 @@ export const ClientsTestimonialsSection = () => {
             <motion.div variants={fadeUp} custom={9}>
               <Card className="flex flex-col w-full p-8 bg-red rounded-[32px]">
                 <CardContent className="p-0 flex flex-col justify-between h-full gap-4">
-                  <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-lg">
-                    Looking for design experts who can turn your vision into reality?
-                  </p>
-                  <div className="flex items-center justify-between w-full">
-                    <p className="w-[115px] [font-family:'Alexandria',Helvetica] font-semibold text-white text-xl">
-                      Talk to our specialists.
-                    </p>
-                    <motion.div
-                      className="flex w-[50px] h-[50px] items-center justify-center p-2 bg-[#f8d9e0] rounded-[40px] overflow-hidden cursor-pointer hover:bg-[#f0c9d0] transition-colors duration-300"
-                      initial={{ opacity: 0, rotate: 0, scale: 0.8 }}
-                      animate={{ 
-                        opacity: inView ? 1 : 0, 
-                        rotate: inView ? 360 : 0, 
-                        scale: inView ? 1 : 0.8 
-                      }}
-                      transition={{
-                        rotate: { 
-                          duration: 0.8, 
-                          ease: "easeInOut",
-                          delay: inView ? 1.2 : 0
-                        },
-                        opacity: { 
-                          duration: 0.3, 
-                          delay: inView ? 1.2 : 0 
-                        },
-                        scale: {
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 30,
-                          duration: 0.6,
-                          delay: inView ? 1.2 : 0
-                        },
-                      }}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 18 18"
-                        fill="none"
-                      >
-                        <path
-                          d="M16.4248 8.17513L16.4248 1.57547M16.4248 1.57547L9.82517 1.57547M16.4248 1.57547L1.57559 16.4247"
-                          stroke="#DB4063"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </motion.div>
-                  </div>
+                  {lang === 'ar' ? (
+                    <>
+                      <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-lg">
+                        هل تبحث عن خبراء تصميم يحولون رؤيتك إلى واقع؟
+                      </p>
+                      <div className="flex items-center justify-between w-full">
+                        <p className="w-[115px] [font-family:'Alexandria',Helvetica] font-semibold text-white text-xl">
+                          تحدث مع أخصائيينا.
+                        </p>
+                        <AnimatedArrowButton isArabic={true} />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-lg">
+                        Looking for design experts who can turn your vision into reality?
+                      </p>
+                      <div className="flex items-center justify-between w-full">
+                        <p className="w-[115px] [font-family:'Alexandria',Helvetica] font-semibold text-white text-xl">
+                          Talk to our specialists.
+                        </p>
+                        <AnimatedArrowButton isArabic={false} />
+                      </div>
+                    </>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
           </motion.div>
 
           {/* Desktop Text Cards - Hidden on mobile */}
-          <motion.div className="hidden lg:flex flex-col gap-6 w-full lg:w-auto" animate={textCardsControls}>
+          <motion.div className="hidden lg:flex flex-col gap-6 w-full lg:w-auto " animate={textCardsControls}>
             <motion.div variants={fadeUp} custom={8}>
               <Card className="flex flex-col w-full lg:w-[250px] p-8 bg-purple rounded-[32px]">
-                <CardContent className="p-0 flex flex-col justify-between h-full gap-4">
-                  <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-base">
-                    Have you ever wondered how creativity turns into impact?
-                  </p>
-                  <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-sm">
-                    At Sumou, we don't just design — we bring ideas to life.
-                    Discover our journey in crafting visual magic.
-                  </p>
+                <CardContent className="p-0 flex flex-col justify-between h-[200px] gap-4">
+                  {lang === 'ar' ? (
+                    <>
+                      <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-base">
+هل تساءلت يومًا كيف يتحول الإبداع إلى تأثير؟                      </p>
+                      <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-sm">
+    في سمو، لا نصمم فحسب — نحن نُحيي الأفكار.
+اكتشف رحلتنا في صناعة السحر البصري
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-base">
+                        Have you ever wondered how creativity turns into impact?
+                      </p>
+                      <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-sm">
+                        At Sumou, we don't just design — we bring ideas to life.
+                        Discover our journey in crafting visual magic.
+                      </p>
+                    </>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
 
             <motion.div variants={fadeUp} custom={9}>
               <Card className="flex flex-col w-full lg:w-[250px] p-8 bg-red rounded-[32px]">
-                <CardContent className="p-0 flex flex-col justify-between h-full gap-4">
-                  <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-lg">
-                    Looking for design experts who can turn your vision into reality?
-                  </p>
-                  <div className="flex items-center justify-between w-full">
-                    <p className="w-[115px] [font-family:'Alexandria',Helvetica] font-semibold text-white text-xl">
-                      Talk to our specialists.
-                    </p>
-                    <motion.div
-                      className="flex w-[60px] h-[60px] items-center justify-center p-2 bg-[#f8d9e0] rounded-[40px] overflow-hidden cursor-pointer hover:bg-[#f0c9d0] transition-colors duration-300"
-                      initial={{ opacity: 0, rotate: 0, scale: 0.8 }}
-                      animate={{ 
-                        opacity: inView ? 1 : 0, 
-                        rotate: inView ? 360 : 0, 
-                        scale: inView ? 1 : 0.8 
-                      }}
-                      transition={{
-                        rotate: { 
-                          duration: 0.8, 
-                          ease: "easeInOut",
-                          delay: inView ? 1.2 : 0
-                        },
-                        opacity: { 
-                          duration: 0.3, 
-                          delay: inView ? 1.2 : 0 
-                        },
-                        scale: {
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 30,
-                          duration: 0.6,
-                          delay: inView ? 1.2 : 0
-                        },
-                      }}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 18 18"
-                        fill="none"
-                      >
-                        <path
-                          d="M16.4248 8.17513L16.4248 1.57547M16.4248 1.57547L9.82517 1.57547M16.4248 1.57547L1.57559 16.4247"
-                          stroke="#DB4063"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </motion.div>
-                  </div>
+                <CardContent className="p-0 flex flex-col justify-between h-[200px] gap-4">
+                  {lang === 'ar' ? (
+                    <>
+                      <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-lg">
+                        هل تبحث عن خبراء تصميم يحولون رؤيتك إلى واقع؟
+                      </p>
+                      <div className="flex items-center justify-between w-full">
+                        <p className="w-[115px] [font-family:'Alexandria',Helvetica] font-semibold text-white text-xl">
+                          تحدث مع أخصائيينا.
+                        </p>
+                        <AnimatedArrowButton isArabic={true} large />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <p className="[font-family:'Alexandria',Helvetica] font-normal text-white text-lg">
+                        Looking for design experts who can turn your vision into reality?
+                      </p>
+                      <div className="flex items-center justify-between w-full">
+                        <p className="w-[115px] [font-family:'Alexandria',Helvetica] font-semibold text-white text-xl">
+                          Talk to our specialists.
+                        </p>
+                        <AnimatedArrowButton isArabic={false} large />
+                      </div>
+                    </>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
@@ -444,14 +490,25 @@ export const ClientsTestimonialsSection = () => {
       </div>
 
       {/* Pin Image */}
-      <motion.img
-        initial="hidden"
-        animate={pinControls}
-        variants={pinAnimation}
-        className="absolute w-20 h-20 top-[30px] left-[170px] custom-pin-position hidden lg:block"
-        alt="Decorative element"
-        src={PinImage}
-      />
+      {lang === 'ar' ? (
+        <motion.img
+          initial="hidden"
+          animate={pinControls}
+          variants={pinAnimation}
+          className="absolute w-20 h-20 top-0 lg:left-[340px] md:left-[260px] hidden lg:block"
+          alt="Decorative element"
+          src={PinImage}
+        />
+      ) : (
+        <motion.img
+          initial="hidden"
+          animate={pinControls}
+          variants={pinAnimation}
+          className="absolute w-20 h-20 top-[30px] left-[170px] custom-pin-position hidden lg:block"
+          alt="Decorative element"
+          src={PinImage}
+        />
+      )}
     </section>
     </>
   );

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useTranslation } from 'react-i18next';
 import { Button } from "../../../../components/ui/button";
 import { Card } from "../../../../components/ui/card";
 import projectImg1 from "../../imgs/project_1.png";
@@ -9,6 +10,7 @@ import projectImg5 from "../../imgs/project_5.png";
 import projectImg6 from "../../imgs/project_6.png";
 
 export const ProjectsSection = () => {
+  const { t } = useTranslation();
   const [hoveredProject, setHoveredProject] = useState(null);
   const [columns, setColumns] = useState(3);
   const [visibleCards, setVisibleCards] = useState(new Set());
@@ -89,10 +91,10 @@ export const ProjectsSection = () => {
     >
       <div className="flex flex-col items-center gap-4 relative w-full max-w-7xl mx-auto px-4">
         <h2 className="relative w-fit font-['Poppins',Helvetica] font-semibold text-black text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] animate-fade-in text-center">
-          Our Projects
+          {t('projects.title')}
         </h2>
         <p className="opacity-75 font-['Poppins',Helvetica] text-base sm:text-lg md:text-xl text-center font-normal text-black max-w-4xl">
-          Discover our most notable work that reflects our commitment to quality and innovation.
+          {t('projects.subtitle')}
         </p>
       </div>
 
@@ -218,7 +220,7 @@ export const ProjectsSection = () => {
       <div className="flex justify-center mt-8">
         <Button className="inline-flex items-center justify-center gap-2.5 px-8 py-2 bg-purple rounded-lg hover:bg-purple/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
           <span className="font-['Poppins',Helvetica] font-normal text-white text-lg leading-6 whitespace-nowrap">
-            View More
+            {t('projects.viewMore')}
           </span>
         </Button>
       </div>

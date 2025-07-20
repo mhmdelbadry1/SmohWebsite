@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from "../../../../contexts/LanguageContext";
 import { Button } from "../../../../components/ui/button";
 
 export const HeaderSection = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t, i18n } = useTranslation();
+  const { toggleLanguage, currentLanguage } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("Home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -58,12 +62,12 @@ export const HeaderSection = () => {
   }, [isMobileMenuOpen]);
 
   const allNavItems = [
-    { text: "Home", path: "/", active: activeSection === "Home" },
-    { text: "About Us", path: "/about", active: activeSection === "About Us" },
-    { text: "Our Services", path: "/services", active: activeSection === "Our Services" },
-    { text: "Testimonials", path: "/testimonials", active: activeSection === "Testimonials" },
-    { text: "Our Projects", path: "/projects", active: activeSection === "Our Projects" },
-    { text: "Contact Us", path: "/contact", active: activeSection === "Contact Us" },
+    { text: t('header.home'), path: "/", active: activeSection === "Home" },
+    { text: t('header.about'), path: "/about", active: activeSection === "About Us" },
+    { text: t('header.services'), path: "/services", active: activeSection === "Our Services" },
+    { text: t('header.testimonials'), path: "/testimonials", active: activeSection === "Testimonials" },
+    { text: t('header.projects'), path: "/projects", active: activeSection === "Our Projects" },
+    { text: t('header.contact'), path: "/contact", active: activeSection === "Contact Us" },
   ];
 
   const leftNavItems = allNavItems.slice(0, 3);
@@ -80,7 +84,7 @@ export const HeaderSection = () => {
 
   return (
     <>
-      <div className="h-[100px] sm:h-[120px] w-full my-3" />
+      <div className="h-[100px] sm:h-[120px] w-full my-0" />
       <header
         className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
           isMobileMenuOpen ? "hidden" : ""
@@ -174,15 +178,21 @@ export const HeaderSection = () => {
             </div>
 
             {/* Lang Button */}
-            <Button className="bg-purple rounded-lg text-white text-sm w-[40px] h-[40px]">
-              ع
+            <Button 
+              onClick={toggleLanguage}
+              className="bg-purple rounded-lg text-white text-sm w-[40px] h-[40px] hover:bg-purple-700 transition-colors duration-300"
+            >
+              {currentLanguage === 'en' ? 'ع' : 'EN'}
             </Button>
           </div>
 
           {/* Desktop Language Button */}
           <div className="hidden lg:flex ml-4">
-            <Button className="bg-purple rounded-lg text-white text-lg w-[50px] h-[50px]">
-              ع
+            <Button 
+              onClick={toggleLanguage}
+              className="bg-purple rounded-lg text-white text-lg w-[50px] h-[50px] hover:bg-purple-700 transition-colors duration-300"
+            >
+              {currentLanguage === 'en' ? 'ع' : 'EN'}
             </Button>
           </div>
         </nav>

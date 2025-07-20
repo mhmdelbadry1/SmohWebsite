@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useTranslation } from 'react-i18next';
 
 export const ContactPage = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -32,10 +34,10 @@ export const ContactPage = () => {
             <div className="flex items-center w-full flex-col gap-6 relative mb-10">
               <div className="relative w-full font-['Poppins',sans-serif] font-semibold text-center text-black">
                 <h1 className="text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 text-center leading-tight w-full mt-4">
-                  We're Here for{" "}
+                  {t('contact.title').split(' ').slice(0, -1).join(' ')}{" "}
                   <span className="relative inline-block align-bottom">
                     <span className="inline-block z-10 relative bg-white pr-1 pl-1 sm:pr-2 sm:pl-2">
-                      You!
+                      {t('contact.title').split(' ').slice(-1)[0]}
                     </span>
                     <span className="absolute left-0 right-0 bottom-[-0.35em] flex justify-center z-0 pointer-events-none">
                       <svg
@@ -56,9 +58,7 @@ export const ContactPage = () => {
               </div>
 
               <p className="w-full  opacity-75 font-['Poppins',sans-serif] text-lg md:text-xl text-center font-normal text-black">
-                Our team is ready to respond to all your inquiries promptly and
-                professionally. <br /> Don't hesitate to reach out using the
-                form below
+                {t('contact.subtitle')}
               </p>
             </div>
 
@@ -104,7 +104,7 @@ export const ContactPage = () => {
                     {/* Phone Section */}
                     <div className="mb-8">
                       <h3 className="text-xl font-bold mb-3">
-                        Contact Us by Phone
+                        {t('contact.info.phoneTitle')}
                       </h3>
                       <div className="space-y-2">
                         <p className="text-white">+966 55 135 5968</p>
@@ -115,7 +115,7 @@ export const ContactPage = () => {
                     {/* Email Section */}
                     <div className="mb-8">
                       <h3 className="text-xl font-bold mb-3">
-                        Contact Us by Email
+                        {t('contact.info.emailTitle')}
                       </h3>
                       <p className="text-white">sumouadvco@gmail.com</p>
                     </div>
@@ -123,7 +123,7 @@ export const ContactPage = () => {
                     {/* Social Media Section */}
                     <div className="mb-8">
                       <h3 className="text-xl font-bold mb-3">
-                        Or follow us on social media.
+                        {t('contact.info.socialTitle')}
                       </h3>
                       <div className="flex space-x-4">
                         {/* Facebook */}
@@ -211,7 +211,7 @@ export const ContactPage = () => {
                         htmlFor="name"
                         className="block text-sm font-medium text-black mb-2"
                       >
-                        Name
+                        {t('contact.form.name')}
                       </label>
                       <input
                         type="text"
@@ -220,7 +220,7 @@ export const ContactPage = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition-all duration-200"
-                        placeholder="Enter your full name"
+                        placeholder={t('contact.form.namePlaceholder')}
                       />
                     </div>
 
@@ -229,7 +229,7 @@ export const ContactPage = () => {
                         htmlFor="email"
                         className="block text-sm font-medium text-black mb-2"
                       >
-                        Email
+                        {t('contact.form.email')}
                       </label>
                       <input
                         type="email"
@@ -238,7 +238,7 @@ export const ContactPage = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition-all duration-200"
-                        placeholder="Enter your email address"
+                        placeholder={t('contact.form.emailPlaceholder')}
                       />
                     </div>
 
@@ -247,7 +247,7 @@ export const ContactPage = () => {
                         htmlFor="phone"
                         className="block text-sm font-medium text-black mb-2"
                       >
-                        Phone Number
+                        {t('contact.form.phone')}
                       </label>
                       <div className="flex border  rounded-lg overflow-hidden">
                         <div className="flex items-center px-3 py-3  border-r border-gray-300">
@@ -290,7 +290,7 @@ export const ContactPage = () => {
                           value={formData.phone}
                           onChange={handleInputChange}
                           className="flex-1 px-4 py-3 border-0 focus:outline-none focus:ring-0"
-                          placeholder="Enter your phone number"
+                          placeholder={t('contact.form.phonePlaceholder')}
                         />
                       </div>
                     </div>
@@ -300,7 +300,7 @@ export const ContactPage = () => {
                         htmlFor="subject"
                         className="block text-sm font-medium text-black mb-2"
                       >
-                        Subject
+                        {t('contact.form.subject')}
                       </label>
                       <input
                         type="text"
@@ -309,7 +309,7 @@ export const ContactPage = () => {
                         value={formData.subject}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition-all duration-200"
-                        placeholder="Enter message subject"
+                        placeholder={t('contact.form.subjectPlaceholder')}
                       />
                     </div>
 
@@ -318,7 +318,7 @@ export const ContactPage = () => {
                         htmlFor="message"
                         className="block text-sm font-medium text-black mb-2"
                       >
-                        Message
+                        {t('contact.form.message')}
                       </label>
                       <input
                         type="text"
@@ -327,7 +327,7 @@ export const ContactPage = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition-all duration-200"
-                        placeholder="Write what you want..."
+                        placeholder={t('contact.form.messagePlaceholder')}
                       />
                     </div>
 
@@ -335,7 +335,7 @@ export const ContactPage = () => {
                       type="submit"
                       className="w-auto bg-[#4C31AF] hover:bg-[#3d2790] text-white font-medium  h-12 py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
                     >
-                      <span>Submit Request</span>
+                      <span>{t('contact.form.submit')}</span>
                       <svg
                         width="24"
                         height="24"

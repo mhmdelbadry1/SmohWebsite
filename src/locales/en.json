@@ -1,0 +1,121 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Our Services",
+    "projects": "Our Projects",
+    "testimonials": "Testimonials",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "title": "We shape your",
+    "titleHighlight": "identity",
+    "subtitle": "With a vision that",
+    "speaks": "speaks",
+    "creatively": "creatively!",
+    "welcomeMessage": "Welcome to Sumou!",
+    "startingPoint": "The starting point for your brand toward excellence and professionalism.",
+    "missionStatement": "We're here to give your idea an identity and turn your vision into a stunning visual reality that truly represents you — a memorable identity.",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Get to know Sumou up close.",
+    "description": "Sumou is a company specialized in visual identity design, advertising content creation, and creative consulting for entrepreneurs and emerging brands. Our goal is to empower brands to stand out in the market through creative solutions built on strategic vision and refined taste.",
+    "ourServices": "Our Services",
+    "contactUs": "Contact Us",
+    "experience": "Years of Experience",
+    "projects": "Completed Projects",
+    "clients": "Happy Clients"
+  },
+  "services": {
+    "title": "What Do We Offer You?",
+    "subtitle": "Whatever service you need, we promise professionalism and innovation.",
+    "logoDesign": "Logo and Visual Identity Design",
+    "advertisingDesign": "Advertising Post Design",
+    "printMaterial": "Print Material Design",
+    "calligraphy": "Arabic Calligraphy Creation",
+    "socialMedia": "Content and Social Media Account Management",
+    "branding": {
+      "title": "Brand Identity Design",
+      "description": "Complete visual identity solutions including logo design, color schemes, and brand guidelines."
+    },
+    "marketing": {
+      "title": "Digital Marketing",
+      "description": "Strategic marketing campaigns to boost your brand presence across digital platforms."
+    },
+    "design": {
+      "title": "Graphic Design",
+      "description": "Creative design services for all your marketing materials and visual content needs."
+    },
+    "consultation": {
+      "title": "Creative Consultation",
+      "description": "Expert advice and strategic planning to help your brand reach its full potential."
+    }
+  },
+  "offerings": {
+    "title": "Do you have an idea or a project?",
+    "description": "We're here to turn your ideas into reality! Whether you have an initial concept or a ready-made plan, our specialized team is ready to support you every step of the way.",
+    "button": "Contact Us"
+  },
+  "projects": {
+    "title": "Our Projects",
+    "subtitle": "Discover our most notable work that reflects our commitment to quality and innovation.",
+    "viewProject": "View Project",
+    "viewMore": "View More",
+    "allProjects": "View All Projects"
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Our clients’ feedback is a living testament to our commitment to delivering comprehensive services."
+  },
+  "contact": {
+    "title": "We're Here for You!",
+    "subtitle": "Our team is ready to respond to all your inquiries promptly and professionally. Don't hesitate to reach out using the form below",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Message",
+      "namePlaceholder": "Enter your full name",
+      "emailPlaceholder": "Enter your email address",
+      "phonePlaceholder": "Enter your phone number",
+      "subjectPlaceholder": "Enter message subject",
+      "messagePlaceholder": "Write what you want...",
+      "submit": "Submit Request"
+    },
+    "info": {
+      "phoneTitle": "Contact Us by Phone",
+      "emailTitle": "Contact Us by Email",
+      "socialTitle": "Or follow us on social media."
+    }
+  },
+  "footer": {
+    "description": "Sumou is your partner in creating a unique and memorable brand identity.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "consultation": {
+    "title": "Consultation Sessions",
+    "description": "Get specialized consultations that help you overcome challenges and achieve your goals. Our team is ready to support you with expertise, offering practical and innovative solutions tailored to your needs.",
+    "emailPlaceholder": "Enter your email address",
+    "send": "Send"
+  },
+  "common": {
+    "readMore": "Read More",
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "viewMore": "View More",
+    "submit": "Submit",
+    "send": "Send",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success!"
+  }
+}

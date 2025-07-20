@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import { Button } from "../../../../components/ui/button";
 import MarketingImg from "../../imgs/marketing.png";
 import Star from "../../imgs/Subtract.png";
@@ -11,10 +12,15 @@ import Youtube from "../../imgs/Youtube.png";
 import Flag from "../../imgs/Flags.png";
 
 import { Card, CardContent } from "../../../../components/ui/card";
+import { useNavigate } from 'react-router-dom';
 
 export const OfferingsSection = () => {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.resolvedLanguage || i18n.language;
+  const navigate = useNavigate();
+
   return (
-    <section className="relative w-full min-h-[80vh] py-16 flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative w-full min-h-[115vh] py-16 flex flex-col items-center justify-center overflow-hidden">
       {/* Left decorative panel */}
       <div className="absolute inset-y-0 left-0 w-[600px] max-w-[90vw] pointer-events-none">
         {/* SVG curve + embedded icons */}
@@ -40,18 +46,19 @@ export const OfferingsSection = () => {
           <image href={Group10} x="90" y="380" width="140" height="140" />
         </svg>
       </div>
-      <div className="absolute top-0 bottom-0  right-0 w-[350px] max-w-[90vw] h-[85%] flex items-start justify-end pointer-events-none">
+      <div className="absolute top-0 bottom-0  right-0 w-[450px] max-w-[90vw]  flex items-start justify-end pointer-events-none">
         <svg
-          className="h-full w-full"
+          className=" h-full w-auto"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 252 466"
-          fill="none">
+          fill="none"
+        >
           <path
             d="M0.0480119 369.818C17.448 419.818 66.748 458.518 119.048 465.018C175.948 472.018 228.148 420.818 221.548 363.818C214.448 301.818 157.148 267.118 127.548 216.818C113.348 192.618 106.748 165.218 114.848 137.718C122.948 110.218 142.548 87.1181 165.848 70.9181C192.548 52.4181 223.848 42.9181 255.748 37.9181C286.348 33.1181 320.048 35.2181 348.348 21.0181C354.548 17.9181 360.248 12.2181 365.348 7.51808C369.248 3.81808 363.648 -1.38192 359.648 1.81808C353.748 6.41808 346.948 8.81808 340.148 11.6181C333.448 14.4181 326.548 16.4181 319.548 17.9181C304.248 21.2181 288.348 21.7181 272.848 23.5181C240.648 27.2181 208.648 33.7181 179.648 48.6181C130.748 73.6181 89.348 125.518 101.148 183.218C106.548 209.518 121.948 232.518 138.548 253.118C156.648 275.418 178.348 294.918 193.148 319.718C208.548 345.518 216.448 376.518 204.348 405.218C194.148 429.318 172.348 448.418 147.148 455.318C120.848 462.618 92.4479 455.018 68.8479 442.718C44.6479 430.018 23.948 410.618 10.048 387.018C6.74801 381.318 3.74801 375.418 1.04801 369.418C0.948012 368.518 -0.251988 369.018 0.0480119 369.818Z"
             fill="#4C31AF"
           />
 
-          {/* Embedded Icons — adjust (x,y,width,height) freely */}
+          {/* Embedded Icons  */}
           <image
             href={Idea}
             x="10"
@@ -73,7 +80,7 @@ export const OfferingsSection = () => {
             xmlns="http://www.w3.org/2000/svg"
             width="360"
             height="99"
-            className="absolute top-[40%] left-[42%] z-[-1] -translate-x-1/2 -translate-y-1/2 w-[300px] h-auto"
+            className={`absolute top-[40%] left-[42%] z-[-1] -translate-x-1/2 -translate-y-1/2 w-[300px] h-auto`}
             viewBox="0 0 360 99"
             fill="none">
             <path
@@ -84,28 +91,47 @@ export const OfferingsSection = () => {
 
           <h2 className="font-['Poppins',Helvetica] font-semibold text-black text-4xl sm:text-5xl text-center">
             <img className="" src={Flag} alt="Falgs" />
-            Do you have an idea or a project?
+            {t('offerings.title')}
           </h2>
 
           <p className="opacity-75 font-['Poppins',Helvetica] font-normal text-[#1F1F1F] text-[1.2rem] leading-10 text-center">
-            We’re here to turn your ideas into reality! Whether you have an
-            initial concept or a ready-made plan, our specialized team is ready
-            to support you every step of the way.
+            {t('offerings.description')}
           </p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="171"
-            height="11"
-            className="absolute top-[65%] left-[27%]"
-            viewBox="0 0 171 11"
-            fill="none">
-            <path
-              d="M1.16475 8.48361C29.412 8.48361 57.6592 8.56555 86.0067 8.81128C99.8298 8.89319 113.653 9.22084 127.476 9.22084C134.187 9.22084 140.999 9.22084 147.71 9.63039C150.915 9.79421 154.02 10.1219 157.126 10.4495C161.032 10.8591 163.737 10.5314 167.643 10.2038C170.949 9.95802 172.351 6.59967 169.346 5.04336C166.441 3.48705 164.538 2.17646 161.032 1.685C157.827 1.19353 154.621 1.02971 151.316 0.865883C144.605 0.538238 137.793 0.620145 131.082 0.783967C116.658 1.11161 102.334 1.7669 87.9099 2.42219C58.9614 3.65086 30.013 5.04335 1.16475 6.59967C-0.337763 6.59967 -0.43793 8.48361 1.16475 8.48361Z"
-              fill="#DB4063"
-            />
-          </svg>
-          <Button className="bg-purple text-white font-['Poppins',Helvetica] font-medium text-lg px-8 py-3 rounded-xl">
-            Contact Us
+          {lang === 'ar' ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="171"
+              height="11"
+              className="mt-2 mb-2 absolute top-[70%] left-[52%]"
+              viewBox="0 0 171 11"
+              fill="none"
+              style={{ display: 'block', marginRight: '0', marginLeft: 'auto' }}
+            >
+              <path
+                d="M1.16475 8.48361C29.412 8.48361 57.6592 8.56555 86.0067 8.81128C99.8298 8.89319 113.653 9.22084 127.476 9.22084C134.187 9.22084 140.999 9.22084 147.71 9.63039C150.915 9.79421 154.02 10.1219 157.126 10.4495C161.032 10.8591 163.737 10.5314 167.643 10.2038C170.949 9.95802 172.351 6.59967 169.346 5.04336C166.441 3.48705 164.538 2.17646 161.032 1.685C157.827 1.19353 154.621 1.02971 151.316 0.865883C144.605 0.538238 137.793 0.620145 131.082 0.783967C116.658 1.11161 102.334 1.7669 87.9099 2.42219C58.9614 3.65086 30.013 5.04335 1.16475 6.59967C-0.337763 6.59967 -0.43793 8.48361 1.16475 8.48361Z"
+                fill="#DB4063"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="171"
+              height="11"
+              className="absolute top-[65%] left-[27%]"
+              viewBox="0 0 171 11"
+              fill="none"
+            >
+              <path
+                d="M1.16475 8.48361C29.412 8.48361 57.6592 8.56555 86.0067 8.81128C99.8298 8.89319 113.653 9.22084 127.476 9.22084C134.187 9.22084 140.999 9.22084 147.71 9.63039C150.915 9.79421 154.02 10.1219 157.126 10.4495C161.032 10.8591 163.737 10.5314 167.643 10.2038C170.949 9.95802 172.351 6.59967 169.346 5.04336C166.441 3.48705 164.538 2.17646 161.032 1.685C157.827 1.19353 154.621 1.02971 151.316 0.865883C144.605 0.538238 137.793 0.620145 131.082 0.783967C116.658 1.11161 102.334 1.7669 87.9099 2.42219C58.9614 3.65086 30.013 5.04335 1.16475 6.59967C-0.337763 6.59967 -0.43793 8.48361 1.16475 8.48361Z"
+                fill="#DB4063"
+              />
+            </svg>
+          )}
+          <Button
+            className="bg-purple text-white font-['Poppins',Helvetica] font-medium text-lg px-8 py-3 rounded-xl"
+            onClick={() => navigate('/contact')}
+          >
+            {t('offerings.button')}
           </Button>
         </CardContent>
       </Card>

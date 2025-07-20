@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
+import { useTranslation } from 'react-i18next';
 import highlight from "../../imgs/Sketch-annotation-element-stroke-abstract-highlight-bling-line-1.png";
 import bezierDesign from "../../imgs/bezier-design.png";
 import facebookIcon from "../../imgs/facebook-svgrepo-com 1.png";
@@ -13,6 +14,7 @@ import Heart from '../../imgs/love-svgrepo-com 1.png';
 import Instagram from '../../imgs/instagram 1.png';
 
 export const HeroBannerSection = () => {
+  const { t, i18n } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [imagePosition, setImagePosition] = useState("static");
@@ -37,15 +39,15 @@ export const HeroBannerSection = () => {
   }, []);
 
   return (
-    <section className="relative w-full h-screen py-12 flex flex-col items-center justify-center bg-white overflow-hidden">
+    <section className="relative w-full h-screen 2xl:min-h-[1280px] h-auto py-8 sm:py-12 md:py-16 lg:py-20 flex flex-col items-center justify-center bg-white overflow-hidden">
 
-      <div className="absolute top-0 left-0 w-[650px] lg:w-[480px] max-w-[800px] hidden xl:block h-screen pointer-events-none  transition-all duration-1000">
+      <div className="absolute top-0 left-0 w-[650px] lg:w-[480px] max-w-[800px] hidden xl:block h-full pointer-events-none transition-all duration-1000">
         <svg
           className="absolute top-0 left-0 w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 350 900"
-          preserveAspectRatio="xMinYMin "
+          preserveAspectRatio="xMinYMin"
         >
           <path
             d="M41.8543 12.6331C69.7591 4.63314 99.5686 0.333138 128.045 8.23314C149.378 14.1331 169.759 26.6331 182.14 46.2331C192.616 62.7331 196.997 83.0331 194.14 102.633C190.902 125.433 178.616 144.233 163.569 160.433C131.378 195.033 89.2829 216.833 55.2829 249.233C19.2829 283.533 -9.57428 337.233 6.6162 389.433C21.0924 436.133 66.9019 462.633 105.283 484.833C137.473 503.333 170.521 520.733 201.092 542.233C229.569 562.333 260.235 588.633 269.283 625.133C280.426 670.533 250.616 713.433 216.521 737.833C173.283 768.733 119.569 783.433 68.0448 788.133C41.4733 790.533 14.6162 790.733 -11.9552 789.033C-38.7171 787.333 -65.2886 785.133 -91.7647 780.133C-104.146 777.733 -116.431 774.933 -128.717 771.933C-135.289 770.333 -138.05 781.133 -131.479 782.533C-104.812 788.033 -77.86 792.933 -51.0028 797.233C-23.9552 801.533 3.09239 803.933 30.521 804.033C85.0924 804.233 140.426 793.833 190.14 769.533C234.331 747.933 276.997 710.933 283.569 657.033C288.521 617.033 266.711 582.533 239.283 557.133C210.521 530.333 176.235 511.133 142.616 492.033C124.616 481.833 106.426 471.633 88.8067 460.733C68.7114 448.333 48.9019 434.333 33.8543 415.433C17.3781 394.733 10.9972 368.533 15.3781 342.033C19.8543 315.033 33.1876 291.033 50.8067 271.133C82.9972 234.733 126.521 212.633 161.378 179.533C178.235 163.533 193.569 144.433 200.997 121.533C207.378 101.733 207.283 79.9331 199.759 60.5331C192.045 40.6331 177.664 24.4331 159.854 14.1331C136.235 0.633138 108.045 -2.06686 81.7591 1.33314C68.0448 3.13314 54.6162 6.63314 41.5686 11.4331C40.7115 11.6331 41.0924 12.9331 41.8543 12.6331Z"
@@ -70,7 +72,7 @@ export const HeroBannerSection = () => {
       </div>
 
 
-      <div className="absolute top-[280px] right-0 w-[650px] lg:w-[480px] max-w-[800px] hidden xl:block h-screen pointer-events-none  transition-all duration-1000">
+      <div className="absolute top-[20%] sm:top-[25%] md:top-[30%] lg:right-[-3%] w-[650px] lg:w-[480px] max-w-[800px] hidden xl:block h-full lg:max-h-[955px] xl:max-h-[1600px] 2xl:right-0 pointer-events-none transition-all duration-1000">
         <svg
           className="absolute  w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
@@ -105,28 +107,34 @@ export const HeroBannerSection = () => {
 
 
       <div
-        className={`relative flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-8 max-w-full mx-auto px-2 sm:px-6 py-4 sm:py-8 md:py-10 transition-all duration-1000 ${
+        className={`relative flex flex-col items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 max-w-full mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10 lg:py-12 transition-all duration-1000 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
-        <div className="flex flex-col items-center mb-2 sm:mb-5 md:mb-6 mt-0 sm:mt-0 relative w-full">
-          <div className="absolute w-auto h-auto left-[2%] md:left-[4%] lg:left-[6%] top-[-40px] sm:top-[-60px] md:top-[-70px] lg:top-[-80px] animate-icon-entrance-idea z-20">
-            <img src={Idea} alt="Idea" className="w-[40px] sm:w-[70px] md:w-[80px] lg:w-[90px] h-auto animate-float-idea" />
+        <div className="flex flex-col items-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 mt-0 relative w-full">
+          <div className="absolute w-auto h-auto left-[2%] md:left-[4%] lg:left-[6%] top-[-30px] sm:top-[-40px] md:top-[-50px] lg:top-[-60px] xl:top-[-80px] animate-icon-entrance-idea z-20">
+            <img src={Idea} alt="Idea" className="w-[30px] sm:w-[50px] md:w-[70px] lg:w-[90px] xl:w-[130px] h-auto animate-float-idea" />
           </div>
           <img
             src={highlight}
             alt="Highlight"
-            className="absolute opacity-[80%] top-[-40px] h-auto w-[50px] sm:w-[110px] sm:top-[-80px] right-[-10px]   z-10 animate-glow-black"
+            className="absolute opacity-[80%] top-[-30px] sm:top-[-40px] md:top-[-60px] lg:top-[-80px] h-auto w-[40px] sm:w-[70px] md:w-[90px] lg:w-[110px] right-[-5px] sm:right-[-10px] z-10 animate-glow-black"
           />
-          <h1 className="max-w-full font-['Poppins'] font-bold text-[22px]  sm:text-[50px] md:text-[60px] lg-text-[70px]  text-[#1F1F1F] text-center leading-[120%] sm:leading-[130%] md:leading-[140%] tracking-[0] animate-fade-in">
-            We shape your identity
+          <h1 className="max-w-full font-['Poppins'] font-bold text-[20px] sm:text-[32px] md:text-[48px] lg:text-[60px] xl:text-[80px] text-[#1F1F1F] text-center leading-[120%] sm:leading-[125%] md:leading-[130%] lg:leading-[135%] tracking-[0] animate-fade-in">
+            {t('hero.title')} <span className={i18n.language === 'ar' ? "text-[#4C31AF]" : "text-[#1F1F1F]"}>{t('hero.titleHighlight')}</span>
             <br />
-            With a vision that
-            <br />
-            speaks{" "}
+            {t('hero.subtitle')}{" "}
+              <br />
+            <span className="relative ">
+              {t('hero.speaks')}{"  "}
+            </span>
             <span className="relative inline-block">
-              creatively!
-              <span className="absolute left-1/2 top-1/2 -translate-x-[52%] -translate-y-1/2 w-[180%] md:w-[250%] h-[120%] md:h-[150%] pointer-events-none z-[-1]">
+              {t('hero.creatively')}
+              <span className={`absolute left-1/2 top-1/2 -translate-x-[52%] -translate-y-1/2 pointer-events-none z-[-1] ${
+                i18n.language === 'ar' 
+                  ? 'w-[110%] sm:w-[120%] md:w-[350%] lg:w-[400%] h-[90%] sm:h-[100%] md:h-[100%]' 
+                  : 'w-[140%] sm:w-[180%] md:w-[400%] lg:w-[480%] h-[170%] sm:h-[155%] md:h-[140%]'
+              }`}>
                 <svg
                   viewBox="0 0 2500 1000"
                   fill="none"
@@ -154,17 +162,15 @@ export const HeroBannerSection = () => {
         </div>
       </div>
 
-      <p className="max-w-[400px] sm:max-w-[800px] lg:max-w-[1000px] opacity-75 font-['Poppins'] text-[9px] sm:text-[16px]  md:text-[21px] text-center leading-[140%] sm:leading-[150%] md:leading-[160%] font-normal text-[#1F1F1F] tracking-[0] animate-fade-in-delay px-2">
-        Welcome to Sumou!
-        <br />
-        The starting point for your brand toward excellence and professionalism.
-        <br />
-        We're here to give your idea an identity and turn your vision into a stunning visual reality that truly represents you — a memorable identity.
-      </p>
-      <div className="absolute hidden top-[69%] left-[70%] w-[100px] h-[100px] animate-fade-in">
-        <img src={BrushCircle} alt="Brush" className="absolute top-[-10px] left-[-10px]" />
+      <div className="max-w-[350px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1000px] opacity-75 font-['Poppins'] text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] xl:text-[21px] text-center leading-[140%] sm:leading-[145%] md:leading-[150%] lg:leading-[155%] font-normal text-[#1F1F1F] tracking-[0] animate-fade-in-delay px-4 sm:px-6 md:px-8 mb-8 sm:mb-12 md:mb-16">
+        <p className="mb-1 sm:mb-2">{t('hero.welcomeMessage')}</p>
+        <p className="mb-1 sm:mb-2">{t('hero.startingPoint')}</p>
+        <p>{t('hero.missionStatement')}</p>
+      </div>
+      <div className="absolute hidden lg:block bottom-[10%] xl:bottom-[15%] right-[5%] xl:right-[10%] w-[80px] xl:w-[100px] h-[80px] xl:h-[100px] animate-fade-in">
+        <img src={BrushCircle} alt="Brush" className="absolute top-[-8px] xl:top-[-10px] left-[-8px] xl:left-[-10px]" />
         <img src={Brush} alt="Brush" />
-        <img src={BrushLine} alt="Brush" className="absolute top-[70px] w-[102px] h-[80px]" />
+        <img src={BrushLine} alt="Brush" className="absolute top-[56px] xl:top-[70px] w-[82px] xl:w-[102px] h-[64px] xl:h-[80px]" />
       </div>
 
       <style>{`
