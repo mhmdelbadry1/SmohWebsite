@@ -36,7 +36,7 @@ export const HeroBannerSection = () => {
   }, []);
 
   return (
-    <section className="relative w-full h-screen 2xl:min-h-[1280px] h-auto py-8 sm:py-12 md:py-16 lg:py-20 flex flex-col items-center justify-center bg-white overflow-hidden">
+    <section className="relative w-full sm:mt-4 sm:mb-4 xl:mt-16 xl:mb-8 h-screen 2xl:min-h-[1280px] h-auto py-8 sm:py-12 md:py-16 lg:py-20 flex flex-col items-center justify-center bg-white overflow-hidden">
       <div className="absolute top-0 left-0 w-[650px] lg:w-[480px] max-w-[800px] hidden xl:block h-full pointer-events-none transition-all duration-1000">
         <svg
           className="absolute top-0 left-0 w-full h-full"
@@ -77,7 +77,7 @@ export const HeroBannerSection = () => {
         </svg>
       </div>
 
-      <div className="absolute top-[20%] sm:top-[25%] md:top-[30%] lg:right-[-3%] w-[650px] lg:w-[480px] max-w-[800px] hidden xl:block h-full lg:max-h-[955px] xl:max-h-[1600px] 2xl:right-0 pointer-events-none transition-all duration-1000">
+      <div className="absolute top-[20%] sm:top-[25%] md:top-[10%] lg:right-[-3%] w-[650px] lg:w-[580px] max-w-[900px] hidden xl:block h-full lg:max-h-[1055px] xl:max-h-[1600px] 2xl:right-0 pointer-events-none transition-all duration-1000">
         <svg
           className="absolute  w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +122,7 @@ export const HeroBannerSection = () => {
             alt="Highlight"
             className="absolute opacity-[80%] top-[-30px] sm:top-[-40px] md:top-[-60px] lg:top-[-80px] h-auto w-[40px] sm:w-[70px] md:w-[90px] lg:w-[110px] right-[-5px] sm:right-[-10px] z-10 animate-glow-black"
           />
-          <h1 className="max-w-full font-['Poppins'] font-bold text-[20px] sm:text-[32px] md:text-[48px] lg:text-[60px] xl:text-[80px] text-[#1F1F1F] text-center leading-[120%] sm:leading-[125%] md:leading-[130%] lg:leading-[135%] tracking-[0] animate-fade-in">
+          <h1 className="max-w-full font-['Poppins'] font-bold text-[30px] sm:text-[32px] md:text-[48px] lg:text-[60px] xl:text-[80px] text-[#1F1F1F] text-center leading-[120%] sm:leading-[125%] md:leading-[130%] lg:leading-[135%] tracking-[0] animate-fade-in">
             {t("hero.title")}{" "}
             <span
               className={
@@ -168,7 +168,7 @@ export const HeroBannerSection = () => {
         </div>
       </div>
 
-      <div className="max-w-[350px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1000px] opacity-75 font-['Poppins'] text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] xl:text-[21px] text-center leading-[140%] sm:leading-[145%] md:leading-[150%] lg:leading-[155%] font-normal text-[#1F1F1F] tracking-[0] animate-fade-in-delay px-4 sm:px-6 md:px-8 mb-8 sm:mb-12 md:mb-16">
+      <div className="max-w-[450px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1200px] opacity-75 font-['Poppins'] text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] xl:text-[21px] text-center leading-[140%] sm:leading-[145%] md:leading-[150%] lg:leading-[155%] font-normal text-[#1F1F1F] tracking-[0] animate-fade-in-delay px-4 sm:px-6 md:px-8 mb-8 sm:mb-12 md:mb-16">
         <p className="mb-1 sm:mb-2">{t("hero.welcomeMessage")}</p>
         <p className="mb-1 sm:mb-2">{t("hero.startingPoint")}</p>
         <p>{t("hero.missionStatement")}</p>
