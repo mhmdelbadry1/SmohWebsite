@@ -141,8 +141,9 @@ export const OfferingsSection = () => {
       {/* Main content */}
       <div className="relative w-[90%] xs:w-[85%] sm:w-[80%] md:w-[75%] lg:w-[70%] xl:w-[65%] 2xl:w-[60%] max-w-[1200px] z-10">
         <div className="p-4 xs:p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 flex flex-col items-center gap-4 xs:gap-5 sm:gap-6 md:gap-7 lg:gap-8 xl:gap-10">
+           <img className=" absolute w-12 h-12 sm:w-16 sm:h-16  top-[-30px] left-[84px]  " src={Flag} alt="Falgs" />
           <h2 className="font-['Poppins',Helvetica] z-10 font-semibold text-black text-center relative leading-tight text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
-            <img className="w-[" src={Flag} alt="Falgs" />
+           
             {lang === "ar" ? (
               <>
                 {/* Mobile layout */}
