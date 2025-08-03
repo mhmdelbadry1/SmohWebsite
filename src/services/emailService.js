@@ -1,7 +1,7 @@
 import emailjs from '@emailjs/browser';
 
 // Initialize EmailJS
-emailjs.init("sSxHNgNfduaSwU2Vt"); // Replace with your actual public key
+emailjs.init("y68GP5CuCxzZNtsp6"); 
 
 export const sendEmail = async (formData, isConsult = false) => {
   try {
@@ -339,8 +339,8 @@ export const sendEmail = async (formData, isConsult = false) => {
       subject: formData.subject || 'غير محدد',
       message: isConsult ? 'طلب استشارة من العميل' : formData.message || 'غير محدد',
       html_content: emailTemplate,
-      to_email: "mohamed.hassan221012@gmail.com",
-      company_email: "mohamed.hassan221012@gmail.com"
+      to_email: "sumouadvco@gmail.com",
+      company_email: "sumouadvco@gmail.com"
     });
 
     console.log('Company email sent successfully:', companyEmailResult);
