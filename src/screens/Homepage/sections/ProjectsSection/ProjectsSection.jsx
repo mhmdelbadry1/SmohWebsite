@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { Button } from "../../../../components/ui/button";
 import { Card } from "../../../../components/ui/card";
 import projectImg1 from "../../imgs/project_1.png";
@@ -9,11 +11,14 @@ import projectImg4 from "../../imgs/project_4.png";
 import projectImg5 from "../../imgs/project_5.png";
 import projectImg6 from "../../imgs/project_6.png";
 
-export const ProjectsSection = () => {
-  const { t } = useTranslation();
+export const ProjectsSection = ({ isProjectsPage = false }) => {
+  const { t , i18n } = useTranslation();
+  const currentLanguage = i18n.language || 'en';
+  const navigate = useNavigate();
   const [hoveredProject, setHoveredProject] = useState(null);
   const [columns, setColumns] = useState(3);
   const [visibleCards, setVisibleCards] = useState(new Set());
+  const [currentSlide, setCurrentSlide] = useState(0);
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
 
@@ -84,6 +89,19 @@ export const ProjectsSection = () => {
     projects[5], // 6th stays
   ];
 
+  // Navigation functions for projects page
+  const nextSlide = () => {
+    if (isProjectsPage) {
+      setCurrentSlide((prev) => (prev + 1) % Math.ceil(projects.length / 3));
+    }
+  };
+
+  const prevSlide = () => {
+    if (isProjectsPage) {
+      setCurrentSlide((prev) => (prev - 1 + Math.ceil(projects.length / 3)) % Math.ceil(projects.length / 3));
+    }
+  };
+
   return (
     <section 
       ref={sectionRef}
@@ -98,7 +116,7 @@ export const ProjectsSection = () => {
         </p>
       </div>
 
-      <div className="w-full">
+      <div className="w-full " style={{ direction: "ltr" }}>
         <div
           className={`flex flex-wrap gap-y-8 ${
             columns === 3 ? "" : "px-4"
@@ -217,13 +235,33 @@ export const ProjectsSection = () => {
           })}
         </div>
       </div>
-      <div className="flex justify-center mt-8">
-        <Button className="inline-flex items-center justify-center gap-2.5 px-8 py-2 bg-purple rounded-lg hover:bg-purple/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-          <span className="font-['Poppins',Helvetica] font-normal text-white text-lg leading-6 whitespace-nowrap">
-            {t('projects.viewMore')}
-          </span>
-        </Button>
-      </div>
+      
+      {/* Conditional rendering: View More button for homepage, Navigation arrows for projects page */}
+      {!isProjectsPage ? (
+        <div className="flex justify-center mt-8">
+          <Button 
+            onClick={() => navigate('/projects')}
+            className="inline-flex items-center justify-center gap-2.5 px-8 py-2 bg-purple rounded-lg hover:bg-purple/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+            <span className="font-['Poppins',Helvetica] font-normal text-white text-lg leading-6 whitespace-nowrap">
+              {t('projects.viewMore')}
+            </span>
+          </Button>
+        </div>
+      ) : (
+        <div className="flex justify-center items-center gap-4 mt-8">
+          <Button
+            onClick={prevSlide}
+            className="w-12 h-12 p-0 bg-[#4C31AF] hover:bg-[#3d2689] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-105">
+            <ArrowLeftIcon className={`w-6 h-6 text-white ${currentLanguage === 'ar' ? '-scale-x-100' : ''}`} />
+          </Button>
+          
+          <Button
+            onClick={nextSlide}
+            className="w-12 h-12 p-0 bg-[#4C31AF] hover:bg-[#3d2689] rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-105">
+            <ArrowRightIcon className={`w-6 h-6 text-white ${currentLanguage === 'ar' ? '-scale-x-100' : ''}`} />
+          </Button>
+        </div>
+      )}
 
 
     </section>

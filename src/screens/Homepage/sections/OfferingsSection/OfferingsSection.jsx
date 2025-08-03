@@ -22,7 +22,7 @@ export const OfferingsSection = () => {
   return (
     <section className="relative w-full z-10 py-6 xs:py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20 pb-16 xs:pb-18 sm:pb-20 md:pb-24 lg:pb-28 xl:pb-32 flex flex-col items-center justify-center overflow-hidden">
       {/* Marketing image outside curve for mobile - positioned at top left */}
-      <div className="absolute top-4 left-4 w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] z-20 block min-[950px]:hidden">
+      <div className="absolute top-0 left-[30px] sm:top-6 sm:left-24 w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] z-20 block min-[950px]:hidden">
         <img
           src={MarketingImg}
           alt="Marketing"
@@ -98,9 +98,9 @@ export const OfferingsSection = () => {
             y="100"
             width="100"
             height="100"
-            className="-scale-x-100"
+            className="-scale-x-100 z-[10]"
           />
-          <image href={IdeaVector} x="95" y="65" width="30" height="30" />
+          <image href={IdeaVector} className="z-[-10]" x="-78" y="126" width="90" height="90" />
           <image href={Youtube} x="140" y="180" width="65" height="65" />
         </svg>
       </div>
@@ -141,9 +141,8 @@ export const OfferingsSection = () => {
       {/* Main content */}
       <div className="relative w-[90%] xs:w-[85%] sm:w-[80%] md:w-[75%] lg:w-[70%] xl:w-[65%] 2xl:w-[60%] max-w-[1200px] z-10">
         <div className="p-4 xs:p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 flex flex-col items-center gap-4 xs:gap-5 sm:gap-6 md:gap-7 lg:gap-8 xl:gap-10">
-           <img className=" absolute w-12 h-12 sm:w-16 sm:h-16  top-[-30px] left-[84px]  " src={Flag} alt="Falgs" />
-          <h2 className="font-['Poppins',Helvetica] z-10 font-semibold text-black text-center relative leading-tight text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
-           
+            <img className="transform md:translate-x-[-360%] sm:translate-x-[-240%] translate-x-[-150%] translate-y-[25%] w-[60px] lg:w-[80px] translate-y-[25%] xl:translate-y-[55%] 2xl:translate-x-[-515%] xl:w-[90px] h-auto " src={Flag} alt="Falgs" />
+          <h2 className="font-['Poppins',Helvetica] z-10 font-semibold text-black text-center relative leading-tight text-xl xs:text-2xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
             {lang === "ar" ? (
               <>
                 {/* Mobile layout */}

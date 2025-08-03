@@ -97,7 +97,7 @@ export const TestimonialsSection = () => {
   };
 
   return (
-    <section className="relative w-full lg:min-h-[85vh] sm:min-h-[105vh] bg-white py-8 sm:py-12 md:py-16 overflow-hidden">
+    <section className="relative w-full h-full bg-white py-8 sm:py-12 md:py-16 overflow-hidden">
       {/* Background decorative elements - always at bottom, full width */}
       <div className="absolute w-full h-[200px] sm:h-[300px] md:h-[386px] bottom-0 left-0 overflow-hidden opacity-75">
         <div className="relative w-full h-full">

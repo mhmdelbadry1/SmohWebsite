@@ -107,7 +107,7 @@ export const HeroBannerSection = () => {
         }`}
       >
         <div className="flex flex-col items-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 mt-0 relative w-full">
-          <div className="absolute w-auto h-auto left-[2%] md:left-[4%] lg:left-[6%] top-[-30px] sm:top-[-40px] md:top-[-50px] lg:top-[-60px] xl:top-[-80px] animate-icon-entrance-idea z-20">
+          <div className="absolute w-auto h-auto left-[2%] md:left-[4%] lg:left-[6%] top-[-40px] sm:top-[-50px] md:top-[-60px] lg:top-[-70px] xl:top-[-90px] animate-icon-entrance-idea z-20">
             <img src={Idea} alt="Idea" className="w-[30px] sm:w-[50px] md:w-[70px] lg:w-[90px] xl:w-[130px] h-auto animate-float-idea" />
           </div>
           <img
@@ -115,7 +115,7 @@ export const HeroBannerSection = () => {
             alt="Highlight"
             className="absolute opacity-[80%] top-[-30px] sm:top-[-40px] md:top-[-60px] lg:top-[-80px] h-auto w-[40px] sm:w-[70px] md:w-[90px] lg:w-[110px] right-[-5px] sm:right-[-10px] z-10 animate-glow-black"
           />
-          <h1 className="max-w-full font-['Poppins'] font-bold text-[20px] sm:text-[32px] md:text-[48px] lg:text-[60px] xl:text-[80px] text-[#1F1F1F] text-center leading-[120%] sm:leading-[125%] md:leading-[130%] lg:leading-[135%] tracking-[0] animate-fade-in">
+          <h1 className="max-w-full font-['Poppins'] font-bold text-[20px] sm:text-[32px] md:text-[48px] lg:text-[60px] xl:text-[65px] text-[#1F1F1F] text-center leading-[120%] sm:leading-[125%] md:leading-[130%] lg:leading-[135%] tracking-[0] animate-fade-in">
             {t('hero.title')} <span className={i18n.language === 'ar' ? "text-[#4C31AF]" : "text-[#1F1F1F]"}>{t('hero.titleHighlight')}</span>
             <br />
             {t('hero.subtitle')}{" "}

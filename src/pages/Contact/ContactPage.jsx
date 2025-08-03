@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { useTranslation } from 'react-i18next';
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { sendEmail } from "../../services/emailService";
+import TikTokIcon from "../../screens/Homepage/imgs/TiktokIconContact";
 
 export const ContactPage = () => {
   const { t } = useTranslation();
@@ -10,6 +12,22 @@ export const ContactPage = () => {
     subject: "",
     message: "",
   });
+  
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState({ text: '', type: '' });
+
+  const lang = useTranslation().i18n.language; // Get the current language
+
+  // Auto-hide message after 5 seconds
+  useEffect(() => {
+    if (message.text) {
+      const timer = setTimeout(() => {
+        setMessage({ text: '', type: '' });
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message.text]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -18,10 +36,67 @@ export const ContactPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setMessage({
+        text: lang === 'ar' 
+          ? 'يرجى ملء جميع الحقول المطلوبة (الاسم، البريد الإلكتروني، الرسالة)' 
+          : 'Please fill in all required fields (Name, Email, Message)',
+        type: 'error'
+      });
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setMessage({
+        text: lang === 'ar' 
+          ? 'يرجى إدخال بريد إلكتروني صحيح' 
+          : 'Please enter a valid email address',
+        type: 'error'
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    setMessage({ text: '', type: '' });
+
+    try {
+      const result = await sendEmail(formData, false); // false = not consultation
+
+      if (result.success) {
+        setMessage({
+          text: lang === 'ar' 
+            ? 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً' 
+            : 'Your message has been sent successfully! We will contact you soon',
+          type: 'success'
+        });
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        throw new Error(result.error);
+      }
+    } catch (error) {
+      console.error('Contact form submission failed:', error);
+      setMessage({
+        text: lang === 'ar' 
+          ? 'حدث خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى' 
+          : 'An error occurred while sending your message. Please try again',
+        type: 'error'
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -34,10 +109,10 @@ export const ContactPage = () => {
             <div className="flex items-center w-full flex-col gap-6 relative mb-10">
               <div className="relative w-full font-['Poppins',sans-serif] font-semibold text-center text-black">
                 <h1 className="text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 text-center leading-tight w-full mt-4">
-                  {t('contact.title').split(' ').slice(0, -1).join(' ')}{" "}
+                  {t("contact.title").split(" ").slice(0, -1).join(" ")}{" "}
                   <span className="relative inline-block align-bottom">
                     <span className="inline-block z-10 relative bg-white pr-1 pl-1 sm:pr-2 sm:pl-2">
-                      {t('contact.title').split(' ').slice(-1)[0]}
+                      {t("contact.title").split(" ").slice(-1)[0]}
                     </span>
                     <span className="absolute left-0 right-0 bottom-[-0.35em] flex justify-center z-0 pointer-events-none">
                       <svg
@@ -58,7 +133,7 @@ export const ContactPage = () => {
               </div>
 
               <p className="w-full  opacity-75 font-['Poppins',sans-serif] text-lg md:text-xl text-center font-normal text-black">
-                {t('contact.subtitle')}
+                {t("contact.subtitle")}
               </p>
             </div>
 
@@ -104,18 +179,23 @@ export const ContactPage = () => {
                     {/* Phone Section */}
                     <div className="mb-8">
                       <h3 className="text-xl font-bold mb-3">
-                        {t('contact.info.phoneTitle')}
+                        {t("contact.info.phoneTitle")}
                       </h3>
                       <div className="space-y-2">
-                        <p className="text-white">+966 55 135 5968</p>
-                        <p className="text-white">+20 150 161 7489</p>
+                        <p dir="ltr" className="text-white inline-block">
+                          +966 55 135 5968
+                        </p>
+                        <br />
+                        <p dir="ltr" className="text-white inline-block">
+                          +20 150 161 7489
+                        </p>
                       </div>
                     </div>
 
                     {/* Email Section */}
                     <div className="mb-8">
                       <h3 className="text-xl font-bold mb-3">
-                        {t('contact.info.emailTitle')}
+                        {t("contact.info.emailTitle")}
                       </h3>
                       <p className="text-white">sumouadvco@gmail.com</p>
                     </div>
@@ -123,11 +203,22 @@ export const ContactPage = () => {
                     {/* Social Media Section */}
                     <div className="mb-8">
                       <h3 className="text-xl font-bold mb-3">
-                        {t('contact.info.socialTitle')}
+                        {t("contact.info.socialTitle")}
                       </h3>
-                      <div className="flex space-x-4">
+                      <div
+                        className={`flex ${
+                          lang === "ar"
+                            ? "space-x-reverse space-x-4"
+                            : "space-x-4"
+                        } `}
+                      >
                         {/* Facebook */}
-                        <div className="group w-10 h-10 bg-white rounded-lg flex items-center justify-center cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-blue-200 hover:bg-blue-600 hover:rotate-3">
+                        <a
+                          href="https://www.facebook.com/share/p/1ZXFWmscbR/?mibextid=wwXIfr"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group w-10 h-10 bg-white rounded-lg flex items-center justify-center cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-blue-200 hover:bg-blue-600 hover:rotate-3"
+                        >
                           <svg
                             width="20"
                             height="20"
@@ -141,10 +232,16 @@ export const ContactPage = () => {
                               className="fill-[#DB4063] group-hover:fill-white transition-colors duration-300"
                             />
                           </svg>
-                        </div>
+                        </a>
 
                         {/* Instagram */}
-                        <div className="group w-10 h-10 bg-white rounded-lg flex items-center justify-center cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-pink-200 hover:-rotate-3">
+                        <a
+                          href="https://www.instagram.com/sumouadv?igsh=eGR5YjJ4NXVrcXEw&utm_source=qr
+"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group w-10 h-10 bg-white rounded-lg flex items-center justify-center cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-pink-200 hover:-rotate-3"
+                        >
                           <svg
                             width="20"
                             height="20"
@@ -154,7 +251,13 @@ export const ContactPage = () => {
                             className="transition-all duration-300 ease-in-out group-hover:scale-110"
                           >
                             <defs>
-                              <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <linearGradient
+                                id="instagram-gradient"
+                                x1="0%"
+                                y1="0%"
+                                x2="100%"
+                                y2="100%"
+                              >
                                 <stop offset="0%" stopColor="#833AB4" />
                                 <stop offset="50%" stopColor="#FD1D1D" />
                                 <stop offset="100%" stopColor="#FCB045" />
@@ -173,31 +276,24 @@ export const ContactPage = () => {
                               d="M16 11.37C16.1234 12.2022 15.9813 13.0522 15.5938 13.799C15.2063 14.5458 14.5931 15.1514 13.8416 15.5297C13.0901 15.9079 12.2384 16.0396 11.4078 15.9059C10.5771 15.7723 9.80976 15.3801 9.21484 14.7852C8.61992 14.1902 8.22773 13.4229 8.09407 12.5922C7.9604 11.7615 8.09207 10.9099 8.47033 10.1584C8.84859 9.40685 9.45419 8.79374 10.201 8.40624C10.9478 8.01874 11.7978 7.87659 12.63 8C13.4789 8.12588 14.2649 8.52146 14.8717 9.12831C15.4785 9.73515 15.8741 10.5211 16 11.37Z"
                               className="fill-white transition-colors duration-300"
                             />
-                            <circle cx="12" cy="12" r="3" className="fill-white group-hover:fill-purple-900 transition-colors duration-300" />
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r="3"
+                              className="fill-white group-hover:fill-purple-900 transition-colors duration-300"
+                            />
                           </svg>
-                        </div>
+                        </a>
 
-                        {/* LinkedIn */}
-                        <div className="group w-10 h-10 bg-white rounded-lg flex items-center justify-center cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-blue-300 hover:bg-blue-700 hover:rotate-2">
-                          <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="transition-all duration-300 ease-in-out group-hover:scale-110"
-                          >
-                            <path
-                              d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8V8Z"
-                              className="fill-[#DB4063] group-hover:fill-white transition-colors duration-300"
-                            />
-                            <path d="M6 9H2V21H6V9Z" className="fill-[#DB4063] group-hover:fill-white transition-colors duration-300" />
-                            <path
-                              d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z"
-                              className="fill-[#DB4063] group-hover:fill-white transition-colors duration-300"
-                            />
-                          </svg>
-                        </div>
+                        {/* TikTok */}
+                        <a
+                          href="https://www.tiktok.com/@sumouadv?_t=ZS-8yDkNthXzRB&_r=1"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group w-10 h-10 bg-white rounded-lg flex items-center justify-center cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-purple-300 hover:bg-black hover:rotate-2"
+                        >
+                          <TikTokIcon className="w-8 h-8 transition-all duration-300 ease-in-out group-hover:scale-110" />
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -211,7 +307,7 @@ export const ContactPage = () => {
                         htmlFor="name"
                         className="block text-sm font-medium text-black mb-2"
                       >
-                        {t('contact.form.name')}
+                        {t("contact.form.name")}
                       </label>
                       <input
                         type="text"
@@ -220,7 +316,7 @@ export const ContactPage = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition-all duration-200"
-                        placeholder={t('contact.form.namePlaceholder')}
+                        placeholder={t("contact.form.namePlaceholder")}
                       />
                     </div>
 
@@ -229,7 +325,7 @@ export const ContactPage = () => {
                         htmlFor="email"
                         className="block text-sm font-medium text-black mb-2"
                       >
-                        {t('contact.form.email')}
+                        {t("contact.form.email")}
                       </label>
                       <input
                         type="email"
@@ -238,7 +334,7 @@ export const ContactPage = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition-all duration-200"
-                        placeholder={t('contact.form.emailPlaceholder')}
+                        placeholder={t("contact.form.emailPlaceholder")}
                       />
                     </div>
 
@@ -247,10 +343,10 @@ export const ContactPage = () => {
                         htmlFor="phone"
                         className="block text-sm font-medium text-black mb-2"
                       >
-                        {t('contact.form.phone')}
+                        {t("contact.form.phone")}
                       </label>
                       <div className="flex border  rounded-lg overflow-hidden">
-                        <div className="flex items-center px-3 py-3  border-r border-gray-300">
+                        <div className="flex items-center px-3  py-3  border-r border-gray-300">
                           <svg
                             width="36"
                             height="25"
@@ -279,9 +375,24 @@ export const ContactPage = () => {
                             </defs>
                           </svg>
 
-                          <span className="text-black font-medium ml-1 opacity-50">
+                          <span className="text-black font-medium ml-1 px-2 opacity-50">
                             +966
                           </span>
+                          <svg
+                            width="1"
+                            height="33"
+                            viewBox="0 0 1 33"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <line
+                              x1="0.5"
+                              y1="33"
+                              x2="0.5"
+                              stroke="#D1D5DB"
+                              strokeWidth="1.5"
+                            />
+                          </svg>
                         </div>
                         <input
                           type="tel"
@@ -289,8 +400,9 @@ export const ContactPage = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className="flex-1 px-4 py-3 border-0 focus:outline-none focus:ring-0"
-                          placeholder={t('contact.form.phonePlaceholder')}
+                          className="flex-1  py-3 border-0 focus:outline-none focus:ring-0"
+                          dir={lang === "ar" ? "rtl" : "ltr"}
+                          placeholder={t("contact.form.phonePlaceholder")}
                         />
                       </div>
                     </div>
@@ -300,7 +412,7 @@ export const ContactPage = () => {
                         htmlFor="subject"
                         className="block text-sm font-medium text-black mb-2"
                       >
-                        {t('contact.form.subject')}
+                        {t("contact.form.subject")}
                       </label>
                       <input
                         type="text"
@@ -309,7 +421,7 @@ export const ContactPage = () => {
                         value={formData.subject}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition-all duration-200"
-                        placeholder={t('contact.form.subjectPlaceholder')}
+                        placeholder={t("contact.form.subjectPlaceholder")}
                       />
                     </div>
 
@@ -318,7 +430,7 @@ export const ContactPage = () => {
                         htmlFor="message"
                         className="block text-sm font-medium text-black mb-2"
                       >
-                        {t('contact.form.message')}
+                        {t("contact.form.message")}
                       </label>
                       <input
                         type="text"
@@ -327,31 +439,53 @@ export const ContactPage = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition-all duration-200"
-                        placeholder={t('contact.form.messagePlaceholder')}
+                        placeholder={t("contact.form.messagePlaceholder")}
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-auto bg-[#4C31AF] hover:bg-[#3d2790] text-white font-medium  h-12 py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
+                      disabled={isLoading}
+                      className="w-auto bg-[#4C31AF] hover:bg-[#3d2790] disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium h-12 py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
                     >
-                      <span>{t('contact.form.submit')}</span>
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 32 32"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M26.667 16H5.33366M26.667 16L21.3337 10.6666M26.667 16L21.3337 21.3333"
-                          stroke="white"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
+                      <span>
+                        {isLoading 
+                          ? (lang === 'ar' ? 'جارٍ الإرسال...' : 'Sending...') 
+                          : t("contact.form.submit")
+                        }
+                      </span>
+                      {!isLoading && (
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 32 32"
+                          fill="none"
+                          className={
+                            lang === "ar" ? "-scale-x-100" : "scale-x-100"
+                          }
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M26.667 16H5.33366M26.667 16L21.3337 10.6666M26.667 16L21.3337 21.3333"
+                            stroke="white"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      )}
                     </button>
+
+                    {/* Success/Error Message */}
+                    {message.text && (
+                      <div className={`mt-4 p-4 rounded-lg text-center text-sm transition-all duration-500 ease-in-out transform ${
+                        message.type === 'success' 
+                          ? 'bg-green-100 text-green-800 border border-green-200' 
+                          : 'bg-red-100 text-red-800 border border-red-200'
+                      } ${message.text ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2'}`}>
+                        {message.text}
+                      </div>
+                    )}
                   </form>
                 </div>
               </div>

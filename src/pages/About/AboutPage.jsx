@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
@@ -6,30 +7,29 @@ import { Separator } from "../../components/ui/separator";
 import AboutUsImg from "../../screens/Homepage/imgs/AboutUs.png";
 
 export const AboutPage = () => {
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+
   const workProcessSteps = [
     {
-      number: "01",
-      title: "Research & Analysis",
-      description:
-        "We begin by understanding your needs and conducting precise market analysis, gathering the necessary information, and studying competitors to determine the best strategies that meet your goals.",
+      number: t('about.page.howWeWork.steps.research.number'),
+      title: t('about.page.howWeWork.steps.research.title'),
+      description: t('about.page.howWeWork.steps.research.description'),
     },
     {
-      number: "02",
-      title: "Planning",
-      description:
-        "Next, we design a customized strategy tailored to your objectives, followed by a detailed plan that includes selecting the right platforms and setting the campaign budget to achieve optimal results.",
+      number: t('about.page.howWeWork.steps.planning.number'),
+      title: t('about.page.howWeWork.steps.planning.title'),
+      description: t('about.page.howWeWork.steps.planning.description'),
     },
     {
-      number: "03",
-      title: "Professional Design",
-      description:
-        "We design creative, tailored solutions — from building your visual identity to selecting colors, fonts, and elements that reflect your brand. We follow the latest trends to ensure a strong and lasting impression.",
+      number: t('about.page.howWeWork.steps.design.number'),
+      title: t('about.page.howWeWork.steps.design.title'),
+      description: t('about.page.howWeWork.steps.design.description'),
     },
     {
-      number: "04",
-      title: "Evaluation & Development",
-      description:
-        "We monitor performance and aim for continuous improvement by analyzing results and proposing necessary adjustments to ensure the highest return on your ideas.",
+      number: t('about.page.howWeWork.steps.evaluation.number'),
+      title: t('about.page.howWeWork.steps.evaluation.title'),
+      description: t('about.page.howWeWork.steps.evaluation.description'),
     },
   ];
 
@@ -40,11 +40,11 @@ export const AboutPage = () => {
           {/* Review List Section */}
           <section className="flex flex-col items-center gap-6 sm:gap-8 px-4 sm:px-6 md:px-12 lg:px-[100px] py-10 sm:py-14 w-full bg-white">
             <header className="flex flex-col items-center gap-3 sm:gap-4 w-full">
-              <h1 className="font-['Poppins',Helvetica] font-semibold text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[56px] tracking-[0] leading-tight sm:leading-normal text-center">
-                About Us
+              <h1 className={`font-['Poppins',Helvetica] font-semibold text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[56px] tracking-[0] leading-tight sm:leading-normal text-center ${currentLanguage === 'ar' ? 'font-["Alexandria"]' : ''}`}>
+                {t('about.title')}
               </h1>
-              <p className="opacity-75 font-['Poppins',Helvetica] text-sm sm:text-base md:text-lg lg:text-xl text-center leading-relaxed font-normal text-black tracking-[0] max-w-2xl">
-                Get to know Sumou up close.
+              <p dir={currentLanguage === 'ar' ? 'rtl' : 'ltr'} className={`opacity-75 font-['Poppins',Helvetica] text-sm sm:text-base md:text-lg lg:text-xl text-center leading-relaxed font-normal text-black tracking-[0] max-w-2xl ${currentLanguage === 'ar' ? 'font-["Alexandria"]' : ''}`}>
+                {t('about.subtitle')}
               </p>
             </header>
 
@@ -56,35 +56,29 @@ export const AboutPage = () => {
                   src={AboutUsImg}
                 />
 
-                <div className="w-full font-['Poppins',Helvetica] font-semibold text-black text-sm sm:text-base md:text-lg lg:text-xl xl:text-[22px] tracking-[0] leading-relaxed text-center sm:text-left">
-                  <p>Welcome to Sumou</p>
+                <div dir={currentLanguage === 'ar' ? 'rtl' : 'ltr'} className={`w-full font-['Poppins',Helvetica] font-semibold text-black text-sm sm:text-base md:text-lg lg:text-xl xl:text-[22px] tracking-[0] leading-relaxed ${currentLanguage === 'ar' ? 'font-["Alexandria"] text-right' : 'text-center sm:text-left'}`}>
+                  <p>{t('about.page.welcomeTitle')}</p>
                   <br />
-                  <p className="leading-relaxed">
-                    The launchpad for your brand toward excellence and
-                    professionalism.
-                    <br /> We are here to give your idea a unique identity and
-                    transform your vision into a stunning visual reality that truly
-                    represents you.
+                  <p className="leading-relaxed whitespace-pre-line">
+                    {t('about.page.launchpadText')}
                   </p>
                 </div>
 
-                <div className="w-full font-['Poppins',Helvetica] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[22px] tracking-[0] leading-relaxed text-center sm:text-left">
+                <div dir={currentLanguage === 'ar' ? 'rtl' : 'ltr'} className={`w-full font-['Poppins',Helvetica] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[22px] tracking-[0] leading-relaxed ${currentLanguage === 'ar' ? 'font-["Alexandria"] text-right' : 'text-center sm:text-left'}`}>
                   <span className="font-normal text-[#1f1f1f]">
-                    Sumou is a company specialized in{" "}
+                    {t('about.page.companyDescription.part1')}{" "}
                   </span>
-                  <span className="font-medium">visual identity design</span>
-                  <span className="font-normal text-[#1f1f1f]">, </span>
-                  <span className="font-medium">advertising content creation</span>
-                  <span className="font-normal text-[#1f1f1f]">, and </span>
+                  <span className="font-medium">{t('about.page.companyDescription.visualIdentity')}</span>
+                  <span className="font-normal text-[#1f1f1f]">{t('about.page.companyDescription.part2')} </span>
+                  <span className="font-medium">{t('about.page.companyDescription.contentCreation')}</span>
+                  <span className="font-normal text-[#1f1f1f]">{t('about.page.companyDescription.part3')} </span>
                   <span className="font-medium">
-                    creative consulting for entrepreneurs
+                    {t('about.page.companyDescription.creativeConsulting')}
                   </span>
-                  <span className="font-normal text-[#1f1f1f]"> and </span>
-                  <span className="font-medium">emerging brands</span>
+                  <span className="font-normal text-[#1f1f1f]"> {t('about.page.companyDescription.part4')} </span>
+                  <span className="font-medium">{t('about.page.companyDescription.emergingBrands')}</span>
                   <span className="font-normal text-[#1f1f1f]">
-                    . Our mission is to empower brands to stand out in the market
-                    through creative solutions built on strategic vision and refined
-                    taste.
+                    {t('about.page.companyDescription.part5')}
                   </span>
                 </div>
               </CardContent>
@@ -129,12 +123,12 @@ export const AboutPage = () => {
             {/* Section header */}
             <header className="flex flex-col items-center gap-4 sm:gap-6 w-full">
               <div className="relative flex flex-col items-center">
-                <h2 className="font-['Alexandria',Helvetica] font-semibold text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[56px] tracking-[0] leading-tight sm:leading-normal text-center">
-                  How We Work?
+                <h2 className={`font-['Alexandria',Helvetica] font-semibold text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[56px] tracking-[0] leading-tight sm:leading-normal text-center ${currentLanguage === 'ar' ? 'font-["Alexandria"]' : ''}`}>
+                  {t('about.page.howWeWork.title')}
                 </h2>
                 
                 {/* Red line positioned under the end of the heading text */}
-                <div className="self-end mr-4 sm:mr-6 md:mr-8 lg:mr-10 xl:mr-12  w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] xl:w-[200px] h-2 sm:h-2.5 md:h-3">
+                <div className={`${currentLanguage === 'ar' ? 'self-start ml-4 sm:ml-6 md:ml-8 lg:ml-10 xl:ml-12' : 'self-end mr-4 sm:mr-6 md:mr-8 lg:mr-10 xl:mr-12'} w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] xl:w-[200px] h-2 sm:h-2.5 md:h-3`}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 200 10" fill="none" className="w-full h-full">
                     <path d="M1.36228 7.84299C34.4 7.84299 67.4377 7.92492 100.593 8.17065C116.76 8.25257 132.927 8.58021 149.095 8.58021C156.944 8.58021 164.911 8.58021 172.76 8.98977C176.509 9.15359 180.141 9.48123 183.773 9.80888C188.342 10.2184 191.505 9.89077 196.074 9.56313C199.94 9.3174 201.58 5.95905 198.066 4.40273C194.668 2.84642 192.442 1.53584 188.342 1.04437C184.593 0.552903 180.844 0.389081 176.978 0.225258C169.128 -0.102387 161.162 -0.0204803 153.312 0.143342C136.442 0.470987 119.689 1.12628 102.819 1.78157C68.9607 3.01023 35.1029 4.40273 1.36228 5.95904C-0.395044 5.95904 -0.512199 7.84299 1.36228 7.84299Z" fill="#DB4063"/>
                   </svg>
@@ -142,9 +136,8 @@ export const AboutPage = () => {
               </div>
 
               <div className="flex flex-col items-center gap-2 mt-4 sm:mt-6 max-w-4xl">
-                <p className="relative self-stretch opacity-75 font-['Alexandria',Helvetica] font-normal text-[#1f1f1f] text-sm sm:text-base md:text-lg lg:text-xl text-center tracking-[0] leading-relaxed px-2 sm:px-4">
-                  We deliver innovative solutions, guaranteed results, and continuous
-                  support to ensure our clients' success in achieving their goals.
+                <p dir={currentLanguage === 'ar' ? 'rtl' : 'ltr'} className={`relative self-stretch opacity-75 font-['Alexandria',Helvetica] font-normal text-[#1f1f1f] text-sm sm:text-base md:text-lg lg:text-xl text-center tracking-[0] leading-relaxed px-2 sm:px-4 ${currentLanguage === 'ar' ? 'font-["Alexandria"]' : ''}`}>
+                  {t('about.page.howWeWork.subtitle')}
                 </p>
               </div>
             </header>
@@ -158,14 +151,14 @@ export const AboutPage = () => {
                     key={`step-${index}`}
                     className="w-full lg:flex-1 h-auto min-h-[200px] sm:min-h-[220px] md:min-h-[250px] rounded-2xl sm:rounded-3xl border border-solid shadow-sm hover:shadow-md transition-shadow duration-300 bg-white"
                   >
-                    <CardContent className="flex flex-col items-start gap-3 sm:gap-4 p-4 sm:p-5 md:p-6 h-full">
+                    <CardContent dir={currentLanguage === 'ar' ? 'rtl' : 'ltr'} className={`flex flex-col gap-3 sm:gap-4 p-4 sm:p-5 md:p-6 h-full ${currentLanguage === 'ar' ? 'items-end' : 'items-start'}`}>
                       <span className="font-['Alexandria',Helvetica] font-semibold text-red text-lg sm:text-xl md:text-2xl tracking-[0] leading-normal">
                         {step.number}
                       </span>
-                      <h3 className="self-stretch font-['Alexandria',Helvetica] font-semibold text-black text-base sm:text-lg md:text-xl tracking-[0] leading-normal">
+                      <h3 className={`self-stretch font-['Alexandria',Helvetica] font-semibold text-black text-base sm:text-lg md:text-xl tracking-[0] leading-normal ${currentLanguage === 'ar' ? 'text-right' : 'text-left'}`}>
                         {step.title}
                       </h3>
-                      <p className="self-stretch font-['Alexandria',Helvetica] font-light text-black text-sm sm:text-base md:text-lg tracking-[0] leading-relaxed flex-1">
+                      <p className={`self-stretch font-['Alexandria',Helvetica] font-light text-black text-sm sm:text-base md:text-lg tracking-[0] leading-relaxed flex-1 ${currentLanguage === 'ar' ? 'text-right' : 'text-left'}`}>
                         {step.description}
                       </p>
                     </CardContent>
@@ -180,14 +173,14 @@ export const AboutPage = () => {
                     key={`step-${index + 2}`}
                     className="w-full lg:flex-1 h-auto min-h-[200px] sm:min-h-[220px] md:min-h-[250px] rounded-2xl sm:rounded-3xl border border-solid shadow-sm hover:shadow-md transition-shadow duration-300 bg-white"
                   >
-                    <CardContent className="flex flex-col items-start gap-3 sm:gap-4 p-4 sm:p-5 md:p-6 h-full">
+                    <CardContent dir={currentLanguage === 'ar' ? 'rtl' : 'ltr'} className={`flex flex-col gap-3 sm:gap-4 p-4 sm:p-5 md:p-6 h-full ${currentLanguage === 'ar' ? 'items-end' : 'items-start'}`}>
                       <span className="font-['Alexandria',Helvetica] font-semibold text-red text-lg sm:text-xl md:text-2xl tracking-[0] leading-normal">
                         {step.number}
                       </span>
-                      <h3 className="self-stretch font-['Alexandria',Helvetica] font-semibold text-black text-base sm:text-lg md:text-xl tracking-[0] leading-normal">
+                      <h3 className={`self-stretch font-['Alexandria',Helvetica] font-semibold text-black text-base sm:text-lg md:text-xl tracking-[0] leading-normal ${currentLanguage === 'ar' ? 'text-right' : 'text-left'}`}>
                         {step.title}
                       </h3>
-                      <p className="self-stretch font-['Alexandria',Helvetica] font-light text-black text-sm sm:text-base md:text-lg tracking-[0] leading-relaxed flex-1">
+                      <p className={`self-stretch font-['Alexandria',Helvetica] font-light text-black text-sm sm:text-base md:text-lg tracking-[0] leading-relaxed flex-1 ${currentLanguage === 'ar' ? 'text-right' : 'text-left'}`}>
                         {step.description}
                       </p>
                     </CardContent>

@@ -2,13 +2,19 @@ import { ArrowLeftIcon, ArrowRightIcon, UserIcon } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from 'react-i18next';
 import { Avatar, AvatarFallback } from "../../components/ui/avatar";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Shape1 from "../../screens/Homepage/imgs/shape 1.png";
+import Rectangle1471 from "../../screens/Homepage/imgs/Rectangle 1471.png";
 
 export const TestimonialsPage = () => {
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language || 'en';
+  
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -77,57 +83,45 @@ export const TestimonialsPage = () => {
     }
   }, [headerInView, headerControls, lineControls]);
 
-  // Testimonial data extracted from the image
+  // Testimonial data using translations
   const testimonials = [
     {
-      name: "Noura Al-Kuwari",
-      company: "Oasis Touch – لمسات الواحة للعناية بالبشرة (Doha)",
-      isRtl: false,
-      content:
-        "Sumou helped me shape the brand's path from the very beginning. From the first consultation, I knew I was with the right team. They provided me with a full launch strategy and an opening campaign that elevated me to the competitive level. The team is cooperative and quick to understand.",
+      name: t('testimonials.page.clients.noura.name'),
+      company: t('testimonials.page.clients.noura.company'),
+      content: t('testimonials.page.clients.noura.testimonial'),
     },
     {
-      name: "Maryam Al-Muhairi",
-      company: "Saherat Abaya – ساحرات للعبايات (Dubai)",
-      isRtl: false,
-      content:
-        "I was looking for a team that understands the Emirati market taste while giving me a unique identity. Sumou impressed me with their deep understanding of luxury brands, and their designs were world-class. I worked with them on the visual identity and Instagram content strategy, and the results were very satisfying.",
+      name: t('testimonials.page.clients.maryam.name'),
+      company: t('testimonials.page.clients.maryam.company'),
+      content: t('testimonials.page.clients.maryam.testimonial'),
     },
     {
-      name: "Abdullah Al-Qahtani",
-      company: "Q-Print – Digital Printing Press",
-      isRtl: false,
-      content:
-        "I had worked with several agencies before Sumou, but none matched their level of professionalism and honesty. They helped me launch the brand from scratch, and every step with them was well thought out.",
+      name: t('testimonials.page.clients.abdullah.name'),
+      company: t('testimonials.page.clients.abdullah.company'),
+      content: t('testimonials.page.clients.abdullah.testimonial'),
     },
     {
-      name: "Dalal Al-Otaibi",
-      company: "Dula Boutique – Women's Fashion Boutique (Salmiya)",
-      isRtl: false,
-      content:
-        "I was confused about how to start my project online and asked around a lot until I found Sumou. Within just two weeks, I received a complete brand identity that was well-structured content calendar that perfectly reflected my style. Their communication was elegant, and the team understands the Gulf market intelligently.",
+      name: t('testimonials.page.clients.dalal.name'),
+      company: t('testimonials.page.clients.dalal.company'),
+      content: t('testimonials.page.clients.dalal.testimonial'),
     },
     {
-      name: "Noura Al-Kuwari",
-      company: "Oasis Touch – لمسات الواحة للعناية بالبشرة (Doha)",
-      isRtl: false,
-      content:
-        "Sumou helped me shape the brand's path from the very beginning. From the first consultation, I knew I was with the right team. They provided me with a full launch strategy and an opening campaign that elevated me to the competitive level. The team is cooperative and quick to understand.",
+      name: t('testimonials.page.clients.noura.name'),
+      company: t('testimonials.page.clients.noura.company'),
+      content: t('testimonials.page.clients.noura.testimonial'),
     },
     {
-      name: "Maryam Al-Muhairi",
-      company: "Saherat Abaya – ساحرات للعبايات (Dubai)",
-      isRtl: false,
-      content:
-        "I was looking for a team that understands the Emirati market taste while giving me a unique identity. Sumou impressed me with their deep understanding of luxury brands, and their designs were world-class. I worked with them on the visual identity and Instagram content strategy, and the results were very satisfying.",
+      name: t('testimonials.page.clients.maryam.name'),
+      company: t('testimonials.page.clients.maryam.company'),
+      content: t('testimonials.page.clients.maryam.testimonial'),
     },
   ];
 
   const nextSlide = () => {
     setCurrentSlide((prev) => {
-      // On mobile, move by 3 items at a time
+      // On mobile, show next 3 cards from the 6 total
       if (window.innerWidth < 1024) {
-        return (prev + 3) % testimonials.length;
+        return prev === 0 ? 3 : 0; // Toggle between first 3 (0-2) and last 3 (3-5)
       }
       // On desktop, move by 1 item
       return (prev + 1) % testimonials.length;
@@ -136,9 +130,9 @@ export const TestimonialsPage = () => {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => {
-      // On mobile, move by 3 items at a time
+      // On mobile, show previous 3 cards from the 6 total
       if (window.innerWidth < 1024) {
-        return (prev - 3 + testimonials.length) % testimonials.length;
+        return prev === 0 ? 3 : 0; // Toggle between first 3 (0-2) and last 3 (3-5)
       }
       // On desktop, move by 1 item
       return (prev - 1 + testimonials.length) % testimonials.length;
@@ -153,6 +147,22 @@ export const TestimonialsPage = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-[#DB4063]/5 via-transparent to-[#4C31AF]/5"></div>
         </div>
 
+        {/* Background Images - Bottom */}
+        <div className="absolute bottom-0 left-0 w-full h-auto z-0 pointer-events-none transform width-[100%] scale-[3.6] translate-y-[-160%] md:scale-[1] md:translate-y-[-10%] rotate-180">
+          <div className="relative w-full">
+            <img 
+              src={Shape1} 
+              alt="Background Shape" 
+              className="w-full h-auto object-cover transform rotate-180"
+            />
+            <img 
+              src={Rectangle1471} 
+              alt="Background Rectangle" 
+              className="absolute top-0 left-0 w-full h-auto object-cover transform rotate-180"
+            />
+          </div>
+        </div>
+
         <div className="w-full px-4 relative z-10">
           {/* Section header */}
           <motion.div 
@@ -163,11 +173,11 @@ export const TestimonialsPage = () => {
           >
             <div className="relative">
               <motion.h2 
-                className="font-['Poppins',Helvetica] font-semibold text-black text-[28px] sm:text-4xl md:text-5xl lg:text-6xl text-center px-4"
+                className={`font-['Poppins',Helvetica] font-semibold text-black text-[28px] sm:text-4xl md:text-5xl lg:text-6xl text-center px-4 ${currentLanguage === 'ar' ? 'font-alexandria' : ''}`}
                 variants={fadeUp}
                 custom={0}
               >
-                Our Clients' Testimonials
+                {t('testimonials.page.title')}
               </motion.h2>
 
               {/* Underline decoration - hidden on mobile */}
@@ -203,12 +213,11 @@ export const TestimonialsPage = () => {
             </div>
 
             <motion.p 
-              className="font-['Poppins',Helvetica] font-normal text-gray-600 text-base sm:text-lg md:text-xl text-center max-w-4xl leading-relaxed px-4"
+              className={`font-['Poppins',Helvetica] font-normal text-gray-600 text-base sm:text-lg md:text-xl text-center max-w-4xl leading-relaxed px-4 ${currentLanguage === 'ar' ? 'font-alexandria' : ''}`}
               variants={fadeUp}
               custom={1}
             >
-              Our clients' feedback is a living testament to our commitment to
-              delivering comprehensive services.
+              {t('testimonials.page.subtitle')}
             </motion.p>
           </motion.div>
 
@@ -216,15 +225,24 @@ export const TestimonialsPage = () => {
           <div className="relative w-full flex justify-center">
             <div className="w-full">
               {/* Testimonial cards */}
-              <div className={`${isMobile ? 'flex flex-col items-center gap-6' : 'grid grid-cols-3 gap-6 lg:gap-8'} px-8 sm:px-12 lg:px-16 xl:px-20 2xl:px-24`}>
+              <div className={`${isMobile ? 'flex flex-col items-center gap-6' : 'grid grid-cols-3 gap-6 lg:gap-8'} w-full    xl:px-20 2xl:px-24`}>
                 {(isMobile ? testimonials.slice(currentSlide, currentSlide + 3) : testimonials.slice(0, 6)).map((testimonial, index) => (
-                <Card
-                  key={index}
-                  className={`bg-white rounded-[24px] shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 active:scale-100 transition-all duration-300 h-auto flex flex-col group ${isMobile ? 'w-full max-w-[90%]' : 'flex-1 min-w-0 max-w-none'}`}
-                  data-aos="flip-left"
-                  data-aos-delay={200 * index}
-                  data-aos-duration="700"
+                <motion.div
+                  key={isMobile ? `${currentSlide}-${index}` : index}
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ 
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: "easeOut"
+                  }}
                 >
+                  <Card
+                    className={`bg-white rounded-[24px] shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 active:scale-100 transition-all duration-300 h-auto flex flex-col group h-full ${isMobile ? 'w-full max-w-[100%]' : 'flex-1 min-w-0 max-w-none'}`}
+                    data-aos="flip-left"
+                    data-aos-delay={200 * index}
+                    data-aos-duration="700"
+                  >
                   <CardContent className="p-4 sm:p-5 lg:p-6 flex flex-col h-full relative">
                     {/* User info header */}
                     <div className="flex items-start gap-3 sm:gap-4 m
@@ -236,10 +254,10 @@ export const TestimonialsPage = () => {
                       </div>
 
                       <div className="flex-1 min-w-0">
-                        <div className="font-['Poppins',Helvetica] font-semibold text-gray-900 text-sm sm:text-base">
+                        <div className={`font-['Poppins',Helvetica] font-semibold text-gray-900 text-sm sm:text-base ${currentLanguage === 'ar' ? 'font-alexandria' : ''}`}>
                           {testimonial.name}
                         </div>
-                        <div className="font-['Poppins',Helvetica] font-normal text-gray-500 text-xs sm:text-sm leading-relaxed mt-1">
+                        <div className={`font-['Poppins',Helvetica] font-normal text-gray-500 text-xs sm:text-sm leading-relaxed mt-1 ${currentLanguage === 'ar' ? 'font-alexandria' : ''}`}>
                           {testimonial.company}
                         </div>
                       </div>
@@ -247,12 +265,13 @@ export const TestimonialsPage = () => {
 
                     {/* Testimonial content */}
                     <div className="flex-1">
-                      <p className="font-['Poppins',Helvetica] font-normal text-gray-700 group-hover:text-[#4B5563] group-active:text-black transition-colors duration-300 text-xs sm:text-sm leading-[160%] tracking-[0%]">
+                      <p className={`font-['Poppins',Helvetica] font-normal text-gray-700 group-hover:text-[#4B5563] group-active:text-black transition-colors duration-300 text-xs sm:text-sm leading-[160%] tracking-[0%] ${currentLanguage === 'ar' ? 'font-alexandria text-right' : ''}`}>
                         {testimonial.content}
                       </p>
                     </div>
                   </CardContent>
                 </Card>
+                </motion.div>
               ))}
               </div>
 
@@ -266,13 +285,13 @@ export const TestimonialsPage = () => {
                 <Button
                   onClick={prevSlide}
                   className="w-10 h-10 lg:w-12 lg:h-12 p-0 bg-[#4C31AF] hover:bg-[#3d2689] rounded-full z-20 shadow-lg hidden lg:flex items-center justify-center">
-                  <ArrowLeftIcon className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
+                  <ArrowLeftIcon className={`w-5 h-5 lg:w-6 lg:h-6 text-white ${currentLanguage === 'ar' ? '-scale-x-100' : ''}`} />
                 </Button>
 
                 <Button
                   onClick={nextSlide}
                   className="w-10 h-10 lg:w-12 lg:h-12 p-0 bg-[#4C31AF] hover:bg-[#3d2689] rounded-full z-20 shadow-lg hidden lg:flex items-center justify-center">
-                  <ArrowRightIcon className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
+                  <ArrowRightIcon className={`w-5 h-5 lg:w-6 lg:h-6 text-white ${currentLanguage === 'ar' ? '-scale-x-100' : ''}`} />
                 </Button>
               </div>
             </div>
@@ -286,8 +305,8 @@ export const TestimonialsPage = () => {
             data-aos-duration="600"
           >
             {/* Dots indicator */}
-            <div className="flex justify-center gap-2">
-              {Array.from({ length: isMobile ? Math.ceil(testimonials.length / 3) : 1 }).map((_, index) => (
+            <div className={`flex justify-center gap-2`}>
+              {Array.from({ length: isMobile ? 2 : 1 }).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(isMobile ? index * 3 : index)}
@@ -299,17 +318,17 @@ export const TestimonialsPage = () => {
             </div>
 
             {/* Mobile navigation arrows */}
-            <div className="flex items-center gap-3 lg:hidden">
+            <div className={`flex items-center gap-3 lg:hidden`}>
               <Button
                 onClick={prevSlide}
                 className="w-10 h-10 p-0 bg-[#4C31AF] hover:bg-[#3d2689] rounded-full shadow-lg flex items-center justify-center">
-                <ArrowLeftIcon className="w-5 h-5 text-white" />
+                <ArrowLeftIcon className={`w-5 h-5 text-white ${currentLanguage === 'ar' ? '-scale-x-100' : ''}`} />
               </Button>
 
               <Button
                 onClick={nextSlide}
                 className="w-10 h-10 p-0 bg-[#4C31AF] hover:bg-[#3d2689] rounded-full shadow-lg flex items-center justify-center">
-                <ArrowRightIcon className="w-5 h-5 text-white" />
+                <ArrowRightIcon className={`w-5 h-5 text-white ${currentLanguage === 'ar' ? '-scale-x-100' : ''}`} />
               </Button>
             </div>
           </div>

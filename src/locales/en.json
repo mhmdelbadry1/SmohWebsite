@@ -27,7 +27,48 @@
     "contactUs": "Contact Us",
     "experience": "Years of Experience",
     "projects": "Completed Projects",
-    "clients": "Happy Clients"
+    "clients": "Happy Clients",
+    "page": {
+      "welcomeTitle": "Welcome to Sumou",
+      "launchpadText": "The launchpad for your brand toward excellence and professionalism.\nWe are here to give your idea a unique identity and transform your vision into a stunning visual reality that truly represents you.",
+      "companyDescription": {
+        "part1": "Sumou is a company specialized in",
+        "visualIdentity": "visual identity design",
+        "part2": ",",
+        "contentCreation": "advertising content creation",
+        "part3": ", and",
+        "creativeConsulting": "creative consulting for entrepreneurs",
+        "part4": "and",
+        "emergingBrands": "emerging brands",
+        "part5": ". Our mission is to empower brands to stand out in the market through creative solutions built on strategic vision and refined taste."
+      },
+      "howWeWork": {
+        "title": "How We Work?",
+        "subtitle": "We deliver innovative solutions, guaranteed results, and continuous support to ensure our clients' success in achieving their goals.",
+        "steps": {
+          "research": {
+            "number": "01",
+            "title": "Research & Analysis",
+            "description": "We begin by understanding your needs and conducting precise market analysis, gathering the necessary information, and studying competitors to determine the best strategies that meet your goals."
+          },
+          "planning": {
+            "number": "02",
+            "title": "Planning",
+            "description": "Next, we design a customized strategy tailored to your objectives, followed by a detailed plan that includes selecting the right platforms and setting the campaign budget to achieve optimal results."
+          },
+          "design": {
+            "number": "03",
+            "title": "Professional Design",
+            "description": "We design creative, tailored solutions — from building your visual identity to selecting colors, fonts, and elements that reflect your brand. We follow the latest trends to ensure a strong and lasting impression."
+          },
+          "evaluation": {
+            "number": "04",
+            "title": "Evaluation & Development",
+            "description": "We monitor performance and aim for continuous improvement by analyzing results and proposing necessary adjustments to ensure the highest return on your ideas."
+          }
+        }
+      }
+    }
   },
   "services": {
     "title": "What Do We Offer You?",
@@ -52,6 +93,59 @@
     "consultation": {
       "title": "Creative Consultation",
       "description": "Expert advice and strategic planning to help your brand reach its full potential."
+    },
+    "page": {
+      "creativityCard": {
+        "question": "Have you ever wondered how",
+        "title": "creativity turns into impact?",
+        "description": "At Sumou, we don't just design — we bring ideas to life. Discover our journey in crafting visual magic!"
+      },
+      "ctaCard": {
+        "question": "Looking for design experts who can turn your vision into reality?",
+        "cta": "Talk to our specialists."
+      },
+      "servicesList": {
+        "logoDesign": {
+          "title": "Logo & Visual Identity Design",
+          "description": "We create unique logos and visual identities that reflect your brand's essence and enhance its presence."
+        },
+        "advertisingDesign": {
+          "title": "Advertising Post Design",
+          "description": "We design eye-catching posts and promotional visuals tailored for social media platforms."
+        },
+        "printMaterial": {
+          "title": "Print Material Design",
+          "description": "We design professional print materials such as brochures, business cards, and packaging that align with your brand identity."
+        },
+        "arabicCalligraphy": {
+          "title": "Arabic Calligraphy Creation",
+          "description": "We craft original Arabic calligraphy that blends tradition with modern aesthetics to give your brand a unique touch."
+        },
+        "socialMediaManagement": {
+          "title": "Content & Social Media Management",
+          "description": "We manage your content and social media accounts with strategic planning and creative execution to boost engagement and brand visibility."
+        },
+        "uiDesign": {
+          "title": "User Interface (UI) Design",
+          "description": "We design intuitive and appealing user interfaces that enhance user experience across websites and mobile applications."
+        },
+        "brandConsultation": {
+          "title": "Brand Launch Consultation Sessions",
+          "description": "We offer expert consultations to guide you through launching a new brand, from strategy to execution."
+        },
+        "photography": {
+          "title": "Photography and Videography",
+          "description": "We provide professional photography and video production services that visually communicate your brand's message."
+        },
+        "motionGraphics": {
+          "title": "Motion Graphics Design",
+          "description": "We produce creative motion graphics videos used to promote or explain ideas and services in an engaging and dynamic way."
+        },
+        "userGeneratedContent": {
+          "title": "Interactive Content Creation (UCC)",
+          "description": "We create authentic user-generated content to maximize engagement with your target audience, using a natural and genuine style that builds customer trust."
+        }
+      }
     }
   },
   "offerings": {
@@ -64,11 +158,73 @@
     "subtitle": "Discover our most notable work that reflects our commitment to quality and innovation.",
     "viewProject": "View Project",
     "viewMore": "View More",
-    "allProjects": "View All Projects"
+    "allProjects": "View All Projects",
+    "page": {
+      "categoriesTitle": "Project Categories",
+      "categoriesSubtitle": "Explore our diverse portfolio across different industries and project types",
+      "categories": {
+        "brandIdentity": {
+          "title": "Brand Identity",
+          "description": "Complete brand identity packages including logos, color schemes, and brand guidelines",
+          "projectCount": "15+ Projects"
+        },
+        "webDesign": {
+          "title": "Web Design",
+          "description": "Modern, responsive websites that convert visitors into customers",
+          "projectCount": "25+ Projects"
+        },
+        "marketingCampaigns": {
+          "title": "Marketing Campaigns",
+          "description": "Integrated marketing campaigns across digital and traditional channels",
+          "projectCount": "20+ Projects"
+        },
+        "mobileApps": {
+          "title": "Mobile Apps",
+          "description": "User-friendly mobile applications for iOS and Android platforms",
+          "projectCount": "12+ Projects"
+        },
+        "ecommerce": {
+          "title": "E-commerce",
+          "description": "Complete e-commerce solutions with payment integration and inventory management",
+          "projectCount": "18+ Projects"
+        },
+        "printDesign": {
+          "title": "Print Design",
+          "description": "Professional print materials including brochures, business cards, and packaging",
+          "projectCount": "30+ Projects"
+        }
+      }
+    }
   },
   "testimonials": {
     "title": "What Our Clients Say",
-    "subtitle": "Our clients’ feedback is a living testament to our commitment to delivering comprehensive services."
+    "subtitle": "Our clients' feedback is a living testament to our commitment to delivering comprehensive services.",
+    "page": {
+      "title": "Our Clients' Testimonials",
+      "subtitle": "Our clients' feedback is a living testament to our commitment to delivering comprehensive services.",
+      "clients": {
+        "noura": {
+          "name": "Noura Al-Kuwari",
+          "company": "Oasis Touch – لمسات الواحة للعناية بالبشرة (Doha)",
+          "testimonial": "Sumou helped me shape the brand's path from the very beginning. From the first consultation, I knew I was with the right team. They provided me with a full launch strategy and an opening campaign that elevated me to the competitive level. The team is cooperative and quick to understand."
+        },
+        "maryam": {
+          "name": "Maryam Al-Muhairi",
+          "company": "Saherat Abaya – ساحرات للعبايات (Dubai)",
+          "testimonial": "I was looking for a team that understands the Emirati market taste while giving me a unique identity. Sumou impressed me with their deep understanding of luxury brands, and their designs were world-class. I worked with them on the visual identity and Instagram content strategy, and the results were very satisfying."
+        },
+        "abdullah": {
+          "name": "Abdullah Al-Qahtani",
+          "company": "Q-Print – Digital Printing Press",
+          "testimonial": "I had worked with several agencies before Sumou, but none matched their level of professionalism and honesty. They helped me launch the brand from scratch, and every step with them was well thought out."
+        },
+        "dalal": {
+          "name": "Dalal Al-Otaibi",
+          "company": "Dula Boutique – Women's Fashion Boutique (Salmiya)",
+          "testimonial": "I was confused about how to start my project online and asked around a lot until I found Sumou. Within just two weeks, I received a complete brand identity that was well-structured content calendar that perfectly reflected my style. Their communication was elegant, and the team understands the Gulf market intelligently."
+        }
+      }
+    }
   },
   "contact": {
     "title": "We're Here for You!",
