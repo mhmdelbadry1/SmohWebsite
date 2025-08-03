@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
-import AboutUsImage from "../../imgs/AboutUs.png"
+const AboutUsImage = "/AboutUs.png";
 
 export const AboutUsSection = () => {
   const { t, i18n } = useTranslation();

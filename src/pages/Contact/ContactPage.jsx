@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { sendEmail } from "../../services/emailService";
-import TikTokIcon from "../../screens/Homepage/imgs/TiktokIconContact";
+import TikTokIcon from "../../components/ui/TiktokIconContact";
 
 export const ContactPage = () => {
   const { t } = useTranslation();
@@ -154,7 +154,7 @@ export const ContactPage = () => {
                     className="absolute bottom-0 w-full h-48   scale-[1.5]  lg:scale-[2] bg-bottom bg-cover z-0"
                     style={{
                       backgroundImage:
-                        "url('./src/screens/Homepage/imgs/Rectangle 1471.png')",
+                        "url('/rectangle-1471.png')",
                       maskImage:
                         "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
                       WebkitMaskImage:
@@ -165,7 +165,7 @@ export const ContactPage = () => {
                     className="absolute bottom-0 w-full h-48   bg-bottom bg-cover scale-[1.5]  lg:scale-[2] z-10"
                     style={{
                       backgroundImage:
-                        "url('./src/screens/Homepage/imgs/shape 1.png')",
+                        "url('/shape-1.png')",
                       backgroundRepeat: "no-repeat",
                       maskImage:
                         "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",

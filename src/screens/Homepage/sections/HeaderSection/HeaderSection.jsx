@@ -118,7 +118,7 @@ export const HeaderSection = () => {
             {/* Logo */}
             <div className="flex-shrink-0 mx-10">
               <img
-                src="/src/screens/Homepage/imgs/logo 1 1.png"
+                src="/logo 1 1.png"
                 alt="Sumou Logo"
                 className="w-[100px] h-[60px] object-contain transition-transform duration-300 hover:scale-110"
               />
@@ -171,7 +171,7 @@ export const HeaderSection = () => {
             {/* Logo */}
             <div className="flex-shrink-0">
               <img
-                src="/src/screens/Homepage/imgs/logo 1 1.png"
+                src="/logo 1 1.png"
                 alt="Sumou Logo"
                 className="w-[90px] h-[90px] object-contain"
               />
@@ -219,7 +219,7 @@ export const HeaderSection = () => {
           }`}>
           {/* Mobile Logo */}
           <img
-            src="/src/screens/Homepage/imgs/logo 1 1.png"
+            src="/logo 1 1.png"
             alt="Sumou Logo"
             className="w-[140px] h-auto mb-8 object-contain"
           />

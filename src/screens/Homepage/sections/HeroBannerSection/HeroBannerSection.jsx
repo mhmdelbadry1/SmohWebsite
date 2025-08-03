@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useTranslation } from 'react-i18next';
-import highlight from "../../imgs/Sketch-annotation-element-stroke-abstract-highlight-bling-line-1.png";
-import bezierDesign from "../../imgs/bezier-design.png";
-import facebookIcon from "../../imgs/facebook-svgrepo-com 1.png";
-import Star from "../../imgs/Subtract.png";
-import Idea from "../../imgs/idea.png";
+const highlight = "/Sketch-annotation-element-stroke-abstract-highlight-bling-line-1.png";
+const bezierDesign = "/bezier-design.png";
+const facebookIcon = "/facebook-svgrepo-com 1.png";
+const Star = "/subtract.png";
+const Idea = "/idea.png";
 // import BrushCircle from "../../imgs/2.png";
 // import BrushLine from "../../imgs/3.png";
 // import Brush from "../../imgs/brush.png";
-import Snapchat from "../../imgs/snapchat-svgrepo-com 1.png";
-import Heart from '../../imgs/love-svgrepo-com 1.png';
-import Instagram from '../../imgs/instagram 1.png';
+const Snapchat = "/snapchat-svgrepo-com 1.png";
+const Heart = '/love-svgrepo-com 1.png';
+const Instagram = '/instagram 1.png';
 
 export const HeroBannerSection = () => {
   const { t, i18n } = useTranslation();

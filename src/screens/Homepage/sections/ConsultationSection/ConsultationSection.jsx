@@ -6,10 +6,10 @@ import { Card, CardContent } from "../../../../components/ui/card";
 import { Input } from "../../../../components/ui/input";
 import { Separator } from "../../../../components/ui/separator";
 import { sendEmail } from "../../../../services/emailService";
-import insta from "../../imgs/insta.png";
-import facebook from "../../imgs/facebook.png";
-import TikTokIcon from "../../imgs/TikTokIcon.jsx";
-import logo from '../../imgs/logo 1 1.png'
+import TikTokIcon from "../../../../components/ui/TikTokIcon";
+const insta = "/insta.png";
+const facebook = "/facebook.png";
+const logo = '/logo 1 1.png'
 
 export const ConsultationSection = () => {
   const { t, i18n } = useTranslation();

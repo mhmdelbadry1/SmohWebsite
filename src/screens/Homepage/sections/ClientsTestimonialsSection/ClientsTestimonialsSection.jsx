@@ -2,10 +2,10 @@ import React from "react";
 import { useTranslation } from 'react-i18next';
 import { motion, useAnimation } from "framer-motion";
 import { Card, CardContent } from "../../../../components/ui/card";
-import PinImage from "../../imgs/Pin.png";
+const PinImage = "/Pin.png";
 import { useInView } from "react-intersection-observer";
-import frame1 from "../../imgs/Group 7.png";
-import frame2 from "../../imgs/Group 8.png";
+const frame1 = "/Group 7.png";
+const frame2 = "/Group 8.png";
 import { useNavigate } from 'react-router-dom';
 
 // Custom styles for 1024px to 1200px media query

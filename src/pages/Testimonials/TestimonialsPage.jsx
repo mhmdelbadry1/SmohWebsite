@@ -8,8 +8,8 @@ import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Shape1 from "../../screens/Homepage/imgs/shape 1.png";
-import Rectangle1471 from "../../screens/Homepage/imgs/Rectangle 1471.png";
+const Shape1 = "/shape-1.png";
+const Rectangle1471 = "/rectangle-1471.png";
 
 export const TestimonialsPage = () => {
   const { t, i18n } = useTranslation();

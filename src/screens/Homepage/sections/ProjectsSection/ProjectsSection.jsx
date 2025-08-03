@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { Button } from "../../../../components/ui/button";
 import { Card } from "../../../../components/ui/card";
-import projectImg1 from "../../imgs/project_1.png";
-import projectImg2 from "../../imgs/project_2.png";
-import projectImg3 from "../../imgs/project_3.png";
-import projectImg4 from "../../imgs/project_4.png";
-import projectImg5 from "../../imgs/project_5.png";
-import projectImg6 from "../../imgs/project_6.png";
+const projectImg1 = "/project_1.png";
+const projectImg2 = "/project_2.png";
+const projectImg3 = "/project_3.png";
+const projectImg4 = "/project_4.png";
+const projectImg5 = "/project_5.png";
+const projectImg6 = "/project_6.png";
 
 export const ProjectsSection = ({ isProjectsPage = false }) => {
   const { t , i18n } = useTranslation();

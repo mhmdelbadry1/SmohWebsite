@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { Avatar, AvatarFallback } from "../../../../components/ui/avatar";
 import { Button } from "../../../../components/ui/button";
-import Rectangle from "../../imgs/Rectangle 1471.png";
-import Background from "../../imgs/shape 1.png";
+const Rectangle = "/rectangle-1471.png";
+const Background = "/shape-1.png";
 
 import { Card, CardContent } from "../../../../components/ui/card";
 import { pre } from "framer-motion/client";

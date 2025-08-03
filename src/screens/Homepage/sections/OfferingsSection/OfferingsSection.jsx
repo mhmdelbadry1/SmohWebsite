@@ -1,15 +1,15 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../../../../components/ui/button";
-import MarketingImg from "../../imgs/marketing.png";
-import Star from "../../imgs/Subtract.png";
-import StarDec from "../../imgs/Sketch-annotation-element-stroke-abstract-stars-plus-wink-filled.png";
-import Group10 from "../../imgs/Group 10.png";
-import Idea from "../../imgs/idea.png";
-import IdeaVector from "../../imgs/Vector.png";
-import Pen from "../../imgs/graphic-design.png";
-import Youtube from "../../imgs/Youtube.png";
-import Flag from "../../imgs/Flags.png";
+const MarketingImg = "/marketing.png";
+const Star = "/subtract.png";
+const StarDec = "/Sketch-annotation-element-stroke-abstract-stars-plus-wink-filled.png";
+const Group10 = "/Group 10.png";
+const Idea = "/idea.png";
+const IdeaVector = "/Vector.png";
+const Pen = "/graphic-design.png";
+const Youtube = "/Youtube.png";
+const Flag = "/Flags.png";
 
 import { Card, CardContent } from "../../../../components/ui/card";
 import { useNavigate } from "react-router-dom";
