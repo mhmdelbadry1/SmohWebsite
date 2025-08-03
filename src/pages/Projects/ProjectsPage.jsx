@@ -11,11 +11,11 @@ export const ProjectsPage = () => {
       <ProjectsSection isProjectsPage={true} />
       
       {/* Ready to Work Section */}
-      <section className="w-full py-16 sm:py-20 bg-gradient-to-br px-24 from-white to-purple/5">
+      <section className="w-full py-16 sm:py-20 bg-gradient-to-br md:px-24 from-white to-purple/5">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             {/* Text Content */}
-            <div className={`flex-1 text-center ${currentLanguage === 'ar' ? 'lg:text-right' : 'lg:text-left'}`}>
+            <div className={`w-full flex-1 text-center ${currentLanguage === 'ar' ? 'lg:text-right' : 'lg:text-left'}`}>
               <div className="relative inline-block">
                 <h2 className={`font-['Poppins',Helvetica] font-semibold text-black text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] ${currentLanguage === 'ar' ? 'font-alexandria' : ''}`}>
                   {currentLanguage === 'ar' ? 'هل أنت ' : 'Are you '}

@@ -5,6 +5,23 @@ emailjs.init("sSxHNgNfduaSwU2Vt"); // Replace with your actual public key
 
 export const sendEmail = async (formData, isConsult = false) => {
   try {
+    // Validate required email field
+    if (!formData.email || !formData.email.trim()) {
+      throw new Error('Email is required');
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email.trim())) {
+      throw new Error('Invalid email format');
+    }
+
+    console.log('Sending email with data:', {
+      email: formData.email,
+      name: formData.name,
+      isConsult: isConsult
+    });
+
     // Get current date and time in Arabic format
     const now = new Date();
     const arabicTime = now.toLocaleString('ar-SA', {
@@ -317,32 +334,63 @@ export const sendEmail = async (formData, isConsult = false) => {
     const companyEmailResult = await emailjs.send("service_z6kq1xi", "template_0o7x8vp", {
       title: `${isConsult ? 'طلب استشارة جديد' : `رسالة جديدة من ${formData.name || 'عميل جديد'}`}`,
       time: arabicTime,
-      email: formData.email || 'غير محدد',
       name: formData.name || 'عميل جديد',
       phone: formData.phone || 'غير محدد',
       subject: formData.subject || 'غير محدد',
       message: isConsult ? 'طلب استشارة من العميل' : formData.message || 'غير محدد',
-      html_content: emailTemplate
+      html_content: emailTemplate,
+      to_email: "mohamed.hassan221012@gmail.com",
+      company_email: "mohamed.hassan221012@gmail.com"
     });
 
+    console.log('Company email sent successfully:', companyEmailResult);
+
     // Send client confirmation email for both consultation and contact form
-    const clientEmailResult = await emailjs.send("service_z6kq1xi", "template_v5lh8oh", {
-      time: arabicTime,
-      name: formData.name || 'العميل الكريم',
-      to_email: formData.email
-    });
+    let clientEmailResult = null;
+    if (formData.email) {
+      try {
+        clientEmailResult = await emailjs.send("service_z6kq1xi", "template_v5lh8oh", {
+          time: arabicTime,
+          name: formData.name || 'العميل الكريم',
+          to_email: formData.email,
+          client_email: formData.email,
+          from_name: "شركة سمو للإعلان والتسويق",
+          subject: isConsult ? 'شكراً لطلب الاستشارة' : 'شكراً لتواصلك معنا'
+        });
+        console.log('Client confirmation email sent successfully:', clientEmailResult);
+      } catch (clientError) {
+        console.error('Failed to send client confirmation email:', clientError);
+        console.error('Client Error Details:', {
+          status: clientError.status,
+          text: clientError.text,
+          message: clientError.message
+        });
+        // Don't throw error here, just log it
+      }
+    }
 
     return {
       success: true,
       companyEmail: companyEmailResult,
-      clientEmail: clientEmailResult
+      clientEmail: clientEmailResult,
+      message: clientEmailResult ? 'تم إرسال الرسالة وإرسال تأكيد للعميل بنجاح' : 'تم إرسال الرسالة للشركة ولكن فشل في إرسال تأكيد للعميل'
     };
 
   } catch (error) {
     console.error('Email sending failed:', error);
+    
+    // More detailed error logging
+    if (error.text) {
+      console.error('EmailJS Error Details:', error.text);
+    }
+    if (error.status) {
+      console.error('EmailJS Status:', error.status);
+    }
+    
     return {
       success: false,
-      error: error.message
+      error: error.message,
+      details: error.text || 'خطأ غير معروف في إرسال البريد الإلكتروني'
     };
   }
 };
