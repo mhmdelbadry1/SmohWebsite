@@ -51,7 +51,7 @@ export const ConsultationSection = () => {
       const formData = {
         email: email.trim(),
         name: 'عميل جديد',
-        subject: lang === 'ar' ? 'طلب استشارة من شركة سمو للإعلان والتسويق' : 'Consultation Request from Smou Advertising & Marketing Company'
+        subject: lang === 'ar' ? 'طلب استشارة من شركة سمو للدعاية والإعلان' : 'Consultation Request from Sumou Advertising & Marketing Company'
       };
 
       const result = await sendEmail(formData, true);
@@ -93,7 +93,7 @@ export const ConsultationSection = () => {
   const copyrightInfo = [
     { text: "©", className: "[font-family:'SF_Pro_Text-Regular',Helvetica]" },
     {
-      text: lang === 'ar' ? "شركة سمو للإعلان والتسويق" : "Sumou Advertising & Marketing Company",
+      text: lang === 'ar' ? "شركة سمو للدعاية والإعلان" : "Sumou Advertising & Marketing Company",
       className: "[font-family:'Poppins',Helvetica]",
     },
     { text: "|", className: "[font-family:'SF_Pro_Text-Regular',Helvetica]" },
@@ -170,7 +170,7 @@ export const ConsultationSection = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-6 lg:gap-0">
           <div className="flex items-center gap-5 lg:gap-4 order-2 lg:order-1">
             <a 
-              href="https://www.facebook.com/share/p/1ZXFWmscbR/?mibextid=wwXIfr" 
+              href="https://www.facebook.com/share/18SE8FS5zA/?mibextid=wwXIfr" 
               target="_blank" 
               rel="noopener noreferrer"
             >

@@ -6,6 +6,17 @@ export const ProjectsPage = () => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language || 'en';
 
+  // Handle portfolio download
+  const handleDownloadPortfolio = () => {
+    const pdfUrl = '/assets/portfolio.pdf';
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = currentLanguage === 'ar' ? 'بورتفوليو-سمو.pdf' : 'Sumou-Portfolio.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="min-h-screen">
       <ProjectsSection isProjectsPage={true} />
@@ -48,7 +59,10 @@ export const ProjectsPage = () => {
             
             {/* Button */}
             <div className="flex-shrink-0">
-              <button className={`inline-flex items-center justify-center gap-2.5 px-8 py-3 bg-[#4C31AF] rounded-lg hover:bg-[#3d2689] transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl ${currentLanguage === 'ar' ? 'font-alexandria' : 'font-[\'Poppins\',Helvetica]'}`}>
+              <button 
+                onClick={handleDownloadPortfolio}
+                className={`inline-flex items-center justify-center gap-2.5 px-8 py-3 bg-[#4C31AF] rounded-lg hover:bg-[#3d2689] transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl ${currentLanguage === 'ar' ? 'font-alexandria' : 'font-[\'Poppins\',Helvetica]'}`}
+              >
                 <span className="font-normal text-white text-lg leading-6 whitespace-nowrap">
                   {currentLanguage === 'ar' ? 'تحميل البورتفوليو' : 'Download Portfolio'}
                 </span>

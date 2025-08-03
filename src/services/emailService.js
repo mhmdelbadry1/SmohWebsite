@@ -40,7 +40,7 @@ export const sendEmail = async (formData, isConsult = false) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>طلب تواصل جديد - شركة سمو للإعلان والتسويق</title>
+    <title>طلب تواصل جديد - شركة سمو للدعاية والإعلان</title>
     <style>
         body, table, td, p, a, li, blockquote {
             -webkit-text-size-adjust: 100%;
@@ -256,7 +256,7 @@ export const sendEmail = async (formData, isConsult = false) => {
 <body>
     <div class="email-container">
         <div class="header">
-            <h1 class="company-name">شركة سمو للإعلان والتسويق</h1>
+            <h1 class="company-name">شركة سمو للدعاية والإعلان</h1>
             <p class="company-tagline">نحو تسويق أكثر إبداعاً وتميزاً</p>
         </div>
         <div class="content">
@@ -309,12 +309,12 @@ export const sendEmail = async (formData, isConsult = false) => {
             ` : ''}
             <div class="signature">
                 <p class="signature-text">مع أطيب التحيات،</p>
-                <p class="company-signature">فريق شركة سمو للإعلان والتسويق</p>
+                <p class="company-signature">فريق شركة سمو للدعاية والإعلان</p>
             </div>
         </div>
         <div class="footer">
             <p class="footer-text">
-                هذا البريد الإلكتروني تم إرساله تلقائياً من نظام إدارة طلبات التواصل في موقع شركة سمو للإعلان والتسويق.
+                هذا البريد الإلكتروني تم إرساله تلقائياً من نظام إدارة طلبات التواصل في موقع شركة سمو للدعاية والإعلان.
                 <br>
                 الرجاء عدم الرد على هذا البريد مباشرة.
             </p>
@@ -354,7 +354,7 @@ export const sendEmail = async (formData, isConsult = false) => {
           name: formData.name || 'العميل الكريم',
           to_email: formData.email,
           client_email: formData.email,
-          from_name: "شركة سمو للإعلان والتسويق",
+          from_name: "شركة سمو للدعاية والإعلان",
           subject: isConsult ? 'شكراً لطلب الاستشارة' : 'شكراً لتواصلك معنا'
         });
         console.log('Client confirmation email sent successfully:', clientEmailResult);

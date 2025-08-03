@@ -33,11 +33,11 @@ function App() {
 
   const keywords = isArabic
     ? "هوية بصرية, علامة تجارية, إعلان, إنشاء محتوى, استشارات إبداعية, تصميم علامة تجارية, تسويق, سمو"
-    : "visual identity, branding, advertising, content creation, creative consulting, brand design, marketing, Smoh";
+    : "visual identity, branding, advertising, content creation, creative consulting, brand design, marketing, Sumou";
 
   const title = isArabic 
     ? "موقع سمو - نحن نشكل هويتك" 
-    : "Smoh Website - We Shape Your Identity";
+    : "Sumou Website - We Shape Your Identity";
 
   return (
     <LanguageProvider>

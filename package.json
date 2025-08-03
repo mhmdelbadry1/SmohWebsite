@@ -2,8 +2,8 @@
   "version": "1.0.0",
   "source": "./index.html",
   "type": "module",
-  "name": "smoh-website",
-  "description": "Marketing website for Smoh.",
+  "name": "sumou-website",
+  "description": "Marketing website for Sumou.",
   "scripts": {
     "dev": "vite",
     "build": "vite build"

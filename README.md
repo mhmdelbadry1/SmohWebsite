@@ -1,4 +1,4 @@
-# SmohWebsite
+# SumouWebsite
 
 
 ## Getting started

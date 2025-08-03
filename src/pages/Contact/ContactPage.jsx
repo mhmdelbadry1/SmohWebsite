@@ -214,7 +214,7 @@ export const ContactPage = () => {
                       >
                         {/* Facebook */}
                         <a
-                          href="https://www.facebook.com/share/p/1ZXFWmscbR/?mibextid=wwXIfr"
+                          href="https://www.facebook.com/share/18SE8FS5zA/?mibextid=wwXIfr"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="group w-10 h-10 bg-white rounded-lg flex items-center justify-center cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-lg hover:shadow-blue-200 hover:bg-blue-600 hover:rotate-3"
