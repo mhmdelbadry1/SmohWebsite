@@ -7,8 +7,6 @@ import { Input } from "../../../../components/ui/input";
 import { Separator } from "../../../../components/ui/separator";
 import { sendEmail } from "../../../../services/emailService";
 import TikTokIcon from "../../../../components/ui/TikTokIcon";
-const insta = "/insta.png";
-const facebook = "/facebook.png";
 const logo = '/logo 1 1.png'
 
 export const ConsultationSection = () => {
@@ -174,21 +172,25 @@ export const ConsultationSection = () => {
               target="_blank" 
               rel="noopener noreferrer"
             >
-              <img className="flex-none w-12 h-12 lg:w-auto lg:h-auto hover:scale-110 hover:opacity-80 transition-all duration-300 cursor-pointer" alt="Facebook" src={facebook} />
+              <svg className="flex-none w-8 h-8 md:w-12 md:h-12 lg:w-auto lg:h-auto hover:scale-110 hover:opacity-80 transition-all duration-300 cursor-pointer" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.125 0H7.875C3.5 0 0 3.5 0 7.875V20.125C0 24.5 3.5 28 7.875 28H14V17.5H10.5C9.975 17.5 9.625 17.15 9.625 16.625V14C9.625 13.475 9.975 13.125 10.5 13.125H14V10.5C14 7.6125 15.4875 5.25 18.375 5.25H21.875C22.4 5.25 22.75 5.6 22.75 6.125V8.75C22.75 9.275 22.4 9.625 21.875 9.625H18.55C18.4625 9.625 18.375 9.7125 18.375 9.8V13.125H22.75C23.0125 13.125 23.275 13.3 23.45 13.475C23.625 13.65 23.625 14 23.5375 14.2625L21.7875 16.8875C21.7 17.325 21.35 17.5 21 17.5H18.375V28H20.125C24.5 28 28 24.5 28 20.125V7.875C28 3.5 24.5 0 20.125 0Z" fill="#4C31AF"/>
+              </svg>
             </a>
             <a 
               href="https://www.instagram.com/sumouadv?igsh=eGR5YjJ4NXVrcXEw&utm_source=qr" 
               target="_blank" 
               rel="noopener noreferrer"
             >
-              <img className="flex-none w-12 h-12 lg:w-auto lg:h-auto hover:scale-110 hover:opacity-80 transition-all duration-300 cursor-pointer" alt="Instagram" src={insta} />
+              <svg className="flex-none w-8 h-8 md:w-12 md:h-12 lg:w-auto lg:h-auto hover:scale-110 hover:opacity-80 transition-all duration-300 cursor-pointer" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.8759 0H8.13805C3.03951 0 0 3.038 0 8.134V19.852C0 24.962 3.03951 28 8.13805 28H19.8619C24.9604 28 28 24.962 28 19.866V8.134C28.014 3.038 24.9744 0 19.8759 0ZM14.007 19.432C11.0095 19.432 8.57227 16.996 8.57227 14C8.57227 11.004 11.0095 8.568 14.007 8.568C17.0045 8.568 19.4417 11.004 19.4417 14C19.4417 16.996 17.0045 19.432 14.007 19.432ZM22.2991 6.832C22.2291 7 22.131 7.154 22.005 7.294C21.8649 7.42 21.7108 7.518 21.5427 7.588C21.3746 7.658 21.1926 7.7 21.0105 7.7C20.6323 7.7 20.2821 7.56 20.016 7.294C19.8899 7.154 19.7919 7 19.7218 6.832C19.6518 6.664 19.6098 6.482 19.6098 6.3C19.6098 6.118 19.6518 5.936 19.7218 5.768C19.7919 5.586 19.8899 5.446 20.016 5.306C20.3381 4.984 20.8284 4.83 21.2766 4.928C21.3747 4.942 21.4587 4.97 21.5427 5.012C21.6268 5.04 21.7108 5.082 21.7949 5.138C21.8649 5.18 21.9349 5.25 22.005 5.306C22.131 5.446 22.2291 5.586 22.2991 5.768C22.3691 5.936 22.4112 6.118 22.4112 6.3C22.4112 6.482 22.3691 6.664 22.2991 6.832Z" fill="#4C31AF"/>
+              </svg>
             </a>
             <a 
               href="https://www.tiktok.com/@sumouadv?_t=ZS-8yDkNthXzRB&_r=1" 
               target="_blank" 
               rel="noopener noreferrer"
             >
-              <TikTokIcon className="flex-none w-[60px] h-auto lg:w-auto lg:h-auto rounded-full hover:scale-110 hover:opacity-80 transition-all duration-300 cursor-pointer" />
+              <TikTokIcon className="flex-none w-[40px] h-auto lg:w-auto lg:h-auto rounded-full hover:scale-110 hover:opacity-80 transition-all duration-300 cursor-pointer" />
             </a>
           </div>
           
