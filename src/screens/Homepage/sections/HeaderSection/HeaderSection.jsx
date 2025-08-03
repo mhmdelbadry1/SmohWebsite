@@ -118,7 +118,7 @@ export const HeaderSection = () => {
             {/* Logo */}
             <div className="flex-shrink-0 mx-10">
               <img
-                src="/logo 1 1.png"
+                src="/logo.png"
                 alt="Sumou Logo"
                 className="w-[100px] h-[60px] object-contain transition-transform duration-300 hover:scale-110"
               />
