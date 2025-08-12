@@ -36,7 +36,7 @@ function App() {
     : "visual identity, branding, advertising, content creation, creative consulting, brand design, marketing, Sumou";
 
   const title = isArabic 
-    ? "موقع سمو - نحن نشكل هويتك" 
+    ? "موقع سمو - نحن نجسد هويتك" 
     : "Sumou Website - We Shape Your Identity";
 
   return (

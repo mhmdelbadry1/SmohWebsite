@@ -12,20 +12,27 @@ export const ContactPage = () => {
     subject: "",
     message: "",
   });
-  
+
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState({ text: '', type: '' });
+  const [message, setMessage] = useState({ text: "", type: "" });
+  const [showToast, setShowToast] = useState(false); // New: controls opacity animation of the toast
 
   const lang = useTranslation().i18n.language; // Get the current language
 
-  // Auto-hide message after 5 seconds
+  // Auto-hide message after 5 seconds with fade in/out
   useEffect(() => {
     if (message.text) {
-      const timer = setTimeout(() => {
-        setMessage({ text: '', type: '' });
+      // start fade-in
+      setShowToast(true);
+      // start fade-out a bit before removal
+      const hideTimer = setTimeout(() => setShowToast(false), 4500);
+      const clearTimer = setTimeout(() => {
+        setMessage({ text: "", type: "" });
       }, 5000);
-
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(hideTimer);
+        clearTimeout(clearTimer);
+      };
     }
   }, [message.text]);
 
@@ -38,14 +45,19 @@ export const ContactPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Basic validation
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim()
+    ) {
       setMessage({
-        text: lang === 'ar' 
-          ? 'يرجى ملء جميع الحقول المطلوبة (الاسم، البريد الإلكتروني، الرسالة)' 
-          : 'Please fill in all required fields (Name, Email, Message)',
-        type: 'error'
+        text:
+          lang === "ar"
+            ? "يرجى ملء جميع الحقول المطلوبة (الاسم، البريد الإلكتروني، الرسالة)"
+            : "Please fill in all required fields (Name, Email, Message)",
+        type: "error",
       });
       return;
     }
@@ -54,26 +66,28 @@ export const ContactPage = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       setMessage({
-        text: lang === 'ar' 
-          ? 'يرجى إدخال بريد إلكتروني صحيح' 
-          : 'Please enter a valid email address',
-        type: 'error'
+        text:
+          lang === "ar"
+            ? "يرجى إدخال بريد إلكتروني صحيح"
+            : "Please enter a valid email address",
+        type: "error",
       });
       return;
     }
 
     setIsLoading(true);
-    setMessage({ text: '', type: '' });
+    setMessage({ text: "", type: "" });
 
     try {
       const result = await sendEmail(formData, false); // false = not consultation
 
       if (result.success) {
         setMessage({
-          text: lang === 'ar' 
-            ? 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً' 
-            : 'Your message has been sent successfully! We will contact you soon',
-          type: 'success'
+          text:
+            lang === "ar"
+              ? "تم إرسال رسالتك بنجاح! سنتواصل معك قريباً"
+              : "Your message has been sent successfully! We will contact you soon",
+          type: "success",
         });
         // Reset form
         setFormData({
@@ -87,12 +101,13 @@ export const ContactPage = () => {
         throw new Error(result.error);
       }
     } catch (error) {
-      console.error('Contact form submission failed:', error);
+      console.error("Contact form submission failed:", error);
       setMessage({
-        text: lang === 'ar' 
-          ? 'حدث خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى' 
-          : 'An error occurred while sending your message. Please try again',
-        type: 'error'
+        text:
+          lang === "ar"
+            ? "حدث خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى"
+            : "An error occurred while sending your message. Please try again",
+        type: "error",
       });
     } finally {
       setIsLoading(false);
@@ -153,8 +168,7 @@ export const ContactPage = () => {
                   <div
                     className="absolute bottom-0 w-full h-48   scale-[1.5]  lg:scale-[2] bg-bottom bg-cover z-0"
                     style={{
-                      backgroundImage:
-                        "url('/rectangle-1471.png')",
+                      backgroundImage: "url('/rectangle-1471.png')",
                       maskImage:
                         "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
                       WebkitMaskImage:
@@ -164,8 +178,7 @@ export const ContactPage = () => {
                   <div
                     className="absolute bottom-0 w-full h-48   bg-bottom bg-cover scale-[1.5]  lg:scale-[2] z-10"
                     style={{
-                      backgroundImage:
-                        "url('/shape-1.png')",
+                      backgroundImage: "url('/shape-1.png')",
                       backgroundRepeat: "no-repeat",
                       maskImage:
                         "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
@@ -449,10 +462,11 @@ export const ContactPage = () => {
                       className="w-auto bg-[#4C31AF] hover:bg-[#3d2790] disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium h-12 py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
                     >
                       <span>
-                        {isLoading 
-                          ? (lang === 'ar' ? 'جارٍ الإرسال...' : 'Sending...') 
-                          : t("contact.form.submit")
-                        }
+                        {isLoading
+                          ? lang === "ar"
+                            ? "جارٍ الإرسال..."
+                            : "Sending..."
+                          : t("contact.form.submit")}
                       </span>
                       {!isLoading && (
                         <svg
@@ -475,17 +489,6 @@ export const ContactPage = () => {
                         </svg>
                       )}
                     </button>
-
-                    {/* Success/Error Message */}
-                    {message.text && (
-                      <div className={`mt-4 p-4 rounded-lg text-center text-sm transition-all duration-500 ease-in-out transform ${
-                        message.type === 'success' 
-                          ? 'bg-green-100 text-green-800 border border-green-200' 
-                          : 'bg-red-100 text-red-800 border border-red-200'
-                      } ${message.text ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2'}`}>
-                        {message.text}
-                      </div>
-                    )}
                   </form>
                 </div>
               </div>
@@ -493,6 +496,27 @@ export const ContactPage = () => {
           </section>
         </div>
       </div>
+
+      {/* Global fixed toast with opacity animation */}
+      {message.text && (
+        <div
+          className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] w-full max-w-md px-4 pointer-events-none transition-opacity duration-300 ${
+            showToast ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div
+            role="alert"
+            aria-live="assertive"
+            className={`p-4 rounded-lg shadow-lg text-center text-sm transition-colors duration-300 ${
+              message.type === "success"
+                ? "bg-green-600 text-white"
+                : "bg-red text-white"
+            }`}
+          >
+            {message.text}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

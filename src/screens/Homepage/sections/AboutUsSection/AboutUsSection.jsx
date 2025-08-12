@@ -248,7 +248,7 @@ export const AboutUsSection = () => {
         animate={cardControls}
       >
         <Card
-          className="w-full max-w-[320px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1000px] h-[200px] min-h-[325px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] border border-solid p-0 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] rounded-[16px] opacity-100 mx-4"
+          className="w-full max-w-[310px] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[750px] xl:max-w-[850px] h-[200px] min-h-[325px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[500px] border border-solid p-0 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] rounded-[16px] opacity-100 mx-4"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -262,7 +262,7 @@ export const AboutUsSection = () => {
               animate={imageControls}
             >
               <img
-                className="w-full max-w-[240px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[500px] h-auto object-contain"
+                className="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[500px] h-auto object-contain"
                 alt="Sumou logo"
                 src={AboutUsImage}
               />

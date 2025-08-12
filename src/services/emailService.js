@@ -1,36 +1,36 @@
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 
 // Initialize EmailJS
-emailjs.init("y68GP5CuCxzZNtsp6"); 
+emailjs.init("y68GP5CuCxzZNtsp6");
 
 export const sendEmail = async (formData, isConsult = false) => {
   try {
     // Validate required email field
     if (!formData.email || !formData.email.trim()) {
-      throw new Error('Email is required');
+      throw new Error("Email is required");
     }
 
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email.trim())) {
-      throw new Error('Invalid email format');
+      throw new Error("Invalid email format");
     }
 
-    console.log('Sending email with data:', {
+    console.log("Sending email with data:", {
       email: formData.email,
       name: formData.name,
-      isConsult: isConsult
+      isConsult: isConsult,
     });
 
     // Get current date and time in Arabic format
     const now = new Date();
-    const arabicTime = now.toLocaleString('ar-SA', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true
+    const arabicTime = now.toLocaleString("ar-SA", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
     });
 
     // Prepare email template content based on consultation or contact form
@@ -262,15 +262,20 @@ export const sendEmail = async (formData, isConsult = false) => {
         <div class="content">
             <div class="greeting">السلام عليكم ورحمة الله وبركاته،</div>
             <p class="notification-text">
-                ${isConsult ? 
-                    'تم تسجيل طلب استشارة جديد من عميل محتمل عبر موقع الشركة الإلكتروني.' : 
-                    'تم تسجيل طلب تواصل جديد من عميل محتمل عبر موقع الشركة الإلكتروني. نرجو التواصل مع العميل في أقرب وقت ممكن لتقديم أفضل خدمة.'
+                ${
+                  isConsult
+                    ? "تم تسجيل طلب استشارة جديد من عميل محتمل عبر موقع الشركة الإلكتروني."
+                    : "تم تسجيل طلب تواصل جديد من عميل محتمل عبر موقع الشركة الإلكتروني. نرجو التواصل مع العميل في أقرب وقت ممكن لتقديم أفضل خدمة."
                 }
             </p>
-            ${formData.email ? `
+            ${
+              formData.email
+                ? `
             <div class="message-container">
                 <div class="client-info">
-                    <h3>${isConsult ? 'بيانات طلب الاستشارة:' : 'بيانات العميل:'}</h3>
+                    <h3>${
+                      isConsult ? "بيانات طلب الاستشارة:" : "بيانات العميل:"
+                    }</h3>
                     <div class="info-row">
                         <span class="label">البريد الإلكتروني:</span>
                         <span class="value">${formData.email}</span>
@@ -279,34 +284,56 @@ export const sendEmail = async (formData, isConsult = false) => {
                         <span class="label">تاريخ الطلب:</span>
                         <span class="value">${arabicTime}</span>
                     </div>
-                    ${!isConsult ? `
+                    ${
+                      !isConsult
+                        ? `
                     <div class="info-row">
                         <span class="label">الاسم:</span>
-                        <span class="value">${formData.name || 'عميل جديد'}</span>
+                        <span class="value">${
+                          formData.name || "عميل جديد"
+                        }</span>
                     </div>
-                    ${formData.phone ? `
+                    ${
+                      formData.phone
+                        ? `
                     <div class="info-row">
                         <span class="label">رقم الهاتف:</span>
-                        <span class="value phone-ltr">${formData.phone || 'غير محدد'}</span>
+                        <span class="value phone-ltr">${
+                          formData.phone || "غير محدد"
+                        }</span>
                     </div>
-                    ` : ''}
+                    `
+                        : ""
+                    }
                     <div class="info-row">
                         <span class="label">الموضوع:</span>
-                        <span class="value">${formData.subject || 'غير محدد'}</span>
+                        <span class="value">${
+                          formData.subject || "غير محدد"
+                        }</span>
                     </div>
                     <div class="info-row">
                         <span class="label">الرسالة:</span>
-                        <span class="value">${formData.message || 'غير محدد'}</span>
+                        <span class="value">${
+                          formData.message || "غير محدد"
+                        }</span>
                     </div>
-                    ` : ''}
+                    `
+                        : ""
+                    }
                 </div>
             </div>
-            ${!isConsult ? `
+            ${
+              !isConsult
+                ? `
             <div style="text-align: center;">
                 <a href="mailto:${formData.email}" class="action-button">التواصل مع العميل</a>
             </div>
-            ` : ''}
-            ` : ''}
+            `
+                : ""
+            }
+            `
+                : ""
+            }
             <div class="signature">
                 <p class="signature-text">مع أطيب التحيات،</p>
                 <p class="company-signature">فريق شركة سمو للدعاية والإعلان</p>
@@ -319,10 +346,11 @@ export const sendEmail = async (formData, isConsult = false) => {
                 الرجاء عدم الرد على هذا البريد مباشرة.
             </p>
             <div class="contact-info">
-                للاستفسارات: <a href="mailto:sumouadvco@gmail.com">sumouadvco@gmail.com</a> | 
+                للاستفسارات: <a href="mailto:sumouadvco@gmail.com">sumouadvco@gmail.com</a> |
+                <br/> 
                 الهاتف: <a href="tel:+966551355968" class="phone-ltr">+966 55 135 5968</a>
-                <br>
-                موقعنا الإلكتروني: <a href="https://sumoadvertising.com">www.sumoadvertising.com</a>
+                <br/>
+                موقعنا الإلكتروني: <a href="https://sumouadvs.com">www.sumoadvertising.com</a>
             </div>
         </div>
     </div>
@@ -331,39 +359,56 @@ export const sendEmail = async (formData, isConsult = false) => {
     `;
 
     // Send company notification email
-    const companyEmailResult = await emailjs.send("service_z6kq1xi", "template_0o7x8vp", {
-      title: `${isConsult ? 'طلب استشارة جديد' : `رسالة جديدة من ${formData.name || 'عميل جديد'}`}`,
-      time: arabicTime,
-      name: formData.name || 'عميل جديد',
-      phone: formData.phone || 'غير محدد',
-      subject: formData.subject || 'غير محدد',
-      message: isConsult ? 'طلب استشارة من العميل' : formData.message || 'غير محدد',
-      html_content: emailTemplate,
-      to_email: "sumouadvco@gmail.com",
-      company_email: "sumouadvco@gmail.com"
-    });
+    const companyEmailResult = await emailjs.send(
+      "service_bwq67lv",
+      "template_nwee5q6",
+      {
+        title: `${
+          isConsult
+            ? "طلب استشارة جديد"
+            : `رسالة جديدة من ${formData.name || "عميل جديد"}`
+        }`,
+        time: arabicTime,
+        name: formData.name || "عميل جديد",
+        phone: formData.phone || "غير محدد",
+        subject: formData.subject || "غير محدد",
+        message: isConsult
+          ? "طلب استشارة من العميل"
+          : formData.message || "غير محدد",
+        html_content: emailTemplate,
+        to_email: "sumouadvco@gmail.com",
+        company_email: "sumouadvco@gmail.com",
+      }
+    );
 
-    console.log('Company email sent successfully:', companyEmailResult);
+    console.log("Company email sent successfully:", companyEmailResult);
 
     // Send client confirmation email for both consultation and contact form
     let clientEmailResult = null;
     if (formData.email) {
       try {
-        clientEmailResult = await emailjs.send("service_z6kq1xi", "template_v5lh8oh", {
-          time: arabicTime,
-          name: formData.name || 'العميل الكريم',
-          to_email: formData.email,
-          client_email: formData.email,
-          from_name: "شركة سمو للدعاية والإعلان",
-          subject: isConsult ? 'شكراً لطلب الاستشارة' : 'شكراً لتواصلك معنا'
-        });
-        console.log('Client confirmation email sent successfully:', clientEmailResult);
+        clientEmailResult = await emailjs.send(
+          "service_bwq67lv",
+          "template_rn7m60j",
+          {
+            time: arabicTime,
+            name: formData.name || "العميل الكريم",
+            to_email: formData.email,
+            client_email: formData.email,
+            from_name: "شركة سمو للدعاية والإعلان",
+            subject: isConsult ? "شكراً لطلب الاستشارة" : "شكراً لتواصلك معنا",
+          }
+        );
+        console.log(
+          "Client confirmation email sent successfully:",
+          clientEmailResult
+        );
       } catch (clientError) {
-        console.error('Failed to send client confirmation email:', clientError);
-        console.error('Client Error Details:', {
+        console.error("Failed to send client confirmation email:", clientError);
+        console.error("Client Error Details:", {
           status: clientError.status,
           text: clientError.text,
-          message: clientError.message
+          message: clientError.message,
         });
         // Don't throw error here, just log it
       }
@@ -373,24 +418,25 @@ export const sendEmail = async (formData, isConsult = false) => {
       success: true,
       companyEmail: companyEmailResult,
       clientEmail: clientEmailResult,
-      message: clientEmailResult ? 'تم إرسال الرسالة وإرسال تأكيد للعميل بنجاح' : 'تم إرسال الرسالة للشركة ولكن فشل في إرسال تأكيد للعميل'
+      message: clientEmailResult
+        ? "تم إرسال الرسالة وإرسال تأكيد للعميل بنجاح"
+        : "تم إرسال الرسالة للشركة ولكن فشل في إرسال تأكيد للعميل",
     };
-
   } catch (error) {
-    console.error('Email sending failed:', error);
-    
+    console.error("Email sending failed:", error);
+
     // More detailed error logging
     if (error.text) {
-      console.error('EmailJS Error Details:', error.text);
+      console.error("EmailJS Error Details:", error.text);
     }
     if (error.status) {
-      console.error('EmailJS Status:', error.status);
+      console.error("EmailJS Status:", error.status);
     }
-    
+
     return {
       success: false,
       error: error.message,
-      details: error.text || 'خطأ غير معروف في إرسال البريد الإلكتروني'
+      details: error.text || "خطأ غير معروف في إرسال البريد الإلكتروني",
     };
   }
 };
