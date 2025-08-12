@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 const AboutUsImage = "/AboutUs.png";
@@ -13,7 +13,7 @@ export const AboutUsSection = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [typedText, setTypedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
-  
+
   // Animation controls
   const headerControls = useAnimation();
   const cardControls = useAnimation();
@@ -26,45 +26,50 @@ export const AboutUsSection = () => {
     triggerOnce: false,
   });
 
-  const fullText = t('about.description');
+  const fullText = t("about.description");
   const currentLanguage = i18n.language;
 
   // Define highlighted words for each language
   const highlightedWords = {
     en: {
       1: { start: 34, end: 87 }, // "visual identity design, advertising content creation"
-      2: { start: 92, end: 111 } // "creative consultancy"
+      2: { start: 92, end: 111 }, // "creative consultancy"
     },
     ar: {
-      1: { start: 20, end: 57 }, 
-      2: { start: 57, end: 96 } 
-    }
+      1: { start: 20, end: 57 },
+      2: { start: 57, end: 96 },
+    },
   };
 
   // Function to get highlighted segments based on current language
   const getHighlightedSegments = (text) => {
     if (!text) return [];
-    
+
     const highlights = highlightedWords[currentLanguage] || highlightedWords.en;
-    
+
     const segments = [];
     let lastIndex = 0;
-    
+
     // Sort highlights by start position to ensure proper order
-    const sortedHighlights = Object.values(highlights).sort((a, b) => a.start - b.start);
-    
+    const sortedHighlights = Object.values(highlights).sort(
+      (a, b) => a.start - b.start
+    );
+
     sortedHighlights.forEach((highlight) => {
       // Add text before highlight (if any)
       if (highlight.start > lastIndex && lastIndex < text.length) {
-        const beforeText = text.slice(lastIndex, Math.min(highlight.start, text.length));
+        const beforeText = text.slice(
+          lastIndex,
+          Math.min(highlight.start, text.length)
+        );
         if (beforeText) {
           segments.push({
             text: beforeText,
-            isHighlighted: false
+            isHighlighted: false,
           });
         }
       }
-      
+
       // Add highlighted text (if current text length covers this highlight)
       if (text.length > highlight.start) {
         const highlightEnd = Math.min(highlight.end, text.length);
@@ -72,24 +77,24 @@ export const AboutUsSection = () => {
         if (highlightText) {
           segments.push({
             text: highlightText,
-            isHighlighted: true
+            isHighlighted: true,
           });
         }
         lastIndex = highlightEnd;
       }
     });
-    
+
     // Add remaining text after all highlights
     if (lastIndex < text.length) {
       const remainingText = text.slice(lastIndex);
       if (remainingText) {
         segments.push({
           text: remainingText,
-          isHighlighted: false
+          isHighlighted: false,
         });
       }
     }
-    
+
     return segments;
   };
 
@@ -147,9 +152,9 @@ export const AboutUsSection = () => {
       transition: {
         duration: 0.8,
         ease: "easeOut",
-        staggerChildren: 0.3
-      }
-    }
+        staggerChildren: 0.3,
+      },
+    },
   };
 
   const cardVariants = {
@@ -161,9 +166,9 @@ export const AboutUsSection = () => {
       transition: {
         duration: 1,
         ease: "easeOut",
-        delay: 0.4
-      }
-    }
+        delay: 0.4,
+      },
+    },
   };
 
   const imageVariants = {
@@ -175,9 +180,9 @@ export const AboutUsSection = () => {
       transition: {
         duration: 0.4,
         ease: "easeOut",
-        delay: 0.5
-      }
-    }
+        delay: 0.5,
+      },
+    },
   };
 
   const buttonVariants = {
@@ -189,51 +194,51 @@ export const AboutUsSection = () => {
       transition: {
         duration: 0.6,
         ease: "easeOut",
-        delay: 1.2 + i * 0.2
-      }
-    })
+        delay: 1.2 + i * 0.2,
+      },
+    }),
   };
 
   // Navigation handlers
   const handleServicesClick = () => {
-    navigate('/services');
+    navigate("/services");
   };
 
   const handleContactClick = () => {
-    navigate('/contact');
+    navigate("/contact");
   };
 
   return (
-    <motion.section 
+    <motion.section
       ref={sectionRef}
       className="w-full flex flex-col items-center gap-4 sm:gap-6 md:gap-8 py-8 sm:py-12 md:py-16 lg:py-20 bg-white px-2 sm:px-4 md:px-6 lg:px-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: inView ? 1 : 0 }}
       transition={{ duration: 0.5 }}
     >
-      <motion.header 
+      <motion.header
         className="flex flex-col items-center gap-2 sm:gap-3 md:gap-4 w-full max-w-4xl mx-auto"
         variants={headerVariants}
         initial="hidden"
         animate={headerControls}
       >
-        <motion.h2 
+        <motion.h2
           className="font-['Poppins',Helvetica] font-semibold text-black text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] xl:text-[56px] text-center"
           variants={{
             hidden: { opacity: 0, y: -30 },
-            visible: { opacity: 1, y: 0 }
+            visible: { opacity: 1, y: 0 },
           }}
         >
-          {t('about.title')}
+          {t("about.title")}
         </motion.h2>
-        <motion.p 
+        <motion.p
           className="opacity-75 font-['Poppins',Helvetica] text-sm sm:text-base md:text-lg lg:text-xl text-center font-normal text-black px-4"
           variants={{
             hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 }
+            visible: { opacity: 1, y: 0 },
           }}
         >
-          {t('about.subtitle')}
+          {t("about.subtitle")}
         </motion.p>
       </motion.header>
 
@@ -257,15 +262,17 @@ export const AboutUsSection = () => {
               animate={imageControls}
             >
               <img
-                className="w-full max-w-[280px] sm:max-w-[400px] md:max-w-[600px] lg:max-w-[800px] h-auto object-contain"
+                className="w-full max-w-[240px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[500px] h-auto object-contain"
                 alt="Sumou logo"
                 src={AboutUsImage}
               />
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className={`font-['Poppins',Helvetica] font-normal text-black text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[22px] leading-[18px] sm:leading-[22px] md:leading-[26px] lg:leading-[30px] xl:leading-[35px] text-left w-full px-2 sm:px-4 ${
-                currentLanguage === 'ar' ? 'text-right dir-rtl' : 'text-left dir-ltr'
+                currentLanguage === "ar"
+                  ? "text-right dir-rtl"
+                  : "text-left dir-ltr"
               }`}
               initial={{ opacity: 0 }}
               animate={{ opacity: inView ? 1 : 0 }}
@@ -274,9 +281,10 @@ export const AboutUsSection = () => {
               {getHighlightedSegments(typedText).map((segment, index) => (
                 <span
                   key={index}
-                  className={segment.isHighlighted 
-                    ? "font-bold text-purple text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[22px] leading-[18px] sm:leading-[22px] md:leading-[26px] lg:leading-[30px] xl:leading-[35px] hover:scale-105 transition-transform duration-300"
-                    : "font-light"
+                  className={
+                    segment.isHighlighted
+                      ? "font-bold text-purple text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] xl:text-[22px] leading-[18px] sm:leading-[22px] md:leading-[26px] lg:leading-[30px] xl:leading-[35px] hover:scale-105 transition-transform duration-300"
+                      : "font-light"
                   }
                 >
                   {segment.text}
@@ -291,7 +299,7 @@ export const AboutUsSection = () => {
               )}
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="flex flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6 w-full flex-wrap"
               variants={buttonVariants}
               initial="hidden"
@@ -306,11 +314,11 @@ export const AboutUsSection = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 className="flex-shrink-0"
               >
-                <Button 
+                <Button
                   className="bg-purple text-white px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 rounded-xl font-['Alexandria',Helvetica] font-medium text-xs sm:text-sm md:text-base lg:text-lg tracking-[0.18px] leading-6 hover:bg-purple/90 transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap"
                   onClick={handleServicesClick}
                 >
-                  {t('about.ourServices')}
+                  {t("about.ourServices")}
                 </Button>
               </motion.div>
               <motion.div
@@ -327,7 +335,7 @@ export const AboutUsSection = () => {
                   className="bg-white border-[#4c31af] text-purple px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 rounded-xl font-['Alexandria',Helvetica] font-medium text-xs sm:text-sm md:text-base lg:text-lg tracking-[0.18px] leading-6 hover:bg-purple hover:text-white transition-all duration-300 whitespace-nowrap"
                   onClick={handleContactClick}
                 >
-                  {t('about.contactUs')}
+                  {t("about.contactUs")}
                 </Button>
               </motion.div>
             </motion.div>

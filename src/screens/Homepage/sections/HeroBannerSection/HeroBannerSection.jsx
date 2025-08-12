@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { useTranslation } from 'react-i18next';
-const highlight = "/Sketch-annotation-element-stroke-abstract-highlight-bling-line-1.png";
+import { useTranslation } from "react-i18next";
+const highlight =
+  "/Sketch-annotation-element-stroke-abstract-highlight-bling-line-1.png";
 const bezierDesign = "/bezier-design.png";
 const facebookIcon = "/facebook-svgrepo-com 1.png";
 const Star = "/subtract.png";
@@ -10,8 +11,8 @@ const Idea = "/idea.png";
 // import BrushLine from "../../imgs/3.png";
 // import Brush from "../../imgs/brush.png";
 const Snapchat = "/snapchat-svgrepo-com 1.png";
-const Heart = '/love-svgrepo-com 1.png';
-const Instagram = '/instagram 1.png';
+const Heart = "/love-svgrepo-com 1.png";
+const Instagram = "/instagram 1.png";
 
 export const HeroBannerSection = () => {
   const { t, i18n } = useTranslation();
@@ -39,8 +40,7 @@ export const HeroBannerSection = () => {
   }, []);
 
   return (
-    <section className="relative w-full 2xl:min-h-[1280px] h-auto py-8 sm:py-12 md:py-16 lg:py-20 flex flex-col items-center justify-center bg-white overflow-hidden">
-
+    <section className="relative w-full  h-auto py-8 sm:py-12 md:py-16 lg:py-20 flex flex-col items-center justify-center bg-white overflow-hidden">
       <div className="absolute top-0 left-0 w-[650px] lg:w-[480px] max-w-[800px] hidden xl:block h-full pointer-events-none transition-all duration-1000">
         <svg
           className="absolute top-0 left-0 w-full h-full"
@@ -63,10 +63,22 @@ export const HeroBannerSection = () => {
             <image href={Star} x="15%" y="0" width="25%" height="25%" />
           </g>
           <g className="animate-icon-facebook">
-            <image href={facebookIcon} x="25%" y="33%" width="25%" height="25%" />
+            <image
+              href={facebookIcon}
+              x="25%"
+              y="33%"
+              width="25%"
+              height="25%"
+            />
           </g>
           <g className="animate-icon-bezier">
-            <image href={bezierDesign} x="15%" y="60%" width="35%" height="35%" />
+            <image
+              href={bezierDesign}
+              x="15%"
+              y="60%"
+              width="35%"
+              height="35%"
+            />
           </g>
         </svg>
       </div>
@@ -108,7 +120,11 @@ export const HeroBannerSection = () => {
       >
         <div className="flex flex-col items-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 mt-0 relative w-full">
           <div className="absolute w-auto h-auto left-[2%] md:left-[4%] lg:left-[6%] top-[-40px] sm:top-[-50px] md:top-[-60px] lg:top-[-70px] xl:top-[-90px] animate-icon-entrance-idea z-20">
-            <img src={Idea} alt="Idea" className="w-[30px] sm:w-[50px] md:w-[70px] lg:w-[90px] xl:w-[130px] h-auto animate-float-idea" />
+            <img
+              src={Idea}
+              alt="Idea"
+              className="w-[30px] sm:w-[50px] md:w-[70px] lg:w-[90px] xl:w-[130px] h-auto animate-float-idea"
+            />
           </div>
           <img
             src={highlight}
@@ -116,20 +132,29 @@ export const HeroBannerSection = () => {
             className="absolute opacity-[80%] top-[-30px] sm:top-[-40px] md:top-[-60px] lg:top-[-80px] h-auto w-[40px] sm:w-[70px] md:w-[90px] lg:w-[110px] right-[-5px] sm:right-[-10px] z-10 animate-glow-black"
           />
           <h1 className="max-w-full font-['Poppins'] font-bold text-[20px] sm:text-[32px] md:text-[48px] lg:text-[60px] xl:text-[65px] text-[#1F1F1F] text-center leading-[120%] sm:leading-[125%] md:leading-[130%] lg:leading-[135%] tracking-[0] animate-fade-in">
-            {t('hero.title')} <span className={i18n.language === 'ar' ? "text-[#4C31AF]" : "text-[#1F1F1F]"}>{t('hero.titleHighlight')}</span>
+            {t("hero.title")}{" "}
+            <span
+              className={
+                i18n.language === "ar" ? "text-[#4C31AF]" : "text-[#1F1F1F]"
+              }
+            >
+              {t("hero.titleHighlight")}
+            </span>
             <br />
-            {t('hero.subtitle')}{" "}
-              <br />
+            {t("hero.subtitle")} <br />
             <span className="relative ">
-              {t('hero.speaks')}{"  "}
+              {t("hero.speaks")}
+              {"  "}
             </span>
             <span className="relative inline-block">
-              {t('hero.creatively')}
-              <span className={`absolute left-1/2 top-1/2 -translate-x-[52%] -translate-y-1/2 pointer-events-none z-[-1] ${
-                i18n.language === 'ar' 
-                  ? 'w-[110%] sm:w-[120%] md:w-[350%] lg:w-[400%] h-[90%] sm:h-[100%] md:h-[100%]' 
-                  : 'w-[140%] sm:w-[180%] md:w-[400%] lg:w-[480%] h-[170%] sm:h-[155%] md:h-[140%]'
-              }`}>
+              {t("hero.creatively")}
+              <span
+                className={`absolute left-1/2 top-1/2 -translate-x-[52%] -translate-y-1/2 pointer-events-none z-[-1] ${
+                  i18n.language === "ar"
+                    ? "w-[110%] sm:w-[120%] md:w-[350%] lg:w-[400%] h-[90%] sm:h-[100%] md:h-[100%]"
+                    : "w-[140%] sm:w-[180%] md:w-[400%] lg:w-[480%] h-[170%] sm:h-[155%] md:h-[140%]"
+                }`}
+              >
                 <svg
                   viewBox="0 0 2500 1000"
                   fill="none"
@@ -148,8 +173,7 @@ export const HeroBannerSection = () => {
                       transformOrigin: "center",
                       filter: "drop-shadow(0px 3px 6px rgba(233, 30, 99, 0.4))",
                     }}
-                  >
-                  </path>
+                  ></path>
                 </svg>
               </span>
             </span>
@@ -158,9 +182,9 @@ export const HeroBannerSection = () => {
       </div>
 
       <div className="max-w-[350px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1000px] opacity-75 font-['Poppins'] text-[10px] sm:text-[14px] md:text-[18px] lg:text-[20px] xl:text-[21px] text-center leading-[140%] sm:leading-[145%] md:leading-[150%] lg:leading-[155%] font-normal text-[#1F1F1F] tracking-[0] animate-fade-in-delay px-4 sm:px-6 md:px-8 mb-8 sm:mb-12 md:mb-16">
-        <p className="mb-1 sm:mb-2">{t('hero.welcomeMessage')}</p>
-        <p className="mb-1 sm:mb-2">{t('hero.startingPoint')}</p>
-        <p>{t('hero.missionStatement')}</p>
+        <p className="mb-1 sm:mb-2">{t("hero.welcomeMessage")}</p>
+        <p className="mb-1 sm:mb-2">{t("hero.startingPoint")}</p>
+        <p>{t("hero.missionStatement")}</p>
       </div>
 
       <style>{`
