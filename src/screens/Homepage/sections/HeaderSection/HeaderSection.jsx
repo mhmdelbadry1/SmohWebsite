@@ -261,7 +261,7 @@ export const HeaderSection = () => {
           <video
             src="/logo-video/logo.mp4"
             alt="Sumou Logo"
-            className="w-[140px] h-auto mb-8 object-contain"
+            className="w-[10px] sm:w-[140px] h-auto mb-8 object-contain"
             autoPlay
             loop
             muted
