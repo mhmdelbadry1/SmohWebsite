@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../../../contexts/LanguageContext";
 import { Button } from "../../../../components/ui/button";
 
@@ -62,12 +62,32 @@ export const HeaderSection = () => {
   }, [isMobileMenuOpen]);
 
   const allNavItems = [
-    { text: t('header.home'), path: "/", active: activeSection === "Home" },
-    { text: t('header.about'), path: "/about", active: activeSection === "About Us" },
-    { text: t('header.services'), path: "/services", active: activeSection === "Our Services" },
-    { text: t('header.testimonials'), path: "/testimonials", active: activeSection === "Testimonials" },
-    { text: t('header.projects'), path: "/projects", active: activeSection === "Our Projects" },
-    { text: t('header.contact'), path: "/contact", active: activeSection === "Contact Us" },
+    { text: t("header.home"), path: "/", active: activeSection === "Home" },
+    {
+      text: t("header.about"),
+      path: "/about",
+      active: activeSection === "About Us",
+    },
+    {
+      text: t("header.services"),
+      path: "/services",
+      active: activeSection === "Our Services",
+    },
+    {
+      text: t("header.testimonials"),
+      path: "/testimonials",
+      active: activeSection === "Testimonials",
+    },
+    {
+      text: t("header.projects"),
+      path: "/projects",
+      active: activeSection === "Our Projects",
+    },
+    {
+      text: t("header.contact"),
+      path: "/contact",
+      active: activeSection === "Contact Us",
+    },
   ];
 
   const leftNavItems = allNavItems.slice(0, 3);
@@ -88,11 +108,8 @@ export const HeaderSection = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
           isMobileMenuOpen ? "hidden" : ""
-        } ${
-          isScrolled
-            ? "bg-white  shadow-lg"
-            : "bg-transparent"
-        }`}>
+        } ${isScrolled ? "bg-white  shadow-lg" : "bg-transparent"}`}
+      >
         <nav className="container flex items-center justify-between h-[80px] sm:h-[100px] px-4">
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-center w-full">
@@ -106,7 +123,8 @@ export const HeaderSection = () => {
                     item.active
                       ? "font-semibold text-[#1F1F1F]"
                       : "font-normal text-[#1F1F1F]"
-                  }`}>
+                  }`}
+                >
                   {item.text}
                   {item.active && (
                     <div className="absolute -bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-[#FF3333] to-[#FF6666] rounded-full shadow" />
@@ -116,11 +134,20 @@ export const HeaderSection = () => {
             </div>
 
             {/* Logo */}
-            <div className="flex-shrink-0 mx-10">
-              <img
-                src="/logo.png"
+            <div className="flex-shrink-0 mx-[-20px]">
+              <video
+                src="/logo-video/logo.webm"
                 alt="Sumou Logo"
-                className="w-[100px] h-[60px] object-contain transition-transform duration-300 hover:scale-110"
+                className="w-[300px] h-[300px] object-contain transition-transform duration-300 hover:scale-110"
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  backgroundColor: "transparent",
+                  mixBlendMode: "multiply",
+                  filter: "contrast(1.2) brightness(1.1)",
+                }}
               />
             </div>
 
@@ -134,7 +161,8 @@ export const HeaderSection = () => {
                     item.active
                       ? "font-semibold text-[#1F1F1F]"
                       : "font-normal text-[#1F1F1F]"
-                  }`}>
+                  }`}
+                >
                   {item.text}
                   {item.active && (
                     <div className="absolute -bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-[#FF3333] to-[#FF6666] rounded-full shadow" />
@@ -150,7 +178,8 @@ export const HeaderSection = () => {
             <button
               onClick={toggleMobileMenu}
               className="flex flex-col items-center justify-center w-[40px] h-[40px] space-y-1 transition-all duration-300"
-              aria-label="Toggle mobile menu">
+              aria-label="Toggle mobile menu"
+            >
               <span
                 className={`block w-6 h-0.5 bg-[#4C31AF] transition-all duration-300 ${
                   isMobileMenuOpen ? "rotate-45 translate-y-2" : ""
@@ -170,29 +199,38 @@ export const HeaderSection = () => {
 
             {/* Logo */}
             <div className="flex-shrink-0">
-              <img
-                src="/logo 1 1.png"
+              <video
+                src="/logo-video/logo.webm"
                 alt="Sumou Logo"
-                className="w-[90px] h-[90px] object-contain"
+                className="w-[300px] h-[300px] object-contain"
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  backgroundColor: "transparent",
+                  mixBlendMode: "multiply",
+                  filter: "contrast(1.2) brightness(1.1)",
+                }}
               />
             </div>
 
             {/* Lang Button */}
-            <Button 
+            <Button
               onClick={toggleLanguage}
               className="bg-purple rounded-lg text-white text-sm w-[40px] h-[40px] hover:bg-purple-700 transition-colors duration-300"
             >
-              {currentLanguage === 'en' ? 'ع' : 'EN'}
+              {currentLanguage === "en" ? "ع" : "EN"}
             </Button>
           </div>
 
           {/* Desktop Language Button */}
           <div className="hidden lg:flex ml-4">
-            <Button 
+            <Button
               onClick={toggleLanguage}
               className="bg-purple rounded-lg text-white text-lg w-[50px] h-[50px] hover:bg-purple-700 transition-colors duration-300"
             >
-              {currentLanguage === 'en' ? 'ع' : 'EN'}
+              {currentLanguage === "en" ? "ع" : "EN"}
             </Button>
           </div>
         </nav>
@@ -202,7 +240,8 @@ export const HeaderSection = () => {
       <div
         className={`fixed inset-0 z-[60] lg:hidden transition-all duration-500 ${
           isMobileMenuOpen ? "visible opacity-100" : "invisible opacity-0"
-        }`}>
+        }`}
+      >
         {/* Solid background to block home page content */}
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-white"></div>
 
@@ -216,12 +255,22 @@ export const HeaderSection = () => {
         <div
           className={`relative z-10 h-full w-full px-6 py-12 pt-20 flex flex-col items-center transition-transform duration-500 ${
             isMobileMenuOpen ? "translate-y-0" : "translate-y-full"
-          }`}>
+          }`}
+        >
           {/* Mobile Logo */}
-          <img
-            src="/logo 1 1.png"
+          <video
+            src="/logo-video/logo.mp4"
             alt="Sumou Logo"
             className="w-[140px] h-auto mb-8 object-contain"
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              backgroundColor: "transparent",
+              mixBlendMode: "multiply",
+              filter: "contrast(1.2) brightness(1.1)",
+            }}
           />
 
           {/* Navigation Links */}
@@ -236,7 +285,8 @@ export const HeaderSection = () => {
                     item.active
                       ? "font-semibold text-[#4C31AF]"
                       : "font-normal text-[#1F1F1F]"
-                  }`}>
+                  }`}
+                >
                   {item.text}
                   {item.active && (
                     <div className="absolute -bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-[#4C31AF] to-[#6B46C1] rounded-full shadow-md" />
@@ -249,12 +299,14 @@ export const HeaderSection = () => {
           {/* Center Close Button positioned exactly at the curve intersection */}
           <button
             onClick={() => setIsMobileMenuOpen(false)}
-            className="absolute bottom-[11%] left-1/2 transform -translate-x-1/2  w-[60px] h-[60px] bg-[#4C31AF] rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-transform duration-300 z-20">
+            className="absolute bottom-[11%] left-1/2 transform -translate-x-1/2  w-[60px] h-[60px] bg-[#4C31AF] rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-transform duration-300 z-20"
+          >
             <svg
               className="w-6 h-6 text-white"
               fill="none"
               stroke="currentColor"
-              viewBox="0 0 24 24">
+              viewBox="0 0 24 24"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
