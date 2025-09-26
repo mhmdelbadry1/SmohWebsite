@@ -135,19 +135,10 @@ export const HeaderSection = () => {
 
             {/* Logo */}
             <div className="flex-shrink-0 mx-[-20px]">
-              <video
-                src="/logo-video/logo.webm"
+              <img
+                src="/logo.png"
                 alt="Sumou Logo"
-                className="w-[300px] h-[300px] object-contain transition-transform duration-300 hover:scale-110"
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  backgroundColor: "transparent",
-                  mixBlendMode: "multiply",
-                  filter: "contrast(1.2) brightness(1.1)",
-                }}
+                className="w-[100px] mx-20 h-[300px] object-contain transition-transform duration-300 hover:scale-110"
               />
             </div>
 
@@ -199,19 +190,10 @@ export const HeaderSection = () => {
 
             {/* Logo */}
             <div className="flex-shrink-0">
-              <video
-                src="/logo-video/logo.webm"
+              <img
+                src="/logo.png"
                 alt="Sumou Logo"
-                className="w-[300px] h-[300px] object-contain"
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  backgroundColor: "transparent",
-                  mixBlendMode: "multiply",
-                  filter: "contrast(1.2) brightness(1.1)",
-                }}
+                className="w-[90px] sm:w-[120px] h-auto object-contain"
               />
             </div>
 
@@ -241,6 +223,7 @@ export const HeaderSection = () => {
         className={`fixed inset-0 z-[60] lg:hidden transition-all duration-500 ${
           isMobileMenuOpen ? "visible opacity-100" : "invisible opacity-0"
         }`}
+        style={{ height: "100svh", minHeight: "100dvh" }}
       >
         {/* Solid background to block home page content */}
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-white"></div>
@@ -253,35 +236,27 @@ export const HeaderSection = () => {
 
         {/* Content container */}
         <div
-          className={`relative z-10 h-full w-full px-6 py-12 pt-20 flex flex-col items-center transition-transform duration-500 ${
+          className={`relative z-10 h-full w-full px-6 pt-12 max-[900px]:pt-8 pb-[100px] flex flex-col justify-center items-center overflow-hidden transition-transform duration-500 ${
             isMobileMenuOpen ? "translate-y-0" : "translate-y-full"
           }`}
         >
+          {/* Navigation Links (centered and scrollable) */}
           {/* Mobile Logo */}
-          <video
-            src="/logo-video/logo.mp4"
+          <img
+            src="/logo.png"
             alt="Sumou Logo"
-            className="w-[10px] sm:w-[140px] h-auto mb-8 object-contain"
-            autoPlay
-            loop
-            muted
-            playsInline
-            style={{
-              backgroundColor: "transparent",
-              mixBlendMode: "multiply",
-              filter: "contrast(1.2) brightness(1.1)",
-            }}
+            className="shrink-0 w-[120px] sm:w-[140px] max-[600px]:w-[100px] h-auto mb-8 object-contain"
           />
-
-          {/* Navigation Links */}
-          <div className="flex flex-col items-center gap-6 mb-auto">
-            {/* Navigation items without dashed border */}
-            <div className="flex flex-col items-center gap-6">
+          <div
+            className="flex-1 w-full overflow-y-auto overscroll-contain min-h-0 flex items-center justify-center"
+            style={{ WebkitOverflowScrolling: "touch" }}
+          >
+            <div className="flex flex-col items-center justify-center gap-8 max-[600px]:gap-6 py-4 min-h-full">
               {allNavItems.map((item, index) => (
                 <button
                   key={`mobile-nav-${index}`}
                   onClick={() => handleNavClick(item)}
-                  className={`relative text-[20px] font-poppins transition-all duration-300 hover:text-[#4C31AF] hover:scale-105 ${
+                  className={`relative text-[22px] max-[600px]:text-[20px] font-poppins transition-all duration-300 hover:text-[#4C31AF] hover:scale-105 ${
                     item.active
                       ? "font-semibold text-[#4C31AF]"
                       : "font-normal text-[#1F1F1F]"
@@ -296,10 +271,10 @@ export const HeaderSection = () => {
             </div>
           </div>
 
-          {/* Center Close Button positioned exactly at the curve intersection */}
+          {/* Close Button (fixed at bottom, safe-area aware) */}
           <button
             onClick={() => setIsMobileMenuOpen(false)}
-            className="absolute bottom-[11%] left-1/2 transform -translate-x-1/2  w-[60px] h-[60px] bg-[#4C31AF] rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-transform duration-300 z-20"
+            className="fixed bottom-[calc(11%-10px)] left-1/2 -translate-x-1/2 w-[60px] h-[60px] bg-[#4C31AF] rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-transform duration-300 z-50"
           >
             <svg
               className="w-6 h-6 text-white"
