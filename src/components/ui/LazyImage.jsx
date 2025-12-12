@@ -5,14 +5,18 @@ export const LazyImage = ({
   alt, 
   className = '', 
   style = {},
+  eager = false, // Set to true for above-the-fold images
   blurDataURL = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%23f3f4f6"/%3E%3C/svg%3E'
 }) => {
-  const [imageSrc, setImageSrc] = useState(blurDataURL);
+  const [imageSrc, setImageSrc] = useState(eager ? src : blurDataURL);
   const [imageRef, setImageRef] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(false);
+  const [isInView, setIsInView] = useState(eager);
 
   useEffect(() => {
+    // Skip lazy loading for eager images
+    if (eager) return;
+    
     let observer;
     
     if (imageRef && !isInView) {
@@ -39,7 +43,7 @@ export const LazyImage = ({
         observer.unobserve(imageRef);
       }
     };
-  }, [imageRef, isInView, src]);
+  }, [imageRef, isInView, src, eager]);
 
   return (
     <div 

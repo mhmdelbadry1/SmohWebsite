@@ -140,6 +140,7 @@ export const Header = () => {
                 src="/logo.png"
                 alt="Sumou Logo"
                 className="w-[100px] mx-20 h-auto object-contain transition-transform duration-300 hover:scale-110"
+                eager={true}
               />
             </div>
 
@@ -195,6 +196,7 @@ export const Header = () => {
                 src="/logo.png"
                 alt="Sumou Logo"
                 className="w-[90px] sm:w-[120px] h-auto object-contain"
+                eager={true}
               />
             </div>
 
@@ -247,6 +249,7 @@ export const Header = () => {
             src="/logo.png"
             alt="Sumou Logo"
             className="shrink-0 w-[120px] sm:w-[140px] max-[600px]:w-[100px] h-auto mb-8 object-contain"
+            eager={true}
           />
           <div
             className="flex-1 w-full overflow-y-auto overscroll-contain min-h-0 flex items-center justify-center"

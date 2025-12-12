@@ -124,6 +124,7 @@ export const HeroBanner = () => {
               src={Idea}
               alt="Idea"
               className="w-[30px] sm:w-[50px] md:w-[70px] lg:w-[90px] xl:w-[130px] h-auto animate-float-idea"
+              eager={true}
             />
           </div>
           <div className="absolute opacity-[80%] top-[-30px] sm:top-[-40px] md:top-[-60px] lg:top-[-80px] h-auto w-[40px] sm:w-[70px] md:w-[90px] lg:w-[110px] right-[-5px] sm:right-[-10px] z-10 animate-glow-black">
@@ -131,6 +132,7 @@ export const HeroBanner = () => {
               src={highlight}
               alt="Highlight"
               className="w-full h-auto"
+              eager={true}
             />
           </div>
           <h1 className="max-w-full font-['Poppins'] font-bold text-[20px] sm:text-[32px] md:text-[48px] lg:text-[60px] xl:text-[65px] text-[#1F1F1F] text-center leading-[120%] sm:leading-[125%] md:leading-[130%] lg:leading-[135%] tracking-[0] animate-fade-in">

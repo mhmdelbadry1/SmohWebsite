@@ -315,6 +315,7 @@ export const Consultation = () => {
             className="flex-none h-16 lg:h-auto order-1 lg:order-3"
             alt="Logo"
             src={logo}
+            eager={true}
           />
         </div>
 

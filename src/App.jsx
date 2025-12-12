@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
 import { LanguageProvider } from "./contexts/LanguageContext";
 
 // Ensure page always starts from top
-if ('scrollRestoration' in window.history) {
-  window.history.scrollRestoration = 'manual';
+if ("scrollRestoration" in window.history) {
+  window.history.scrollRestoration = "manual";
 }
 import { HomePage } from "./pages/Home/HomePage";
 import { AboutPage } from "./pages/About/AboutPage";
@@ -13,8 +18,8 @@ import { ServicesPage } from "./pages/Services/ServicesPage";
 import { ProjectsPage } from "./pages/Projects/ProjectsPage";
 import { TestimonialsPage } from "./pages/Testimonials/TestimonialsPage";
 import { ContactPage } from "./pages/Contact/ContactPage";
-import SEO from './components/SEO';
-import { useTranslation } from 'react-i18next';
+import SEO from "./components/SEO";
+import { useTranslation } from "react-i18next";
 
 // Component to handle scroll to top on route change
 function ScrollToTop() {
@@ -22,12 +27,12 @@ function ScrollToTop() {
 
   useEffect(() => {
     // Instant scroll to top on route change
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [pathname]);
 
   // Also scroll to top on initial mount/refresh
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
   return null;
@@ -36,9 +41,9 @@ function ScrollToTop() {
 function App() {
   const { t, i18n } = useTranslation();
 
-  const isArabic = i18n.language === 'ar';
+  const isArabic = i18n.language === "ar";
 
-  const description = isArabic 
+  const description = isArabic
     ? "سمو، متخصصة في تصميم الهوية البصرية، إنشاء المحتوى الإعلاني، وتقديم الاستشارات الإبداعية لرواد الأعمال والعلامات الناشئة. نهدف إلى تمكين العلامات التجارية من التميز في السوق من خلال حلول إبداعية مبنية على رؤية استراتيجية وذوق راقٍ."
     : "Sumou specializes in visual identity design, advertising content creation, and creative consulting for entrepreneurs and emerging brands. Our goal is to empower brands to stand out in the market through creative solutions built on strategic vision and refined taste.";
 
@@ -46,19 +51,19 @@ function App() {
     ? "هوية بصرية, علامة تجارية, إعلان, إنشاء محتوى, استشارات إبداعية, تصميم علامة تجارية, تسويق, سمو"
     : "visual identity, branding, advertising, content creation, creative consulting, brand design, marketing, Sumou";
 
-  const title = isArabic 
-    ? "موقع سمو - نحن نجسد هويتك" 
+  const title = isArabic
+    ? "موقع سمو - نحن نجسد هويتك"
     : "Sumou Website - We Shape Your Identity";
 
   return (
     <LanguageProvider>
       <Router>
-        <SEO 
+        <SEO
           title={title}
           description={description}
           keywords={keywords}
-          url="https://your-website-url.com/"
-          image="https://your-website-url.com/logo.png"
+          url="https://sumouadvs.com/"
+          image="https://sumouadvs.com/logo.png"
         />
         <ScrollToTop />
         <Layout>
