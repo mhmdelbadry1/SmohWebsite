@@ -2,6 +2,7 @@ import { ArrowLeftIcon, ArrowRightIcon, UserIcon } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { Avatar, AvatarFallback } from "../../../../components/ui/avatar";
+import { LazyImage } from "../../../../components/ui/LazyImage";
 import { Button } from "../../../../components/ui/button";
 const Rectangle = "/images/backgrounds/rectangle-1471.png";
 const Background = "/images/backgrounds/shape-1.png";
@@ -101,12 +102,12 @@ export const Testimonials = () => {
       {/* Background decorative elements - always at bottom, full width */}
       <div className="absolute w-full h-[200px] sm:h-[300px] md:h-[386px] bottom-0 left-0 overflow-hidden opacity-75">
         <div className="relative w-full h-full">
-          <img
+          <LazyImage
             className="absolute w-full h-full object-cover"
             alt="Background"
             src={Background}
           />
-          <img
+          <LazyImage
             className="absolute w-full h-full object-cover"
             alt="Rectangle"
             src={Rectangle}

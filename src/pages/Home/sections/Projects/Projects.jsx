@@ -171,7 +171,7 @@ export const Projects = ({ isProjectsPage = false }) => {
                   }}
                 >
                   <div className="relative w-full h-full overflow-hidden rounded-2xl">
-                    <img
+                    <LazyImage
                       className={`w-full h-full object-cover transition-transform duration-500 ease-out ${
                         hoveredProject === project.id ? "scale-110" : "scale-100"
                       }`}
@@ -219,7 +219,7 @@ export const Projects = ({ isProjectsPage = false }) => {
                   }}
                 >
                   <div className="relative w-full h-full overflow-hidden rounded-2xl">
-                    <img
+                    <LazyImage
                       className={`w-full h-full object-cover transition-transform duration-500 ease-out ${
                         hoveredProject === project.id ? "scale-110" : "scale-100"
                       }`}

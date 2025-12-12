@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../components/ui/button";
+import { LazyImage } from "../../../../components/ui/LazyImage";
 import { Card, CardContent } from "../../../../components/ui/card";
 const AboutUsImage = "/images/pages/about-us.png";
 
@@ -261,7 +262,7 @@ export const AboutUs = () => {
               initial="hidden"
               animate={imageControls}
             >
-              <img
+              <LazyImage
                 className="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[500px] h-auto object-contain"
                 alt="Sumou logo"
                 src={AboutUsImage}

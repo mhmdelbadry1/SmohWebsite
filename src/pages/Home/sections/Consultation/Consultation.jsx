@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../components/ui/button";
+import { LazyImage } from "../../../../components/ui/LazyImage";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Input } from "../../../../components/ui/input";
 import { Separator } from "../../../../components/ui/separator";
@@ -310,7 +311,7 @@ export const Consultation = () => {
             ))}
           </nav>
 
-          <img
+          <LazyImage
             className="flex-none h-16 lg:h-auto order-1 lg:order-3"
             alt="Logo"
             src={logo}

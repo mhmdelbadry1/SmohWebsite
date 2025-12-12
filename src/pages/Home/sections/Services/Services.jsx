@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from 'react-i18next';
 import { motion, useAnimation } from "framer-motion";
 import { Card, CardContent } from "../../../../components/ui/card";
+import { LazyImage } from "../../../../components/ui/LazyImage";
 const PinImage = "/images/icons/pin.png";
 import { useInView } from "react-intersection-observer";
 const frame1 = "/images/decorations/group-7.png";
@@ -367,24 +368,32 @@ export const Services = () => {
               >
                 {/* Background/Main frame */}
                 <div className="relative w-full h-full">
-                  <motion.img
-                    src={frame1}
-                    alt="Frame 1"
-                    className="absolute bottom-[-3%]  left-[0%] sm:left-[0%]  w-[50vw] sm:w-[37vw] h-auto md:w-[38vw] lg:bottom-[-60%] lg:left-[-10%] lg:w-[210px]  object-contain"
+                  <motion.div
                     variants={frame1Animation}
                     initial="hidden"
                     animate={svgCardControls}
-                  />
+                    className="absolute bottom-[-3%]  left-[0%] sm:left-[0%]  w-[50vw] sm:w-[37vw] h-auto md:w-[38vw] lg:bottom-[-60%] lg:left-[-10%] lg:w-[210px]"
+                  >
+                    <LazyImage
+                      src={frame1}
+                      alt="Frame 1"
+                      className="w-full h-full object-contain"
+                    />
+                  </motion.div>
                   
                   {/* Overlapping second frame */}
-                  <motion.img 
-                    src={frame2} 
-                    alt="Frame 2"
-                    className="absolute top-[-2%] sm:top-[-5%] right-[-3%] sm:right-[-5%] w-[60vw] h-auto  sm:w-[54vw] md:w-[45vw] lg:right-[-10%] lg:top-[35%] lg:w-[260px]   object-contain z-10"
+                  <motion.div
                     variants={frame2Animation}
                     initial="hidden"
                     animate={svgCardControls}
-                  />
+                    className="absolute top-[-2%] sm:top-[-5%] right-[-3%] sm:right-[-5%] w-[60vw] h-auto  sm:w-[54vw] md:w-[45vw] lg:right-[-10%] lg:top-[35%] lg:w-[260px] z-10"
+                  >
+                    <LazyImage
+                      src={frame2} 
+                      alt="Frame 2"
+                      className="w-full h-full object-contain"
+                    />
+                  </motion.div>
                 </div>
               </motion.div>
             </CardContent>
@@ -491,23 +500,31 @@ export const Services = () => {
 
       {/* Pin Image */}
       {lang === 'ar' ? (
-        <motion.img
+        <motion.div
           initial="hidden"
           animate={pinControls}
           variants={pinAnimation}
           className="absolute w-20 h-20 top-0 lg:left-[340px] md:left-[260px] hidden lg:block"
-          alt="Decorative element"
-          src={PinImage}
-        />
+        >
+          <LazyImage
+            alt="Decorative element"
+            src={PinImage}
+            className="w-full h-full"
+          />
+        </motion.div>
       ) : (
-        <motion.img
+        <motion.div
           initial="hidden"
           animate={pinControls}
           variants={pinAnimation}
           className="absolute w-20 h-20 top-[30px] left-[170px] custom-pin-position hidden lg:block"
-          alt="Decorative element"
-          src={PinImage}
-        />
+        >
+          <LazyImage
+            alt="Decorative element"
+            src={PinImage}
+            className="w-full h-full"
+          />
+        </motion.div>
       )}
     </section>
     </>

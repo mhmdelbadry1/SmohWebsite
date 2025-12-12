@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
 import { Button } from "../../components/ui/button";
+import { LazyImage } from "../../components/ui/LazyImage";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Separator } from "../../components/ui/separator";
@@ -50,7 +51,7 @@ export const AboutPage = () => {
 
             <Card className="w-full max-w-4xl border border-solid shadow-sm">
               <CardContent className="flex flex-col items-center gap-6 sm:gap-8 p-4 sm:p-6 md:p-8 lg:p-10">
-                <img
+                <LazyImage
                   className="w-full max-w-[250px] sm:max-w-[300px] md:max-w-[400px] lg:max-w-[500px] h-auto object-cover"
                   alt="Sumou Arabic Calligraphy"
                   src={AboutUsImg}

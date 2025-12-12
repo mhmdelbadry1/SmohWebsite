@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../../../../components/ui/button";
+import { LazyImage } from "../../../../components/ui/LazyImage";
 const MarketingImg = "/images/decorations/marketing.png";
 const Star = "/images/decorations/star.png";
 const StarDec =
@@ -24,7 +25,7 @@ export const Offerings = () => {
     <section className="relative w-full z-10 py-6 xs:py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20 pb-16 xs:pb-18 sm:pb-20 md:pb-24 lg:pb-28 xl:pb-32 flex flex-col items-center justify-center overflow-hidden">
       {/* Marketing image outside curve for mobile - positioned at top left */}
       <div className="absolute top-0 left-[30px] sm:top-6 sm:left-24 w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] z-20 block min-[950px]:hidden">
-        <img
+        <LazyImage
           src={MarketingImg}
           alt="Marketing"
           className="w-full h-full object-contain"
@@ -154,7 +155,7 @@ export const Offerings = () => {
       <div className="relative w-[90%] p-16 xs:w-[85%] sm:w-[80%] md:w-[75%] lg:w-[70%] xl:w-[65%] 2xl:w-[60%] max-w-[1200px] z-10">
         <div className="p-4 xs:p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 flex flex-col items-center gap-4 xs:gap-5 sm:gap-6 md:gap-7 lg:gap-8 xl:gap-10">
           <h2 className="font-['Poppins',Helvetica] z-[10] font-semibold text-black text-center relative leading-tight text-xl xs:text-2xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
-            <img
+            <LazyImage
               src={Flag}
               alt=""
               aria-hidden="true"
