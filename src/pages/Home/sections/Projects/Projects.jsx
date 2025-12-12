@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { Button } from "../../../../components/ui/button";
 import { Card } from "../../../../components/ui/card";
+import { LazyImage } from "../../../../components/ui/LazyImage";
 const projectImg1 = "/images/projects/project-1.png";
 const projectImg2 = "/images/projects/project-2.png";
 const projectImg3 = "/images/projects/project-3.png";
