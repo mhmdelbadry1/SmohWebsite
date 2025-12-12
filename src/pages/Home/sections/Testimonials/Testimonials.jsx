@@ -102,12 +102,12 @@ export const Testimonials = () => {
       {/* Background decorative elements - always at bottom, full width */}
       <div className="absolute w-full h-[200px] sm:h-[300px] md:h-[386px] bottom-0 left-0 overflow-hidden opacity-75">
         <div className="relative w-full h-full">
-          <LazyImage
+          <img
             className="absolute w-full h-full object-cover"
             alt="Background"
             src={Background}
           />
-          <LazyImage
+          <img
             className="absolute w-full h-full object-cover"
             alt="Rectangle"
             src={Rectangle}

@@ -151,12 +151,12 @@ export const TestimonialsPage = () => {
         {/* Background Images - Bottom */}
         <div className="absolute bottom-0 left-0 w-full h-auto z-0 pointer-events-none transform width-[100%] scale-[3.6] translate-y-[-160%] md:scale-[1] md:translate-y-[-10%] rotate-180">
           <div className="relative w-full">
-            <LazyImage 
+            <img 
               src={Shape1} 
               alt="Background Shape" 
               className="w-full h-auto object-cover transform rotate-180"
             />
-            <LazyImage 
+            <img 
               src={Rectangle1471} 
               alt="Background Rectangle" 
               className="absolute top-0 left-0 w-full h-auto object-cover transform rotate-180"

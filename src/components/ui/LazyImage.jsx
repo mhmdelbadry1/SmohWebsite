@@ -27,8 +27,8 @@ export const LazyImage = ({
           });
         },
         {
-          rootMargin: '100px', // Start loading 100px before the image enters viewport
-          threshold: 0.01,
+          rootMargin: '50px', // Start loading 50px before the image enters viewport
+          threshold: 0.01
         }
       );
       observer.observe(imageRef);

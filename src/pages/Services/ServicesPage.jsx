@@ -159,12 +159,12 @@ export const ServicesPage = () => {
       {/* Background Images - Top */}
       <div className="absolute top-0 left-0 w-full h-auto z-0 pointer-events-none transform hidden md:block translate-y-[50%]">
         <div className="relative w-full">
-          <LazyImage
+          <img
             src={Shape1}
             alt="Background Shape"
             className="w-full h-auto object-cover"
           />
-          <LazyImage
+          <img
             src={Rectangle1471}
             alt="Background Rectangle"
             className="absolute top-0 left-0 w-full h-auto object-cover"
