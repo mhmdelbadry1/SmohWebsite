@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
-import { ProjectsSection } from "../../screens/Homepage/sections/ProjectsSection/index.js";
+import { Projects } from "../Home/sections/Projects/Projects.jsx";
 
 export const ProjectsPage = () => {
   const { t, i18n } = useTranslation();
@@ -8,7 +8,7 @@ export const ProjectsPage = () => {
 
   // Handle portfolio download
   const handleDownloadPortfolio = () => {
-    const pdfUrl = '/assets/portfolio.pdf';
+    const pdfUrl = '/documents/portfolio.pdf';
     const link = document.createElement('a');
     link.href = pdfUrl;
     link.download = currentLanguage === 'ar' ? 'بورتفوليو-سمو.pdf' : 'Sumou-Portfolio.pdf';
@@ -19,7 +19,7 @@ export const ProjectsPage = () => {
 
   return (
     <div className="min-h-screen">
-      <ProjectsSection isProjectsPage={true} />
+      <Projects isProjectsPage={true} />
       
       {/* Ready to Work Section */}
       <section className="w-full py-16 sm:py-20 bg-gradient-to-br md:px-24 from-white to-purple/5">

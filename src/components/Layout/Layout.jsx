@@ -1,17 +1,17 @@
 import React from "react";
-import { HeaderSection } from "../../screens/Homepage/sections/HeaderSection/index.js";
-import { ConsultationSection } from "../../screens/Homepage/sections/ConsultationSection/index.js";
+import { Header } from "../../pages/Home/sections/Header/Header.jsx";
+import { Consultation } from "../../pages/Home/sections/Consultation/Consultation.jsx";
 
 export const Layout = ({ children }) => {
   return (
     <div className="bg-white flex flex-row justify-center w-full">
       <div className="w-full overflow-x-hidden">
         <div className="flex w-full flex-col">
-          <HeaderSection />
+          <Header />
           <main className="flex-1">
             {children}
           </main>
-          <ConsultationSection />
+          <Consultation />
         </div>
       </div>
     </div>

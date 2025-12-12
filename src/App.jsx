@@ -28,8 +28,8 @@ function App() {
   const isArabic = i18n.language === 'ar';
 
   const description = isArabic 
-    ? "سمو، هي شركة متخصصة في تصميم الهوية البصرية، إنشاء المحتوى الإعلاني، وتقديم الاستشارات الإبداعية لرواد الأعمال والعلامات الناشئة. نهدف إلى تمكين العلامات التجارية من التميز في السوق من خلال حلول إبداعية مبنية على رؤية استراتيجية وذوق راقٍ."
-    : "Sumou is a company specialized in visual identity design, advertising content creation, and creative consulting for entrepreneurs and emerging brands. Our goal is to empower brands to stand out in the market through creative solutions built on strategic vision and refined taste.";
+    ? "سمو، متخصصة في تصميم الهوية البصرية، إنشاء المحتوى الإعلاني، وتقديم الاستشارات الإبداعية لرواد الأعمال والعلامات الناشئة. نهدف إلى تمكين العلامات التجارية من التميز في السوق من خلال حلول إبداعية مبنية على رؤية استراتيجية وذوق راقٍ."
+    : "Sumou specializes in visual identity design, advertising content creation, and creative consulting for entrepreneurs and emerging brands. Our goal is to empower brands to stand out in the market through creative solutions built on strategic vision and refined taste.";
 
   const keywords = isArabic
     ? "هوية بصرية, علامة تجارية, إعلان, إنشاء محتوى, استشارات إبداعية, تصميم علامة تجارية, تسويق, سمو"

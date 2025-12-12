@@ -168,7 +168,8 @@ export const ContactPage = () => {
                   <div
                     className="absolute bottom-0 w-full h-48   scale-[1.5]  lg:scale-[2] bg-bottom bg-cover z-0"
                     style={{
-                      backgroundImage: "url('/rectangle-1471.png')",
+                      backgroundImage:
+                        "url('/images/backgrounds/rectangle-1471.png')",
                       maskImage:
                         "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
                       WebkitMaskImage:
@@ -178,7 +179,7 @@ export const ContactPage = () => {
                   <div
                     className="absolute bottom-0 w-full h-48   bg-bottom bg-cover scale-[1.5]  lg:scale-[2] z-10"
                     style={{
-                      backgroundImage: "url('/shape-1.png')",
+                      backgroundImage: "url('/images/backgrounds/shape-1.png')",
                       backgroundRepeat: "no-repeat",
                       maskImage:
                         "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
@@ -359,7 +360,7 @@ export const ContactPage = () => {
                         {t("contact.form.phone")}
                       </label>
                       <div className="flex border  rounded-lg overflow-hidden">
-                        <div className="flex items-center px-3  py-3  border-r border-gray-300">
+                        <div className="flex items-center px-3 py-3">
                           <svg
                             width="36"
                             height="25"

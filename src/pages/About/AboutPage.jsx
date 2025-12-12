@@ -4,7 +4,7 @@ import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Separator } from "../../components/ui/separator";
-const AboutUsImg = "/AboutUs.png";
+const AboutUsImg = "/images/pages/about-us.png";
 
 export const AboutPage = () => {
   const { t, i18n } = useTranslation();

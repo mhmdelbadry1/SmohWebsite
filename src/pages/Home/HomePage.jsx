@@ -1,20 +1,20 @@
 import React from "react";
-import { HeroBannerSection } from "../../screens/Homepage/sections/HeroBannerSection/index.js";
-import { AboutUsSection } from "../../screens/Homepage/sections/AboutUsSection/index.js";
-import { ClientsTestimonialsSection } from "../../screens/Homepage/sections/ClientsTestimonialsSection/index.js";
-import { ProjectsSection } from "../../screens/Homepage/sections/ProjectsSection/index.js";
-import { OfferingsSection } from "../../screens/Homepage/sections/OfferingsSection/index.js";
-import { TestimonialsSection } from "../../screens/Homepage/sections/TestimonialsSection/TestimonialsSection.jsx";
+import { HeroBanner } from "./sections/HeroBanner/HeroBanner.jsx";
+import { AboutUs } from "./sections/AboutUs/AboutUs.jsx";
+import { Services } from "./sections/Services/Services.jsx";
+import { Projects } from "./sections/Projects/Projects.jsx";
+import { Offerings } from "./sections/Offerings/Offerings.jsx";
+import { Testimonials } from "./sections/Testimonials/Testimonials.jsx";
 
 export const HomePage = () => {
   return (
     <div className="min-h-screen">
-      <HeroBannerSection />
-      <AboutUsSection />
-      <ClientsTestimonialsSection />
-      <ProjectsSection />
-      <OfferingsSection />
-      <TestimonialsSection />
+      <HeroBanner />
+      <AboutUs />
+      <Services />
+      <Projects />
+      <Offerings />
+      <Testimonials />
     </div>
   );
 };
