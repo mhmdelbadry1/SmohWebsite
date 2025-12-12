@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: auto; /* Disable smooth scroll for better performance */
+  }
+  
   html[lang="ar"] * {
     font-family: 'Alexandria', sans-serif !important;
   }
@@ -15,6 +19,12 @@
   
   html[dir="ltr"] {
     direction: ltr;
+  }
+  
+  /* Optimize rendering performance */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
